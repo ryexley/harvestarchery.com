@@ -10,7 +10,7 @@ import type { LinksFunction, MetaFunction } from "remix"
 import { getCssText } from "~/styles"
 import { globalStyles } from "~/styles/global"
 
-export const meta: MetaFunction = () => {
+const meta: MetaFunction = () => {
   return { title: "The Harvest Archery Pro Shop" }
 }
 
@@ -23,7 +23,7 @@ export const links: LinksFunction = () => {
   ]
 }
 
-export default function App() {
+const Document = (props: { children: Node }) => {
   return (
     <html lang="en">
       <head>
@@ -33,12 +33,11 @@ export default function App() {
         <Links />
         <style type="text/css">{globalStyles()}</style>
         <style
-          id="stitches"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: getCssText() }} />
       </head>
       <body>
-        <Outlet />
+        {props.children}
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === "development" && <LiveReload />}
@@ -46,3 +45,25 @@ export default function App() {
     </html>
   )
 }
+
+const ErrorBoundary = (props: { error: Error }) => {
+  console.error("ERROR", props.error)
+
+  return (
+    <Document>
+      <h1>Something went wrong</h1>
+      <p>{props.error.message}</p>
+    </Document>
+  )
+}
+
+const App = () => {
+  return (
+    <Document>
+      <Outlet />
+    </Document>
+  )
+}
+
+export default App
+export { meta, ErrorBoundary }
