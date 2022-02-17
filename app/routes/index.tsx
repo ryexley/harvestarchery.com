@@ -18,7 +18,8 @@ export default function Index() {
   return (
     <MainLayout>
       <h1>The Harvest Archery Pro Shop</h1>
-      <Test image="daniel-follow-through.jpg" />
+      <Test
+        image="daniel-follow-through.jpg" />
     </MainLayout>
   )
 }
