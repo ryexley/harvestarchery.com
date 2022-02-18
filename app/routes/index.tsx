@@ -29,6 +29,18 @@ const Subtitle = styled("h2", {
   textTransform: "uppercase"
 })
 
+const PageSection = styled("section", {
+  display: "flex",
+  minHeight: "10rem",
+  padding: "1rem"
+})
+
+const BrandRotator = styled(PageSection)
+
+const PageHighlights = styled(PageSection)
+
+const CustomerQuotes = styled(PageSection)
+
 export const meta: MetaFunction = () => {
   return {
     title: "The Harvest Archery Pro Shop"
@@ -43,6 +55,9 @@ export default function Index() {
         <Title>Harvest Archery</Title>
         <Subtitle>Pro Shop</Subtitle>
       </Hero>
+      <BrandRotator>Brand Rotator</BrandRotator>
+      <PageHighlights>Page Highlights</PageHighlights>
+      <CustomerQuotes>Customer Quotes</CustomerQuotes>
     </MainLayout>
   )
 }
