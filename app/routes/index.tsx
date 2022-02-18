@@ -3,9 +3,30 @@ import { ImageBox } from "~/components/image-box"
 import { styled } from "~/styles"
 import type { MetaFunction } from "remix"
 
-const Test = styled(ImageBox, {
+const Hero = styled(ImageBox, {
+  alignItems: "center",
+  color: "#fff",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
   minHeight: "100vh",
   width: "100vw"
+})
+
+const Title = styled("h1", {
+  fontSize: "5rem",
+  fontStyle: "italic",
+  fontWeight: "300",
+  letterSpacing: "0.25rem",
+  textTransform: "uppercase"
+})
+
+const Subtitle = styled("h2", {
+  fontSize: "2.5rem",
+  fontStyle: "italic",
+  fontWeight: "300",
+  letterSpacing: "0.25rem",
+  textTransform: "uppercase"
 })
 
 export const meta: MetaFunction = () => {
@@ -17,9 +38,11 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <MainLayout>
-      <h1>The Harvest Archery Pro Shop</h1>
-      <Test
-        image="daniel-follow-through.jpg" />
+      <Hero dark blur
+        image="daniel-follow-through.jpg">
+        <Title>Harvest Archery</Title>
+        <Subtitle>Pro Shop</Subtitle>
+      </Hero>
     </MainLayout>
   )
 }

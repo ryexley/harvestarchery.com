@@ -1,10 +1,38 @@
-import { styled } from "~/styles"
+import { styled, keyframes } from "~/styles"
 
 const Box = styled("div", {
-  position: "relative"
+  overflow: "hidden",
+  position: "relative",
+  zIndex: "-2",
+
+  variants: {
+    light: {
+      true: {
+        backgroundColor: "#fff"
+      }
+    },
+
+    dark: {
+      true: {
+        backgroundColor: "#000"
+      }
+    }
+  }
+})
+
+const slideDownFadeIn = keyframes({
+  "0%": {
+    opacity: 0,
+    transform: "translateY(-2.5rem)"
+  },
+  "100%": {
+    opacity: 1,
+    transform: "translateY(0)"
+  }
 })
 
 const ImageContainer = styled("div", {
+  animation: `${slideDownFadeIn} 1s`,
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
@@ -13,6 +41,7 @@ const ImageContainer = styled("div", {
   left: 0,
   right: 0,
   top: 0,
+  zIndex: "0",
   smoothTransition: "all",
 
   ["&::after"]: {
@@ -22,6 +51,7 @@ const ImageContainer = styled("div", {
     left: 0,
     right: 0,
     top: 0,
+    zIndex: "-1",
     smoothTransition: "all"
   },
 
@@ -36,6 +66,8 @@ const ImageContainer = styled("div", {
 
     light: {
       true: {
+        backgroundColor: "#fff",
+
         ["&::after"]: {
           background: "rgba(255, 255, 255, 0.75)"
         }
@@ -44,6 +76,8 @@ const ImageContainer = styled("div", {
 
     dark: {
       true: {
+        backgroundColor: "#000",
+
         ["&::after"]: {
           background: "rgba(0, 0, 0, 0.75)"
         }
@@ -70,13 +104,7 @@ const ImageContainer = styled("div", {
         }
       }
     }
-  ],
-
-  defaultVariants: {
-    light: false,
-    dark: true,
-    blur: true
-  }
+  ]
 })
 
 type ImageBoxProps = {
@@ -98,12 +126,16 @@ export function ImageBox({
   const imagePath = `/images/${image}`
 
   return (
-    <Box {...props}>
+    <Box
+      light={light}
+      dark={dark}
+      {...props}>
       <ImageContainer
         blur={blur}
         light={light}
         dark={dark}
-        css={{ backgroundImage: `url(${imagePath})` }}>
+        css={{ backgroundImage: `url(${imagePath})` }}
+        {...props}>
         {children}
       </ImageContainer>
     </Box>
