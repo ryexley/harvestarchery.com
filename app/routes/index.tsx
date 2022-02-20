@@ -16,7 +16,7 @@ const Hero = styled(ImageBox, {
 const Title = styled("h1", {
   fontSize: "5rem",
   fontStyle: "italic",
-  fontWeight: "300",
+  fontWeight: "600",
   letterSpacing: "0.25rem",
   textTransform: "uppercase"
 })

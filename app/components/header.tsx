@@ -1,4 +1,5 @@
 import HeadroomPrimitive from "react-headroom"
+import { Menu } from "~/components/icons"
 import { styled } from "~/styles"
 
 const Headroom = styled(HeadroomPrimitive, {
@@ -30,16 +31,60 @@ const Headroom = styled(HeadroomPrimitive, {
 })
 
 const StyledHeader = styled("header", {
-  background: "$slate4",
+  alignItems: "center",
+  background: "$blackA10",
+  backdropFilter: "blur(0.5rem)",
   color: "$slate12",
-  padding: "1rem"
+  display: "flex",
+  justifyContent: "space-between",
+  minHeight: "var(--header-height)",
+  padding: "1rem 1.5rem",
+  smoothTransition: "all"
+})
+
+const HomeLink = styled("a", {
+  color: "$white",
+  display: "inline-flex",
+  flexDirection: "column",
+  textDecoration: "none"
+})
+
+const homeLinkTextStyles = {
+  display: "inline-block",
+  fontStyle: "italic",
+  fontWeight: "600",
+  textTransform: "uppercase"
+}
+
+const Title = styled("span", {
+  ...homeLinkTextStyles,
+  fontSize: "1.5rem"
+})
+
+const SubTitle = styled("span", {
+  ...homeLinkTextStyles,
+  fontSize: "0.85rem"
+})
+
+const MenuIcon = styled(Menu, {
+  ["--size"]: "2rem",
+  cursor: "pointer",
+  fill: "$white",
+  height: "var(--size)",
+  width: "var(--size)"
 })
 
 export function Header() {
   return (
-    <Headroom disableInlineStyles={true}>
+    <Headroom
+      disableInlineStyles={true}
+      wrapperStyle={{ marginBottom: "calc(var(--header-height) * -1)" }}>
       <StyledHeader>
-        Header
+        <HomeLink href="/">
+          <Title>Harvest Archery</Title>
+          <SubTitle>Pro Shop</SubTitle>
+        </HomeLink>
+        <MenuIcon />
       </StyledHeader>
     </Headroom>
   )
