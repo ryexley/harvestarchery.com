@@ -8,3 +8,20 @@ export function Menu({...props}) {
     </svg>
   )
 }
+
+export function CloseX({...props}) {
+  return (
+    <svg
+      id="close-icon"
+      viewBox="0 0 77 77"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}>
+      <path
+        fill="currentColor"
+        d="M11.2 60.2 L58.9 12.5 C60.7 10.7 63.5 10.7 65.3 12.5 67.1 14.3 67.1 17.1 65.3 18.9 L17.6 66.6 C15.8 68.4 13 68.4 11.2 66.6 9.4 64.8 9.4 61.9 11.2 60.2 Z" />
+      <path
+        fill="currentColor"
+        d="M17.6 12 L65.3 59.7 C67.1 61.5 67.1 64.3 65.3 66.1 63.5 67.9 60.7 67.9 58.9 66.1 L11.2 18.4 C9.4 16.6 9.4 13.8 11.2 12 13 10.2 15.8 10.2 17.6 12 Z" />
+    </svg>
+  )
+}

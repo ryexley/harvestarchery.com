@@ -1,5 +1,5 @@
 import { createStitches } from "@stitches/react"
-import { slateDark, blackA } from "@radix-ui/colors"
+import { slateDark, limeDark, blackA, whiteA } from "@radix-ui/colors"
 
 export const breakpointPx = {
   xs: 320,
@@ -44,8 +44,10 @@ export const {
   theme: {
     breaks,
     colors: {
-      ...slateDark,
       ...blackA,
+      ...limeDark,
+      ...slateDark,
+      ...whiteA,
       white: "$slate12"
     },
     fonts: {

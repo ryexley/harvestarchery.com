@@ -4,6 +4,7 @@ import { styled } from "~/styles"
 
 const Headroom = styled(HeadroomPrimitive, {
   ["> .headroom"]: {
+    backgroundColor: "transparent",
     left: "0",
     right: "0",
     top: "0",
@@ -37,7 +38,7 @@ const StyledHeader = styled("header", {
   color: "$slate12",
   display: "flex",
   justifyContent: "space-between",
-  minHeight: "var(--header-height)",
+  minHeight: "var(--header-height)", // <-- defined in /app/styles/global.tsx
   padding: "1rem 1.5rem",
   smoothTransition: "all"
 })
@@ -74,17 +75,28 @@ const MenuIcon = styled(Menu, {
   width: "var(--size)"
 })
 
-export function Header() {
+type HeaderProps = {
+  menuOpen: boolean,
+  toggleMenu: Function
+}
+
+export function Header({
+  menuOpen = false,
+  toggleMenu
+}: HeaderProps) {
   return (
     <Headroom
       disableInlineStyles={true}
-      wrapperStyle={{ marginBottom: "calc(var(--header-height) * -1)" }}>
+      wrapperStyle={{ marginBottom: "calc(var(--header-height) * -1)" }}> {/* <-- --header-height is defined in /app/styles/global.tsx */}
       <StyledHeader>
         <HomeLink href="/">
           <Title>Harvest Archery</Title>
           <SubTitle>Pro Shop</SubTitle>
         </HomeLink>
-        <MenuIcon />
+        <MenuIcon
+          role="button"
+          onClick={toggleMenu}
+          aria-label="Show menu" />
       </StyledHeader>
     </Headroom>
   )
