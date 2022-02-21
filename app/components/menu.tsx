@@ -1,5 +1,6 @@
 import { Drawer } from "~/components/drawer"
 import { CloseX } from "~/components/icons"
+import { menu } from "~/data"
 import { styled } from "~/styles"
 
 const StyledMenu = styled(Drawer, {
@@ -7,7 +8,7 @@ const StyledMenu = styled(Drawer, {
 })
 
 const Heading = styled("h2", {
-  color: "$white",
+  color: "$whiteA10",
   borderBottom: "1px solid rgba(0, 0, 0, 0.25)",
   fontSize: "1.5rem",
   fontWeight: "400",
@@ -85,10 +86,11 @@ export function Menu({
       </CloseButton>
       <Heading>Menu</Heading>
       <MenuItems>
-        <MenuItem><a href="#">About</a></MenuItem>
-        <MenuItem><a href="#">Services</a></MenuItem>
-        <MenuItem><a href="#">Events</a></MenuItem>
-        <MenuItem><a href="#">Lessons</a></MenuItem>
+        {menu.map(({ url, label }) => (
+          <MenuItem key={`menu-item-${label.toLowerCase()}`}>
+            <a href={url}>{label}</a>
+          </MenuItem>
+        ))}
       </MenuItems>
     </StyledMenu>
   )
