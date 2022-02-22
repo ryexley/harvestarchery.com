@@ -1,6 +1,6 @@
 import HeadroomPrimitive from "react-headroom"
-import { Menu } from "~/components/icons"
-import { styled } from "~/styles"
+import { Menu as MenuIcon } from "~/components/icons"
+import { styled, keyframes } from "~/styles"
 
 const Headroom = styled(HeadroomPrimitive, {
   ["> .headroom"]: {
@@ -39,7 +39,6 @@ const StyledHeader = styled("header", {
   display: "flex",
   justifyContent: "space-between",
   minHeight: "var(--header-height)", // <-- defined in /app/styles/global.tsx
-  padding: "1rem 1.5rem",
   smoothTransition: "all"
 })
 
@@ -47,6 +46,7 @@ const HomeLink = styled("a", {
   color: "$white",
   display: "inline-flex",
   flexDirection: "column",
+  margin: "1rem 1.5rem",
   textDecoration: "none"
 })
 
@@ -67,12 +67,24 @@ const SubTitle = styled("span", {
   fontSize: "0.85rem"
 })
 
-const MenuIcon = styled(Menu, {
-  ["--size"]: "2rem",
+const sidebarMenuToggleSize = "2rem"
+const headerRightMargin = "1.5rem"
+
+const SidebarMenuToggle = styled("button", {
+  background: "transparent",
+  border: "none",
   cursor: "pointer",
-  fill: "$white",
-  height: "var(--size)",
-  width: "var(--size)"
+  height: sidebarMenuToggleSize,
+  margin: `auto ${headerRightMargin}`,
+  padding: "0",
+  width: sidebarMenuToggleSize,
+  smoothTransition: "all",
+
+  ["> svg"]: {
+    fill: "$white",
+    height: sidebarMenuToggleSize,
+    width: sidebarMenuToggleSize
+  },
 })
 
 type HeaderProps = {
@@ -93,10 +105,11 @@ export function Header({
           <Title>Harvest Archery</Title>
           <SubTitle>Pro Shop</SubTitle>
         </HomeLink>
-        <MenuIcon
-          role="button"
+        <SidebarMenuToggle
           onClick={toggleMenu}
-          aria-label="Show menu" />
+          aria-label="Show menu">
+          <MenuIcon />
+        </SidebarMenuToggle>
       </StyledHeader>
     </Headroom>
   )

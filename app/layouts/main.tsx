@@ -1,7 +1,9 @@
 import { useState } from "react"
 import { Header } from "~/components/header"
 import { Footer } from "~/components/footer"
-import { Menu } from "~/components/menu"
+import { SidebarMenu } from "~/components/menu"
+import { external } from "~/urls"
+import { site } from "~/data"
 
 type MainLayoutProps = {
   children: Node
@@ -17,7 +19,7 @@ export function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
       <Header toggleMenu={toggleMenu} />
-      <Menu
+      <SidebarMenu
         isOpen={showMenu}
         onClose={() => toggleMenu({ forceClose: true })} />
       <main>

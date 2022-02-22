@@ -1,6 +1,7 @@
 import { MainLayout } from "~/layouts/main"
 import { ImageBox } from "~/components/image-box"
 import { styled } from "~/styles"
+import { site } from "~/data"
 import type { MetaFunction } from "remix"
 
 const Hero = styled(ImageBox, {
@@ -60,8 +61,8 @@ const CustomerQuotes = styled(PageSection)
 
 export const meta: MetaFunction = () => {
   return {
-    title: "The Harvest Archery Pro Shop",
-    description: "archery, harvest archery, pro shop, harvest archery pro shop, bows, arrows, shooting, archery range, archery lessons, chattanooga, knoxville, cookeville, crossville, nashville, tennessee, east tennessee, hoyt archery, elite archery, bowtech archery, diamond archery, easton arrows, gold tip arrows, archery supply, archery supplies, archery help, bow technician, bow hunting, hunting, indoor archery, target archery"
+    title: site.title,
+    description: site.globalMetadata.join(", ")
   }
 }
 

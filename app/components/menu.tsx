@@ -3,7 +3,7 @@ import { CloseX } from "~/components/icons"
 import { menu } from "~/data"
 import { styled } from "~/styles"
 
-const StyledMenu = styled(Drawer, {
+const DrawerMenu = styled(Drawer, {
   backgroundColor: "$blackA12"
 })
 
@@ -51,7 +51,7 @@ const MenuItem = styled("li", {
 
     ["&:hover, &:focus"]: {
       background: "$whiteA4",
-      borderLeft: "0.25rem solid $lime9",
+      borderLeft: "0.25rem solid $orange9",
       color: "$white"
     }
   }
@@ -62,7 +62,7 @@ type MenuProps = {
   onClose: Function
 }
 
-export function Menu({
+export function SidebarMenu({
   isOpen = false,
   onClose
 }: MenuProps) {
@@ -75,7 +75,7 @@ export function Menu({
   }
 
   return (
-    <StyledMenu
+    <DrawerMenu
       position="right"
       isOpen={isOpen}
       onClose={onClose}>
@@ -92,6 +92,6 @@ export function Menu({
           </MenuItem>
         ))}
       </MenuItems>
-    </StyledMenu>
+    </DrawerMenu>
   )
 }
