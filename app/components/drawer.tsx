@@ -6,7 +6,9 @@ import { NoSsr } from "~/components/no-ssr"
 import { styled } from "~/styles"
 
 const Container = styled("div", {
+  height: "auto",
   smoothTransition: "all",
+  width: "auto"
 })
 
 const Contents = styled("div", {
@@ -93,6 +95,7 @@ type DrawerProps = {
   isOpen!: boolean,
   onClose: Function,
   position: Position,
+  ariaLabel: string,
   children: Node,
   defaultValue?: string
 }
@@ -101,6 +104,7 @@ export function Drawer({
   isOpen = false,
   onClose,
   position = "right",
+  ariaLabel,
   children,
   ...props
 }: DrawerProps) {
@@ -127,12 +131,12 @@ export function Drawer({
     <NoSsr>
       <Portal.Root>
         <Container
-          open={isOpen}
           aria-hidden={isOpen ? "false" : "true"}>
           <Contents
             position={position}
             open={isOpen}
             role="dialog"
+            aria-label={ariaLabel}
             {...props}>
             {children}
           </Contents>

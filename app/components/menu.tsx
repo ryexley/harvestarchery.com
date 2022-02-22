@@ -78,7 +78,8 @@ export function SidebarMenu({
     <DrawerMenu
       position="right"
       isOpen={isOpen}
-      onClose={onClose}>
+      onClose={onClose}
+      ariaLabel="Site menu">
       <CloseButton
         aria-label="Close menu"
         onClick={handleCloseMenu}>
