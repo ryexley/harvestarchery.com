@@ -21,11 +21,17 @@ const CloseButton = styled("button", {
   background: "transparent",
   border: "none",
   cursor: "pointer",
+  margin: "$1 0",
   position: "absolute",
+  smoothTransition: "all",
   height: "var(--size)",
   right: "1rem",
   top: "1rem",
-  width: "var(--size)"
+  width: "var(--size)",
+
+  "&:hover": {
+    transform: "rotate(180deg)"
+  }
 })
 
 const CloseButtonIcon = styled(CloseX, {

@@ -1,5 +1,6 @@
 import { MainLayout } from "~/layouts/main"
 import { ImageBox } from "~/components/image-box"
+import { BrandRotator } from "~/components/brand-image-rotator"
 import { styled } from "~/styles"
 import { site } from "~/data"
 import type { MetaFunction } from "remix"
@@ -52,8 +53,6 @@ const PageSection = styled("section", {
   minHeight: "10rem",
   padding: "1rem"
 })
-
-const BrandRotator = styled(PageSection)
 
 const PageHighlights = styled(PageSection)
 

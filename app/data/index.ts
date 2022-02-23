@@ -34,7 +34,7 @@ export const site = {
     "indoor archery",
     "target archery"
   ],
-  phoneNumber: "",
+  phoneNumber: "423-715-1386",
   address: {
     line1: "1264 Market St",
     line2: "",

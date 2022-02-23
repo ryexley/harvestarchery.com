@@ -1,5 +1,6 @@
 import HeadroomPrimitive from "react-headroom"
-import { Menu as MenuIcon } from "~/components/icons"
+import { Menu as MenuIcon, Phone } from "~/components/icons"
+import { site } from "~/data"
 import { styled, keyframes } from "~/styles"
 
 const Headroom = styled(HeadroomPrimitive, {
@@ -39,14 +40,20 @@ const StyledHeader = styled("header", {
   display: "flex",
   justifyContent: "space-between",
   minHeight: "var(--header-height)", // <-- defined in /app/styles/global.tsx
+  padding: "1rem 1.5rem",
   smoothTransition: "all"
+})
+
+const Left = styled("div")
+const Right = styled("div", {
+  display: "flex",
+  gap: "$3"
 })
 
 const HomeLink = styled("a", {
   color: "$white",
   display: "inline-flex",
   flexDirection: "column",
-  margin: "1rem 1.5rem",
   textDecoration: "none"
 })
 
@@ -67,6 +74,34 @@ const SubTitle = styled("span", {
   fontSize: "0.85rem"
 })
 
+const CallUsLink = styled("a", {
+  alignItems: "center",
+  border: "1px solid $orange9",
+  borderRadius: "0.1875rem",
+  color: "$white",
+  display: "flex",
+  gap: "$2",
+  padding: "0 $2",
+  textDecoration: "none",
+
+  "&:hover": {
+    backgroundColor: "$whiteA7",
+
+    "> svg": {
+      fill: "$orange10",
+      transform: "rotate(-270deg)"
+    }
+  }
+})
+
+const phoneIconSize = "1rem"
+const PhoneIcon = styled(Phone, {
+  fill: "$white",
+  height: phoneIconSize,
+  width: phoneIconSize,
+  smoothTransition: "all"
+})
+
 const sidebarMenuToggleSize = "2rem"
 const headerRightMargin = "1.5rem"
 
@@ -75,7 +110,6 @@ const SidebarMenuToggle = styled("button", {
   border: "none",
   cursor: "pointer",
   height: sidebarMenuToggleSize,
-  margin: `auto ${headerRightMargin}`,
   padding: "0",
   width: sidebarMenuToggleSize,
   smoothTransition: "all",
@@ -101,15 +135,23 @@ export function Header({
       disableInlineStyles={true}
       wrapperStyle={{ marginBottom: "calc(var(--header-height) * -1)" }}> {/* <-- --header-height is defined in /app/styles/global.tsx */}
       <StyledHeader>
-        <HomeLink href="/">
-          <Title>Harvest Archery</Title>
-          <SubTitle>Pro Shop</SubTitle>
-        </HomeLink>
-        <SidebarMenuToggle
-          onClick={toggleMenu}
-          aria-label="Show menu">
-          <MenuIcon />
-        </SidebarMenuToggle>
+        <Left>
+          <HomeLink href="/">
+            <Title>Harvest Archery</Title>
+            <SubTitle>Pro Shop</SubTitle>
+          </HomeLink>
+        </Left>
+        <Right>
+          <CallUsLink href={`tel:${site.phoneNumber}`}>
+            <PhoneIcon />
+            {site.phoneNumber}
+          </CallUsLink>
+          <SidebarMenuToggle
+            onClick={toggleMenu}
+            aria-label="Show menu">
+            <MenuIcon />
+          </SidebarMenuToggle>
+        </Right>
       </StyledHeader>
     </Headroom>
   )

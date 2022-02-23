@@ -13,7 +13,9 @@ export const globalStyles = globalCss({
     minWidth: "26.25rem"
   },
 
-  a: {},
+  a: {
+    smoothTransition: "all"
+  },
 
   ["a, input, select"]: {
     border: "1px solid transparent",
