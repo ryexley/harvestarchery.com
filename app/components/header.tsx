@@ -79,7 +79,7 @@ const CallUsLink = styled("a", {
   border: "1px solid $orange9",
   borderRadius: "0.1875rem",
   color: "$white",
-  display: "flex",
+  display: "none",
   gap: "$2",
   padding: "0 $2",
   textDecoration: "none",
@@ -91,6 +91,10 @@ const CallUsLink = styled("a", {
       fill: "$orange10",
       transform: "rotate(-270deg)"
     }
+  },
+
+  "@sm": {
+    display: "flex"
   }
 })
 
