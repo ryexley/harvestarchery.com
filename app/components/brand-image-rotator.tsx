@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useViewport } from "~/hooks/use-viewport"
 import {
   Hoyt,
   Elite,
@@ -19,9 +20,9 @@ const Rotator = styled("section", {
   alignItems: "center",
   display: "flex",
   justifyContent: "center",
-  height: "20rem",
+  height: "10rem",
   overflow: "hidden",
-  padding: "2rem 5rem",
+  padding: "1rem 2rem",
   transition: "all 1s ease-in-out"
 })
 
@@ -32,9 +33,12 @@ const fadeInOut = keyframes({
   "100%": { opacity: 0 }
 })
 
-const imageHeight = "15rem"
+const imageHeight = "8rem"
 const logoStyle = {
   animation: `${fadeInOut} 5s ease-in-out 1 0s`,
+  blockSize: "auto",
+  maxInlineSize: "100%",
+  objectFit: "contain",
   opacity: "0",
   smoothTransition: "all"
 }
@@ -121,6 +125,7 @@ const brandImages = [
 ]
 
 export function BrandRotator() {
+  const { width: viewportWidth } = useViewport()
   const [logoIndex, setLogoIndex] = useState(0)
   const { Logo, backgroundColor } = brandImages[logoIndex]
   const FIVE_SECONDS = (5 * 1000)

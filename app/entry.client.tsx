@@ -1,4 +1,10 @@
 import { hydrate } from "react-dom";
 import { RemixBrowser } from "remix";
+import { ViewportProvider } from "~/context/viewport"
 
-hydrate(<RemixBrowser />, document);
+hydrate(
+  <ViewportProvider>
+    <RemixBrowser />
+  </ViewportProvider>,
+  document
+)

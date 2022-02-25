@@ -6,7 +6,6 @@ export function Hoyt({...props}) {
       xmlns="http://www.w3.org/2000/svg"
       xmlSpace="preserve"
       overflow="visible"
-      preserveAspectRatio="xMinYMin slice"
       viewBox="0 0 432 144"
       {...props}>
       <polygon fill="currentColor" points="91.17,29.25 85.25,51.37 58.65,51.37 64.58,29.25 32.48,29.25 16.62,88.44 48.72,88.44 55.64,62.61 82.24,62.61 75.31,88.44 107.41,88.44 123.27,29.25"/>
@@ -28,10 +27,7 @@ export function Elite({...props}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      version="1.1"
-      id="Layer_1"
-      x="0"
-      y="0"
+      x="0" y="0"
       viewBox="0 0 248.3 187.8"
       style={{enableBackground: "new 0 0 248.3 187.8"}}
       xmlSpace="preserve"
@@ -178,6 +174,7 @@ export function Bowtech({...props}) {
       src="/images/brand-logos/bowtech-black.png"
       alt="Bowtech Archery Logo"
       title="Bowtech Archery"
+      loading="lazy"
       {...props}
     />
   )
@@ -189,6 +186,7 @@ export function Diamond({...props}) {
       src="/images/brand-logos/diamond-horizontal.png"
       alt="Diamond Archery, by Bowtech Logo"
       title="Diamond Archery, by Bowtech"
+      loading="lazy"
       {...props}
     />
   )
@@ -200,6 +198,7 @@ export function Easton({...props}) {
       src="/images/brand-logos/easton.png"
       alt="Easton Logo"
       title="Easton"
+      loading="lazy"
       {...props}
     />
   )
@@ -211,6 +210,7 @@ export function BeeStinger({...props}) {
       src="/images/brand-logos/beestinger.png"
       alt="Bee Stinger Logo"
       title="Bee Stinger"
+      loading="lazy"
       {...props}
     />
   )
@@ -222,6 +222,7 @@ export function CBE({...props}) {
       src="/images/brand-logos/cbe.png"
       alt="Custom Bow Equipment Logo"
       title="Custom Bow Equipment"
+      loading="lazy"
       {...props}
     />
   )
@@ -233,6 +234,7 @@ export function QAD({...props}) {
       src="/images/brand-logos/qad.png"
       alt="Quality Archery Designs Logo"
       title="Quality Archery Designs"
+      loading="lazy"
       {...props}
     />
   )
@@ -244,6 +246,7 @@ export function SpotHogg({...props}) {
       src="/images/brand-logos/spot-hogg.png"
       alt="Spot Hogg Logo"
       title="Spot Hogg"
+      loading="lazy"
       {...props}
     />
   )
@@ -255,6 +258,7 @@ export function BlackGold({...props}) {
       src="/images/brand-logos/black-gold.png"
       alt="Black Gold Premium Bowsights Logo"
       title="Black Gold Premium Bowsights"
+      loading="lazy"
       {...props}
     />
   )
@@ -266,6 +270,7 @@ export function Bowfinger({...props}) {
       src="/images/brand-logos/bowfinger.png"
       alt="Bowfinger Archery Logo"
       title="Bowfinger Archery"
+      loading="lazy"
       {...props}
     />
   )
@@ -277,6 +282,7 @@ export function TruballAxcel({...props}) {
       src="/images/brand-logos/truball-axcel.png"
       alt="T.R.U. Ball / Axcel Logo"
       title="T.R.U. Ball / Axcel"
+      loading="lazy"
       {...props}
     />
   )
