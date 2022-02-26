@@ -20,7 +20,7 @@ const Rotator = styled("section", {
   alignItems: "center",
   display: "flex",
   justifyContent: "center",
-  height: "10rem",
+  // height: "15rem",
   overflow: "hidden",
   padding: "1rem 2rem",
   transition: "all 1s ease-in-out"
@@ -35,11 +35,11 @@ const fadeInOut = keyframes({
 
 const imageHeight = "8rem"
 const logoStyle = {
-  animation: `${fadeInOut} 5s ease-in-out 1 0s`,
+  // animation: `${fadeInOut} 5s ease-in-out 1 0s`,
   blockSize: "auto",
   maxInlineSize: "100%",
   objectFit: "contain",
-  opacity: "0",
+  // opacity: "0",
   smoothTransition: "all"
 }
 
@@ -56,8 +56,8 @@ const EliteLogo = styled(Elite, {
 
 const BowtechLogo = styled(Bowtech, {
   ...logoStyle,
-  height: imageHeight,
-  width: "47.6875rem"
+  // height: imageHeight,
+  // width: "47.6875rem"
 })
 
 const DiamondLogo = styled(Diamond, {
@@ -110,18 +110,18 @@ const SpotHoggLogo = styled(SpotHogg, {
 })
 
 const brandImages = [
-  { Logo: HoytLogo, backgroundColor: "$slate1" },
-  { Logo: EliteLogo, backgroundColor: "$slate12" },
+  // { Logo: HoytLogo, backgroundColor: "$slate1" },
+  // { Logo: EliteLogo, backgroundColor: "$slate12" },
   { Logo: BowtechLogo, backgroundColor: "$slate12" },
-  { Logo: DiamondLogo, backgroundColor: "$slate1" },
-  { Logo: EastonLogo, backgroundColor: "$slate12" },
-  { Logo: BowfingerLogo, backgroundColor: "#feffff" },
-  { Logo: TruballAxcelLogo, backgroundColor: "#000" },
-  { Logo: BeeStingerLogo, backgroundColor: "$slate1" },
-  { Logo: CBELogo, backgroundColor: "$slate12" },
-  { Logo: QADLogo, backgroundColor: "$slate12" },
-  { Logo: BlackGoldLogo, backgroundColor: "$slate12" },
-  { Logo: SpotHoggLogo, backgroundColor: "$slate12" }
+  // { Logo: DiamondLogo, backgroundColor: "$slate1" },
+  // { Logo: EastonLogo, backgroundColor: "$slate12" },
+  // { Logo: BowfingerLogo, backgroundColor: "#feffff" },
+  // { Logo: TruballAxcelLogo, backgroundColor: "#000" },
+  // { Logo: BeeStingerLogo, backgroundColor: "$slate1" },
+  // { Logo: CBELogo, backgroundColor: "$slate12" },
+  // { Logo: QADLogo, backgroundColor: "$slate12" },
+  // { Logo: BlackGoldLogo, backgroundColor: "$slate12" },
+  // { Logo: SpotHoggLogo, backgroundColor: "$slate12" }
 ]
 
 export function BrandRotator() {

@@ -8,7 +8,9 @@ export const breakpointPx = {
   m: 768,
   ml: 960,
   l: 1024,
-  xl: 1280
+  xl: 1280,
+  xxl: 1600,
+  xxxl: 1920
 }
 
 export const breaks = Object.keys(breakpointPx).reduce((breakPoints, bp) => {

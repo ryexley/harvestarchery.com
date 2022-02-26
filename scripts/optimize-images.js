@@ -7,7 +7,7 @@ const Jimp = require("jimp")
 
 const imageSourceDir = "app/images"
 const imageTargetDir = "public/images"
-const imageSizes = [1920, 1600, 1366, 1024, 768, 640, 320]
+const imageSizes = [320, 512, 640, 768, 960, 1024, 1280, 1600, 1920]
 
 async function optimizeImage({
   imageName,

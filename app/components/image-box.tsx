@@ -126,6 +126,8 @@ export function ImageBox({
 }: ImageBoxProps) {
   const imagePath = `/images/${image}`
 
+  // https://web.dev/learn/design/responsive-images/#background-images
+
   return (
     <Box
       light={light}
