@@ -1,20 +1,7 @@
+import { renderSrcSet, renderSizes, IMAGE_TYPE } from "~/util/images"
 import { styled, breaks, breakpointPx } from "~/styles"
 
 // https://web.dev/learn/design/responsive-images/
-const IMAGE_TYPES = {
-  JPG: ".jpg",
-  PNG: ".png"
-}
-
-const renderSrcSet = ({ img, ext, sizes}) => {
-  const srcs = sizes.map(size => `${img}-${size}${ext} ${size}w`)
-  return srcs.join(", ")
-}
-
-const renderSizes = viewportWidthSizeMap => {
-  const sizes = viewportWidthSizeMap.map(({ width, size }) => `(min-width: ${width}) ${size}`)
-  return sizes.join(", ")
-}
 
 export function Hoyt({...props}) {
   return (
@@ -190,7 +177,7 @@ export function Bowtech({...props}) {
       src="/images/brand-logos/bowtech-black-320.png"
       srcSet={renderSrcSet({
         img: "/images/brand-logos/bowtech-black",
-        ext: IMAGE_TYPES.PNG,
+        ext: IMAGE_TYPE.PNG,
         sizes: [
           breakpointPx.xs,
           breakpointPx.s,
@@ -211,11 +198,10 @@ export function Bowtech({...props}) {
         { width: breaks.ml, size: breaks.l },
         { width: breaks.l, size: breaks.xl },
         { width: breaks.xl, size: breaks.xxl },
-        { width: breaks.xxl, size: breaks.xxxl },
+        { width: breaks.xxl, size: breaks.xxxl }
       ])}
       alt="Bowtech Archery Logo"
       title="Bowtech Archery"
-      loading="lazy"
       {...props}
     />
   )

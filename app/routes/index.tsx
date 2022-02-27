@@ -69,7 +69,7 @@ export default function Index() {
   return (
     <MainLayout>
       <Hero dark blur
-        image="daniel-follow-through.jpg">
+        image="daniel-follow-through-960.jpg">
         <Title>Harvest Archery</Title>
         <Subtitle>Pro Shop</Subtitle>
         <Blurb>
