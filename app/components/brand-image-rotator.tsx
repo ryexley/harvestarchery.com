@@ -36,7 +36,6 @@ const fadeInOut = keyframes({
   "100%": { opacity: 0 }
 })
 
-const imageHeight = "8rem"
 const logoStyle = {
   animation: `${fadeInOut} 5s ease-in-out 1 0s`,
   blockSize: "auto",
@@ -46,7 +45,6 @@ const logoStyle = {
   opacity: "0",
   smoothTransition: "all"
 }
-
 
 const EliteLogo = styled(Elite, {
   ...logoStyle,

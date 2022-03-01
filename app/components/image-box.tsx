@@ -1,3 +1,4 @@
+import { renderImageSet, IMAGE_TYPE } from "~/util/images"
 import { styled, keyframes } from "~/styles"
 
 const Box = styled("div", {
@@ -108,8 +109,11 @@ const ImageContainer = styled("div", {
   ]
 })
 
+type ImageType = IMAGE_TYPE.JPG | IMAGE_TYPE.PNG
 type ImageBoxProps = {
   image: string,
+  sizes: string[],
+  imgType: ImageType,
   blur: boolean,
   light: boolean,
   dark: boolean,
@@ -118,15 +122,23 @@ type ImageBoxProps = {
 
 export function ImageBox({
   image,
+  sizes,
+  imgType,
   blur,
   light,
   dark,
   children,
   ...props
 }: ImageBoxProps) {
-  const imagePath = `/images/${image}`
-
-  // https://web.dev/learn/design/responsive-images/#background-images
+  const imageSet = renderImageSet({
+    img: image,
+    sizes,
+    ext: imgType
+  })
+  const imageContainerStyle = {
+    backgroundImage: `image-set(${imageSet})`,
+    backgroundImage: `-webkit-image-set(${imageSet})`,
+  }
 
   return (
     <Box
@@ -137,7 +149,7 @@ export function ImageBox({
         blur={blur}
         light={light}
         dark={dark}
-        css={{ backgroundImage: `url(${imagePath})` }}
+        css={imageContainerStyle}
         {...props}>
         {children}
       </ImageContainer>

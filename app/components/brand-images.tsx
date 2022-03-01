@@ -1,7 +1,5 @@
-import { renderSrcSet, renderSizes, IMAGE_TYPE } from "~/util/images"
-import { styled, breaks, breakpointPx } from "~/styles"
-
-// https://web.dev/learn/design/responsive-images/
+import { renderSrcSet, IMAGE_TYPE } from "~/util/images"
+import { breakpointPx } from "~/styles"
 
 export function Hoyt({...props}) {
   return (

@@ -10,10 +10,19 @@ export const renderSrcSet = ({ img, ext, sizes}) => {
   return srcs.join(", ")
 }
 
-export const renderSizes = viewportWidthSizeMap => {
-  const sizes = viewportWidthSizeMap.map(({ width, size }) => {
-    return isNotEmpty(width) ? `(max-width: ${width}) ${size}` : size
-  })
+export const renderImageSet = ({ img, sizes, ext }) => {
+  const pxDensityIncrement = 0.5
+  const calculatePixelDensity = index => {
+    if (index < 1) {
+      return 1
+    }
 
-  return sizes.join(", ")
+    return 1 + (index * pxDensityIncrement)
+  }
+
+  return sizes.map((size, index) => {
+    const pixelDensity = calculatePixelDensity(index)
+
+    return `url("${img}-${size}${ext}") ${pixelDensity}x`
+  }).join(", ")
 }

@@ -1,7 +1,8 @@
 import { MainLayout } from "~/layouts/main"
 import { ImageBox } from "~/components/image-box"
 import { BrandRotator } from "~/components/brand-image-rotator"
-import { styled } from "~/styles"
+import { IMAGE_TYPE } from "~/util/images"
+import { styled, breakpointPx as sizes } from "~/styles"
 import { site } from "~/data"
 import type { MetaFunction } from "remix"
 
@@ -66,10 +67,23 @@ export const meta: MetaFunction = () => {
 }
 
 export default function Index() {
+  const heroProps = {
+    dark: true,
+    blur: true,
+    image: "/images/daniel-follow-through",
+    imgType: IMAGE_TYPE.JPG,
+    sizes: [
+      sizes.xs,
+      sizes.s,
+      sizes.sm,
+      sizes.m,
+      sizes.ml
+    ]
+  }
+
   return (
     <MainLayout>
-      <Hero dark blur
-        image="daniel-follow-through-960.jpg">
+      <Hero {...heroProps}>
         <Title>Harvest Archery</Title>
         <Subtitle>Pro Shop</Subtitle>
         <Blurb>
