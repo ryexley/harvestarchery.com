@@ -1,3 +1,5 @@
+import { isNotEmpty } from "./"
+
 export const IMAGE_TYPE = {
   JPG: ".jpg",
   PNG: ".png"
@@ -9,6 +11,9 @@ export const renderSrcSet = ({ img, ext, sizes}) => {
 }
 
 export const renderSizes = viewportWidthSizeMap => {
-  const sizes = viewportWidthSizeMap.map(({ width, size }) => `(min-width: ${width}) ${size}`)
+  const sizes = viewportWidthSizeMap.map(({ width, size }) => {
+    return isNotEmpty(width) ? `(max-width: ${width}) ${size}` : size
+  })
+
   return sizes.join(", ")
 }

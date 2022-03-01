@@ -190,18 +190,9 @@ export function Bowtech({...props}) {
           breakpointPx.xxxl
         ]
       })}
-      sizes={renderSizes([
-        { width: breaks.xs, size: breaks.s },
-        { width: breaks.s, size: breaks.sm },
-        { width: breaks.sm, size: breaks.m },
-        { width: breaks.m, size: breaks.ml },
-        { width: breaks.ml, size: breaks.l },
-        { width: breaks.l, size: breaks.xl },
-        { width: breaks.xl, size: breaks.xxl },
-        { width: breaks.xxl, size: breaks.xxxl }
-      ])}
       alt="Bowtech Archery Logo"
       title="Bowtech Archery"
+      loading="lazy"
       {...props}
     />
   )
@@ -210,7 +201,22 @@ export function Bowtech({...props}) {
 export function Diamond({...props}) {
     return (
     <img
-      src="/images/brand-logos/diamond-horizontal.png"
+      src="/images/brand-logos/diamond-horizontal-320.png"
+      srcSet={renderSrcSet({
+        img: "/images/brand-logos/diamond-horizontal",
+        ext: IMAGE_TYPE.PNG,
+        sizes: [
+          breakpointPx.xs,
+          breakpointPx.s,
+          breakpointPx.sm,
+          breakpointPx.m,
+          breakpointPx.ml,
+          breakpointPx.l,
+          breakpointPx.xl,
+          breakpointPx.xxl,
+          breakpointPx.xxxl
+        ]
+      })}
       alt="Diamond Archery, by Bowtech Logo"
       title="Diamond Archery, by Bowtech"
       loading="lazy"
@@ -222,7 +228,17 @@ export function Diamond({...props}) {
 export function Easton({...props}) {
     return (
     <img
-      src="/images/brand-logos/easton.png"
+      src="/images/brand-logos/easton-320.png"
+      srcSet={renderSrcSet({
+        img: "/images/brand-logos/easton",
+        ext: IMAGE_TYPE.PNG,
+        sizes: [
+          breakpointPx.xs,
+          breakpointPx.s,
+          breakpointPx.sm,
+          breakpointPx.m
+        ]
+      })}
       alt="Easton Logo"
       title="Easton"
       loading="lazy"
@@ -234,7 +250,21 @@ export function Easton({...props}) {
 export function BeeStinger({...props}) {
     return (
     <img
-      src="/images/brand-logos/beestinger.png"
+      src="/images/brand-logos/beestinger-320.png"
+      srcSet={renderSrcSet({
+        img: "/images/brand-logos/beestinger",
+        ext: IMAGE_TYPE.PNG,
+        sizes: [
+          breakpointPx.xs,
+          breakpointPx.s,
+          breakpointPx.sm,
+          breakpointPx.m,
+          breakpointPx.ml,
+          breakpointPx.l,
+          breakpointPx.xl,
+          breakpointPx.xxl
+        ]
+      })}
       alt="Bee Stinger Logo"
       title="Bee Stinger"
       loading="lazy"
@@ -246,7 +276,19 @@ export function BeeStinger({...props}) {
 export function CBE({...props}) {
     return (
     <img
-      src="/images/brand-logos/cbe.png"
+      src="/images/brand-logos/cbe-320.png"
+      srcSet={renderSrcSet({
+        img: "/images/brand-logos/cbe",
+        ext: IMAGE_TYPE.PNG,
+        sizes: [
+          breakpointPx.xs,
+          breakpointPx.s,
+          breakpointPx.sm,
+          breakpointPx.m,
+          breakpointPx.ml,
+          breakpointPx.l
+        ]
+      })}
       alt="Custom Bow Equipment Logo"
       title="Custom Bow Equipment"
       loading="lazy"
@@ -258,7 +300,16 @@ export function CBE({...props}) {
 export function QAD({...props}) {
     return (
     <img
-      src="/images/brand-logos/qad.png"
+      src="/images/brand-logos/qad-320.png"
+      srcSet={renderSrcSet({
+        img: "/images/brand-logos/qad",
+        ext: IMAGE_TYPE.PNG,
+        sizes: [
+          breakpointPx.xs,
+          breakpointPx.s,
+          breakpointPx.sm
+        ]
+      })}
       alt="Quality Archery Designs Logo"
       title="Quality Archery Designs"
       loading="lazy"
@@ -270,7 +321,15 @@ export function QAD({...props}) {
 export function SpotHogg({...props}) {
     return (
     <img
-      src="/images/brand-logos/spot-hogg.png"
+      src="/images/brand-logos/spot-hogg-320.png"
+      srcSet={renderSrcSet({
+        img: "/images/brand-logos/spot-hogg",
+        ext: IMAGE_TYPE.PNG,
+        sizes: [
+          breakpointPx.xs,
+          breakpointPx.s
+        ]
+      })}
       alt="Spot Hogg Logo"
       title="Spot Hogg"
       loading="lazy"
@@ -282,7 +341,14 @@ export function SpotHogg({...props}) {
 export function BlackGold({...props}) {
     return (
     <img
-      src="/images/brand-logos/black-gold.png"
+      src="/images/brand-logos/black-gold-320.png"
+      srcSet={renderSrcSet({
+        img: "/images/brand-logos/black-gold",
+        ext: IMAGE_TYPE.PNG,
+        sizes: [
+          breakpointPx.xs
+        ]
+      })}
       alt="Black Gold Premium Bowsights Logo"
       title="Black Gold Premium Bowsights"
       loading="lazy"
@@ -294,7 +360,19 @@ export function BlackGold({...props}) {
 export function Bowfinger({...props}) {
     return (
     <img
-      src="/images/brand-logos/bowfinger.png"
+      src="/images/brand-logos/bowfinger-320.png"
+      srcSet={renderSrcSet({
+        img: "/images/brand-logos/bowfinger",
+        ext: IMAGE_TYPE.PNG,
+        sizes: [
+          breakpointPx.xs,
+          breakpointPx.s,
+          breakpointPx.sm,
+          breakpointPx.m,
+          breakpointPx.ml,
+          breakpointPx.l
+        ]
+      })}
       alt="Bowfinger Archery Logo"
       title="Bowfinger Archery"
       loading="lazy"
@@ -306,7 +384,21 @@ export function Bowfinger({...props}) {
 export function TruballAxcel({...props}) {
     return (
     <img
-      src="/images/brand-logos/truball-axcel.png"
+      src="/images/brand-logos/truball-axcel-320.png"
+      srcSet={renderSrcSet({
+        img: "/images/brand-logos/truball-axcel",
+        ext: IMAGE_TYPE.PNG,
+        sizes: [
+          breakpointPx.xs,
+          breakpointPx.s,
+          breakpointPx.sm,
+          breakpointPx.m,
+          breakpointPx.ml,
+          breakpointPx.l,
+          breakpointPx.xl,
+          breakpointPx.xxl
+        ]
+      })}
       alt="T.R.U. Ball / Axcel Logo"
       title="T.R.U. Ball / Axcel"
       loading="lazy"
