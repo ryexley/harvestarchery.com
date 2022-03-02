@@ -3,7 +3,8 @@ export const pages = {
   about: "/about",
   services: "/services",
   events: "/events",
-  lessons: "/lessons"
+  lessons: "/lessons",
+  range: "/range"
 }
 
 export const external = {

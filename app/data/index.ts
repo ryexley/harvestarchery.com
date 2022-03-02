@@ -49,7 +49,8 @@ export const menu = [
   { label: "About", url: pages.about },
   { label: "Services", url: pages.services },
   { label: "Events", url: pages.events },
-  { label: "Lessons", url: pages.lessons }
+  { label: "Lessons", url: pages.lessons },
+  { label: "Indoor Range", url: pages.range }
 ]
 
 export const customerQuotes = []

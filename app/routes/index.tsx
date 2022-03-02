@@ -50,12 +50,63 @@ const Blurb = styled("p", {
 })
 
 const PageSection = styled("section", {
-  display: "flex",
-  minHeight: "10rem",
   padding: "1rem"
 })
 
-const PageHighlights = styled(PageSection)
+const PageLinks = styled(PageSection, {
+  display: "grid",
+  gridGap: "0.0625rem",
+  gridTemplateAreas: `
+    "about"
+    "services"
+    "events"
+    "lessons"
+  `,
+  minHeight: "10rem",
+  padding: "0",
+  position: "relative",
+
+  ["@m"]: {
+    gridTemplateAreas: `
+      "about services"
+      "events lessons"
+    `
+  },
+
+  ["&::after"]: {
+    backgroundColor: "$slate7",
+    bottom: 0,
+    content: `""`,
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    zIndex: "-3",
+    smoothTransition: "all"
+  }
+})
+
+const PageLinkBlock = styled(ImageBox, {
+  color: "$white",
+  minHeight: "20rem",
+  padding: "1rem"
+})
+
+const About = styled(PageLinkBlock, {
+  gridArea: "about"
+})
+
+const Services = styled(PageLinkBlock, {
+  gridArea: "services"
+})
+
+const Events = styled(PageLinkBlock, {
+  gridArea: "events"
+})
+
+const Lessons = styled(PageLinkBlock, {
+  gridArea: "lessons"
+})
 
 const CustomerQuotes = styled(PageSection)
 
@@ -81,6 +132,60 @@ export default function Index() {
     ]
   }
 
+  const aboutLinkProps = {
+    dark: true,
+    // blur: true,
+    image: "/images/stacks-of-arrows",
+    imgType: IMAGE_TYPE.JPG,
+    sizes: [
+      sizes.xs,
+      sizes.s,
+      sizes.sm
+    ]
+  }
+
+  const servicesLinkProps = {
+    dark: true,
+    // blur: true,
+    image: "/images/arrows-on-the-jig-wheel",
+    imgType: IMAGE_TYPE.JPG,
+    sizes: [
+      sizes.xs,
+      sizes.s,
+      sizes.sm,
+      sizes.m,
+      sizes.ml
+    ]
+  }
+
+  const eventsLinkProps = {
+    dark: true,
+    // blur: true,
+    image: "/images/youth-shooters-on-the-range",
+    imgType: IMAGE_TYPE.JPG,
+    sizes: [
+      sizes.xs,
+      sizes.s,
+      sizes.sm,
+      sizes.m,
+      sizes.ml
+    ]
+  }
+
+  const lessonsLinkProps = {
+    dark: true,
+    // blur: true,
+    image: "/images/youth-shooters-on-the-podium",
+    imgType: IMAGE_TYPE.JPG,
+    sizes: [
+      sizes.xs,
+      sizes.s,
+      sizes.sm,
+      sizes.m,
+      sizes.ml
+    ]
+  }
+
   return (
     <MainLayout>
       <Hero {...heroProps}>
@@ -92,7 +197,12 @@ export default function Index() {
         </Blurb>
       </Hero>
       <BrandRotator>Brand Rotator</BrandRotator>
-      <PageHighlights>Page Highlights</PageHighlights>
+      <PageLinks>
+        <About {...aboutLinkProps}>About</About>
+        <Services {...servicesLinkProps}>Services</Services>
+        <Events {...eventsLinkProps}>Events</Events>
+        <Lessons {...lessonsLinkProps}>Lessons</Lessons>
+      </PageLinks>
       <CustomerQuotes>Customer Quotes</CustomerQuotes>
     </MainLayout>
   )
