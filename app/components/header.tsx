@@ -107,7 +107,6 @@ const PhoneIcon = styled(Phone, {
 })
 
 const sidebarMenuToggleSize = "2rem"
-const headerRightMargin = "1.5rem"
 
 const SidebarMenuToggle = styled("button", {
   background: "transparent",
@@ -125,6 +124,13 @@ const SidebarMenuToggle = styled("button", {
   },
 })
 
+const headroomProps = {
+  disableInlineStyles: true,
+  wrapperStyle: {
+    marginBottom: "calc(var(--header-height) * -1)", // header-height is defined in /app/styles/global.tsx
+  }
+}
+
 type HeaderProps = {
   menuOpen: boolean,
   toggleMenu: Function
@@ -134,10 +140,9 @@ export function Header({
   menuOpen = false,
   toggleMenu
 }: HeaderProps) {
+
   return (
-    <Headroom
-      disableInlineStyles={true}
-      wrapperStyle={{ marginBottom: "calc(var(--header-height) * -1)" }}> {/* <-- --header-height is defined in /app/styles/global.tsx */}
+    <Headroom {...headroomProps}>
       <StyledHeader>
         <Left>
           <HomeLink href="/">
