@@ -4,7 +4,7 @@ import { styled, keyframes } from "~/styles"
 const Box = styled("div", {
   overflow: "hidden",
   position: "relative",
-  zIndex: "-2",
+  zIndex: "-3",
 
   variants: {
     light: {
@@ -43,7 +43,7 @@ const ImageContainer = styled("div", {
   right: 0,
   top: 0,
   width: "100%",
-  zIndex: "0",
+  zIndex: "-1",
   smoothTransition: "all",
 
   ["&::after"]: {
@@ -53,7 +53,7 @@ const ImageContainer = styled("div", {
     left: 0,
     right: 0,
     top: 0,
-    zIndex: "-1",
+    zIndex: "-2",
     smoothTransition: "all"
   },
 

@@ -1,7 +1,9 @@
 import { MainLayout } from "~/layouts/main"
 import { ImageBox } from "~/components/image-box"
 import { BrandRotator } from "~/components/brand-image-rotator"
+import { LinkButton } from "~/components/button"
 import { IMAGE_TYPE } from "~/util/images"
+import { pages } from "~/urls"
 import { styled, breakpointPx as sizes } from "~/styles"
 import { site } from "~/data"
 import type { MetaFunction } from "remix"
@@ -65,6 +67,7 @@ const PageLinks = styled(PageSection, {
   minHeight: "10rem",
   padding: "0",
   position: "relative",
+  zIndex: "0",
 
   ["@m"]: {
     gridTemplateAreas: `
@@ -81,13 +84,16 @@ const PageLinks = styled(PageSection, {
     left: 0,
     right: 0,
     top: 0,
-    zIndex: "-3",
-    smoothTransition: "all"
+    smoothTransition: "all",
+    zIndex: "-4",
   }
 })
 
 const PageLinkBlock = styled(ImageBox, {
+  alignItems: "flex-end",
   color: "$white",
+  display: "flex",
+  justifyContent: "flex-end",
   minHeight: "20rem",
   padding: "1rem"
 })
@@ -106,6 +112,13 @@ const Events = styled(PageLinkBlock, {
 
 const Lessons = styled(PageLinkBlock, {
   gridArea: "lessons"
+})
+
+const PageLink = styled(LinkButton, {
+  fontSize: "1.5rem",
+  fontStyle: "italic",
+  minWidth: "15rem",
+  textTransform: "uppercase",
 })
 
 const CustomerQuotes = styled(PageSection)
@@ -198,10 +211,18 @@ export default function Index() {
       </Hero>
       <BrandRotator>Brand Rotator</BrandRotator>
       <PageLinks>
-        <About {...aboutLinkProps}>About</About>
-        <Services {...servicesLinkProps}>Services</Services>
-        <Events {...eventsLinkProps}>Events</Events>
-        <Lessons {...lessonsLinkProps}>Lessons</Lessons>
+        <About {...aboutLinkProps}>
+          <PageLink href={pages.about}>About Us</PageLink>
+        </About>
+        <Services {...servicesLinkProps}>
+          <PageLink href={pages.services}>Services</PageLink>
+        </Services>
+        <Events {...eventsLinkProps}>
+          <PageLink href={pages.events}>Events</PageLink>
+        </Events>
+        <Lessons {...lessonsLinkProps}>
+          <PageLink href={pages.lessons}>Lessons</PageLink>
+        </Lessons>
       </PageLinks>
       <CustomerQuotes>Customer Quotes</CustomerQuotes>
     </MainLayout>
