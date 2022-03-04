@@ -9,16 +9,20 @@ const buttonStyles = {
         backgroundColor: "transparent",
         borderColor: "$white",
         borderRadius: "0.3125rem",
-        borderWidth: "0.0625rem",
+        borderWidth: "0.125rem",
         color: "$white",
         display: "inline-flex",
         justifyContent: "center",
         padding: "0.5rem 1rem",
+        position: "relative",
         textDecoration: "none",
 
         "&:hover": {
           backdropFilter: "blur(0.5rem)",
-          background: "rgba(255, 255, 255, 0.25)"
+          backgroundColor: "$whiteA6", // "rgba(255, 255, 255, 0.2)",
+          border: "0.125rem solid $blackA12",
+          boxShadow: "0 0 0.25rem 0.125rem $colors$orange9",
+          color: "$orange9"
         }
       }
     }
