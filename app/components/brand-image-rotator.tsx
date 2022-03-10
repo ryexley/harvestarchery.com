@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { TIME } from "~/enums"
 import {
   Hoyt,
   Elite,
@@ -85,8 +86,7 @@ const brandImages = [
 export function BrandRotator() {
   const [logoIndex, setLogoIndex] = useState(0)
   const { Logo, backgroundColor } = brandImages[logoIndex]
-  const FIVE_SECONDS = (5 * 1000)
-  const ROTATION_INTERVAL = FIVE_SECONDS
+  const ROTATION_INTERVAL = TIME.FIVE_SECONDS
 
   useEffect(() => {
     const rotationInterval = setInterval(() => {

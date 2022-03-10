@@ -1,4 +1,4 @@
-export const isEmpty = target => {
+export const isEmpty = (target: string | Array<any> | null | undefined) => {
   if (Array.isArray(target)) {
     return target.length === 0
   }
@@ -8,9 +8,9 @@ export const isEmpty = target => {
     target === ""
 }
 
-export const isNotEmpty = target => (!isEmpty(target))
+export const isNotEmpty = (target: string | Array<any> | null | undefined) => (!isEmpty(target))
 
-export function withWindow(fn) {
+export function withWindow<T>(fn: (arg: typeof window) => T): T | undefined {
   if (
     typeof window !== "undefined" &&
     typeof fn !== "undefined" &&

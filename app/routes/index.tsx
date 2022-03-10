@@ -1,6 +1,8 @@
 import { MainLayout } from "~/layouts/main"
 import { ImageBox } from "~/components/image-box"
+import { HarvestArcheryBroadheadLogo } from "~/components/logos"
 import { BrandRotator } from "~/components/brand-image-rotator"
+import { CustomerQuotes } from "~/components/customer-quotes"
 import { LinkButton } from "~/components/button"
 import { IMAGE_TYPE } from "~/util/images"
 import { pages } from "~/urls"
@@ -15,7 +17,19 @@ const Hero = styled(ImageBox, {
   flexDirection: "column",
   justifyContent: "center",
   minHeight: "100vh",
+  padding: "0 3rem",
   width: "100%"
+})
+
+const HeroLogo = styled(HarvestArcheryBroadheadLogo, {
+  color: "$slate12",
+  marginTop: "calc(var(--header-height) + 3rem)",
+  smoothTransitions: "all",
+  width: "100%",
+
+  "@sm": {
+    width: "50vw"
+  }
 })
 
 const Title = styled("h1", {
@@ -46,8 +60,10 @@ const Subtitle = styled("h2", {
 })
 
 const Blurb = styled("p", {
-  lineHeight: "1.5rem",
-  margin: "4rem 2rem 2rem 2rem",
+  fontSize: "1.25rem",
+  fontStyle: "italic",
+  lineHeight: "1.75rem",
+  margin: "2rem",
   textAlign: "center"
 })
 
@@ -57,7 +73,7 @@ const PageSection = styled("section", {
 
 const PageLinks = styled(PageSection, {
   display: "grid",
-  gridGap: "0.0625rem",
+  gridGap: "0.3125rem",
   gridTemplateAreas: `
     "about"
     "services"
@@ -77,7 +93,7 @@ const PageLinks = styled(PageSection, {
   },
 
   ["&::after"]: {
-    backgroundColor: "$slate7",
+    backgroundColor: "$slate1",
     bottom: 0,
     content: `""`,
     position: "absolute",
@@ -120,8 +136,6 @@ const PageLink = styled(LinkButton, {
   minWidth: "15rem",
   textTransform: "uppercase",
 })
-
-const CustomerQuotes = styled(PageSection)
 
 export const meta: MetaFunction = () => {
   return {
@@ -200,10 +214,9 @@ export default function Index() {
   }
 
   return (
-    <MainLayout>
+    <MainLayout offsetMainContent={false}>
       <Hero {...heroProps}>
-        <Title>Harvest Archery</Title>
-        <Subtitle>Pro Shop</Subtitle>
+        <HeroLogo />
         <Blurb>
           East Tennessee's premier destination for all
           of your archery needs.
@@ -224,7 +237,7 @@ export default function Index() {
           <PageLink href={pages.lessons}>Lessons</PageLink>
         </Lessons>
       </PageLinks>
-      <CustomerQuotes>Customer Quotes</CustomerQuotes>
+      <CustomerQuotes />
     </MainLayout>
   )
 }

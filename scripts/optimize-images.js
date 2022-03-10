@@ -44,7 +44,17 @@ async function optimizeImages() {
         })
       }
     } catch (err) {
-      console.error(`❌ ${item} is not a valid image type, skipping`)
+      console.error(`❌ ${item} is not a valid image type, skipping optimization`)
+      // if it can't be resized/optimized, then just copy it out to the
+      // /public folder as-is
+      const sourcePath = path.resolve(`${imageSourceDir}/${item}`)
+      const targetPath = path.resolve(`${imageTargetDir}/${item}`)
+      const stats = fs.statSync(sourcePath)
+
+      if (stats.isFile()){
+        fs.copyFileSync(sourcePath, targetPath)
+        console.log(`✅ Copied "${item}" to ${imageTargetDir}`)
+      }
     }
   }
 }

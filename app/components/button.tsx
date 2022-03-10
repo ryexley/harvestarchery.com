@@ -25,6 +25,15 @@ const buttonStyles = {
           color: "$orange9"
         }
       }
+    },
+
+    asLink: {
+      true: {
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        padding: "0",
+      }
     }
   },
 

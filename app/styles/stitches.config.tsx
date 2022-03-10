@@ -1,7 +1,19 @@
 import { createStitches } from "@stitches/react"
-import { slateDark, limeDark, blackA, whiteA, orangeDark, redDark, crimsonDark } from "@radix-ui/colors"
+import {
+  slateDark,
+  limeDark,
+  blackA,
+  whiteA,
+  orangeDark,
+  redDark,
+  crimsonDark,
+  indigoDark,
+  gray,
+} from "@radix-ui/colors"
 
-export const breakpointPx = {
+type BreakpointKey = "xs" | "s" | "sm" | "m" | "ml" | "l" | "xl" | "xxl" | "xxxl"
+type BreakpointPixels = { [key: string]: number }
+export const breakpointPx: BreakpointPixels = {
   xs: 320,
   s: 512,
   sm: 640,
@@ -13,7 +25,8 @@ export const breakpointPx = {
   xxxl: 1920
 }
 
-export const breaks = Object.keys(breakpointPx).reduce((breakPoints, bp) => {
+type Breakpoints = { [key: string]: string }
+export const breaks: Breakpoints = Object.keys(breakpointPx).reduce((breakPoints: Breakpoints, bp: string) => {
   breakPoints[bp] = `${breakpointPx[bp]}px`
 
   return breakPoints
@@ -53,7 +66,11 @@ export const {
       ...crimsonDark,
       ...slateDark,
       ...whiteA,
-      white: "$slate12"
+      ...indigoDark,
+      ...gray,
+      white: "$slate12",
+      darkGray: "$blackA9",
+      black: "$blackA12",
     },
     fonts: {
       primary: `"Open Sans", Helvetica, Arial, sans-serif`
@@ -73,7 +90,7 @@ export const {
     xl: `(min-width: ${breaks.xl})`
   },
   utils: {
-    smoothTransition: value => {
+    smoothTransition: (value: string) => {
       const propertiesToTransition = value.split(",")
       const transitionDuration = "250ms"
       const transitionEasing = "ease-in-out"

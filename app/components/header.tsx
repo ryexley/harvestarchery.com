@@ -1,4 +1,5 @@
 import HeadroomPrimitive from "react-headroom"
+import { HarvestArcheryBroadheadLogo } from "~/components/logos"
 import { Menu as MenuIcon, Phone } from "~/components/icons"
 import { site } from "~/data"
 import { styled, keyframes } from "~/styles"
@@ -63,6 +64,11 @@ const homeLinkTextStyles = {
   fontWeight: "600",
   textTransform: "uppercase"
 }
+
+const Logo = styled(HarvestArcheryBroadheadLogo, {
+  color: "$slate12",
+  height: "3.25rem"
+})
 
 const Title = styled("span", {
   ...homeLinkTextStyles,
@@ -132,7 +138,7 @@ const headroomProps = {
 }
 
 type HeaderProps = {
-  menuOpen: boolean,
+  menuOpen?: boolean,
   toggleMenu: Function
 }
 
@@ -146,8 +152,7 @@ export function Header({
       <StyledHeader>
         <Left>
           <HomeLink href="/">
-            <Title>Harvest Archery</Title>
-            <SubTitle>Pro Shop</SubTitle>
+            <Logo />
           </HomeLink>
         </Left>
         <Right>

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react"
 import { renderImageSet, IMAGE_TYPE } from "~/util/images"
 import { styled, keyframes } from "~/styles"
 
@@ -109,15 +110,15 @@ const ImageContainer = styled("div", {
   ]
 })
 
-type ImageType = IMAGE_TYPE.JPG | IMAGE_TYPE.PNG
+type ImageType = typeof IMAGE_TYPE[keyof typeof IMAGE_TYPE]
 type ImageBoxProps = {
   image: string,
   sizes: string[],
   imgType: ImageType,
-  blur: boolean,
-  light: boolean,
-  dark: boolean,
-  children: Node
+  blur?: boolean,
+  light?: boolean,
+  dark?: boolean,
+  children: ReactNode
 }
 
 export function ImageBox({

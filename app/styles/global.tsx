@@ -8,7 +8,7 @@ export const globalStyles = globalCss({
   },
 
   body: {
-    ["--header-height"]: "5.3125rem",
+    ["--header-height"]: "5.625rem",
     fontFamily: "$primary"
   },
 
