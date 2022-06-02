@@ -51,6 +51,11 @@ async function optimizeImages() {
       const targetPath = path.resolve(`${imageTargetDir}/${item}`)
       const stats = fs.statSync(sourcePath)
 
+      if (stats.isDirectory()) {
+        fs.mkdirSync(targetPath)
+        console.log(`✅ Created new folder "${targetPath}"`)
+      }
+
       if (stats.isFile()){
         fs.copyFileSync(sourcePath, targetPath)
         console.log(`✅ Copied "${item}" to ${imageTargetDir}`)
