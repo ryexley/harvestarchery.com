@@ -138,6 +138,7 @@ export function ImageBox({
   })
   const imageContainerStyle = {
     backgroundImage: `image-set(${imageSet})`,
+    // @ts-ignore
     backgroundImage: `-webkit-image-set(${imageSet})`,
   }
 

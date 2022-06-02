@@ -1,3 +1,4 @@
+import { ReactNode } from "react"
 import {
   Links,
   LiveReload,
@@ -5,8 +6,8 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration
-} from "remix"
-import type { LinksFunction, MetaFunction } from "remix"
+} from "@remix-run/react"
+import { LinksFunction, MetaFunction } from "@remix-run/node"
 import { getCssText } from "~/styles"
 import { globalStyles } from "~/styles/global"
 
@@ -23,7 +24,7 @@ export const links: LinksFunction = () => {
   ]
 }
 
-const Document = (props: { children: Node }) => {
+const Document = (props: { children: ReactNode }) => {
   return (
     <html lang="en">
       <head>
