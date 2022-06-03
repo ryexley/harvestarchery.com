@@ -189,17 +189,12 @@ const Title = styled(ModalTitle, {
 
 const Description = styled(ModalDescription)
 
-type QuoteProps = {
-  quote: string
-  sourceName: string
-  onShowMore: Function
-}
 function Quote({
   quote,
   sourceName,
   onShowMore,
   ...props
-}: QuoteProps) {
+}) {
   const MAX_QUOTE_LENGTH = 300
   const truncateQuote = quote.length >= MAX_QUOTE_LENGTH
   const showMoreButton = truncateQuote
@@ -243,11 +238,7 @@ const QuoteLink = styled(Bullseye, {
   }
 })
 
-type PagerProps = {
-  onButtonClick: (index: number) => void
-  currentQuoteIndex: number
-}
-function Pager({ onButtonClick, currentQuoteIndex, ...props }: PagerProps) {
+function Pager({ onButtonClick, currentQuoteIndex, ...props }) {
   return (
     <PagerContainer>
       {customerQuotes.map((_, index) => {
@@ -270,10 +261,10 @@ function Pager({ onButtonClick, currentQuoteIndex, ...props }: PagerProps) {
 
 export function CustomerQuotes() {
   const quoteCount = customerQuotes.length
-  const [quoteIndex, setQuoteIndex] = useState<number>(0)
-  const [rotationInterval, setRotationInterval] = useState<number>(TIME.TEN_SECONDS)
-  const [showMore, setShowMore] = useState<boolean>(false)
-  const [paused, setPaused] = useState<boolean>(false)
+  const [quoteIndex, setQuoteIndex] = useState(0)
+  const [rotationInterval, setRotationInterval] = useState(TIME.TEN_SECONDS)
+  const [showMore, setShowMore] = useState(false)
+  const [paused, setPaused] = useState(false)
   const currentQuote = customerQuotes[quoteIndex]
 
   const [firstRender, setFirstRender] = useState(true)

@@ -11,9 +11,9 @@ import {
   gray,
 } from "@radix-ui/colors"
 
-type BreakpointKey = "xs" | "s" | "sm" | "m" | "ml" | "l" | "xl" | "xxl" | "xxxl"
-type BreakpointPixels = { [key: string]: number }
-export const breakpointPx: BreakpointPixels = {
+// type BreakpointKey = "xs" | "s" | "sm" | "m" | "ml" | "l" | "xl" | "xxl" | "xxxl"
+// type BreakpointPixels = { [key: string]: number }
+export const breakpointPx = {
   xs: 320,
   s: 512,
   sm: 640,
@@ -25,8 +25,8 @@ export const breakpointPx: BreakpointPixels = {
   xxxl: 1920
 }
 
-type Breakpoints = { [key: string]: string }
-export const breaks: Breakpoints = Object.keys(breakpointPx).reduce((breakPoints: Breakpoints, bp: string) => {
+// type Breakpoints = { [key: string]: string }
+export const breaks = Object.keys(breakpointPx).reduce((breakPoints, bp) => {
   breakPoints[bp] = `${breakpointPx[bp]}px`
 
   return breakPoints
@@ -68,6 +68,7 @@ export const {
       ...whiteA,
       ...indigoDark,
       ...gray,
+      themePrimary: "$orange9",
       white: "$slate12",
       darkGray: "$blackA9",
       black: "$blackA12",
@@ -90,7 +91,7 @@ export const {
     xl: `(min-width: ${breaks.xl})`
   },
   utils: {
-    smoothTransition: (value: string) => {
+    smoothTransition: value => {
       const propertiesToTransition = value.split(",")
       const transitionDuration = "250ms"
       const transitionEasing = "ease-in-out"

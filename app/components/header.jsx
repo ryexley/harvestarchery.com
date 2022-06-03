@@ -137,16 +137,10 @@ const headroomProps = {
   }
 }
 
-type HeaderProps = {
-  menuOpen?: boolean,
-  toggleMenu: Function
-}
-
 export function Header({
   menuOpen = false,
   toggleMenu
-}: HeaderProps) {
-
+}) {
   return (
     <Headroom {...headroomProps}>
       <StyledHeader>

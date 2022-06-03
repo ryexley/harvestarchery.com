@@ -57,21 +57,16 @@ const MenuItem = styled("li", {
 
     ["&:hover, &:focus"]: {
       background: "$whiteA4",
-      borderLeft: "0.25rem solid $orange9",
+      borderLeft: "0.25rem solid $themePrimary",
       color: "$white"
     }
   }
 })
 
-type MenuProps = {
-  isOpen: boolean,
-  onClose: Function
-}
-
 export function SidebarMenu({
   isOpen = false,
   onClose
-}: MenuProps) {
+}) {
   const handleCloseMenu = event => {
     if (event) {
       event.preventDefault()

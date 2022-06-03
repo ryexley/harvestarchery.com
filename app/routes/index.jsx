@@ -8,7 +8,6 @@ import { IMAGE_TYPE } from "~/util/images"
 import { pages } from "~/urls"
 import { styled, breakpointPx as sizes } from "~/styles"
 import { site } from "~/data"
-import type { MetaFunction } from "remix"
 
 const Hero = styled(ImageBox, {
   alignItems: "center",
@@ -137,7 +136,7 @@ const PageLink = styled(LinkButton, {
   textTransform: "uppercase",
 })
 
-export const meta: MetaFunction = () => {
+export const meta = () => {
   return {
     title: site.title,
     description: site.globalMetadata.join(", ")

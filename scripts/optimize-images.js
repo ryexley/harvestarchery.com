@@ -51,7 +51,7 @@ async function optimizeImages() {
       const targetPath = path.resolve(`${imageTargetDir}/${item}`)
       const stats = fs.statSync(sourcePath)
 
-      if (stats.isDirectory()) {
+      if (stats.isDirectory() && !fs.existsSync(targetPath)) {
         fs.mkdirSync(targetPath)
         console.log(`✅ Created new folder "${targetPath}"`)
       }

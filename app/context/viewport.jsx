@@ -5,11 +5,7 @@ import { withWindow } from "~/util"
 
 export const ViewportContext = createContext({})
 
-type ViewportProviderProps = {
-  children: Node
-}
-
-export function ViewportProvider({ children }: ViewportProviderProps) {
+export function ViewportProvider({ children }) {
   let currentHeight = 1024
   let currentWidth = 1280
 

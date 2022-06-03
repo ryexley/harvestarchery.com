@@ -7,15 +7,15 @@ import {
   Scripts,
   ScrollRestoration
 } from "@remix-run/react"
-import { LinksFunction, MetaFunction } from "@remix-run/node"
+import { LinksFunction } from "@remix-run/node"
 import { getCssText } from "~/styles"
 import { globalStyles } from "~/styles/global"
 
-const meta: MetaFunction = () => {
+const meta = () => {
   return { title: "The Harvest Archery Pro Shop" }
 }
 
-export const links: LinksFunction = () => {
+export const links = () => {
   return [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
     { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -24,7 +24,7 @@ export const links: LinksFunction = () => {
   ]
 }
 
-const Document = (props: { children: ReactNode }) => {
+const Document = ({ children }) => {
   return (
     <html lang="en">
       <head>
@@ -38,7 +38,7 @@ const Document = (props: { children: ReactNode }) => {
           dangerouslySetInnerHTML={{ __html: getCssText() }} />
       </head>
       <body>
-        {props.children}
+        {children}
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === "development" && <LiveReload />}
@@ -47,13 +47,13 @@ const Document = (props: { children: ReactNode }) => {
   )
 }
 
-const ErrorBoundary = (props: { error: Error }) => {
-  console.error("ERROR", props.error)
+const ErrorBoundary = ({ error }) => {
+  console.error("ERROR", error)
 
   return (
     <Document>
       <h1>Something went wrong</h1>
-      <p>{props.error.message}</p>
+      <p>{error.message}</p>
     </Document>
   )
 }

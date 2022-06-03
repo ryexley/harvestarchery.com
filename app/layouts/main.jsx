@@ -1,4 +1,3 @@
-import type { ReactNode } from "react"
 import { useState } from "react"
 import { Header } from "~/components/header"
 import { Footer } from "~/components/footer"
@@ -9,12 +8,7 @@ import { styled } from "~/styles"
 
 const MainContent = styled("main")
 
-type MainLayoutProps = {
-  children: ReactNode
-  offsetMainContent: boolean
-}
-
-export function MainLayout({ children, offsetMainContent = true }: MainLayoutProps) {
+export function MainLayout({ children, offsetMainContent = true }) {
   const [showMenu, setShowMenu] = useState(false)
 
   const mainContentStyle = {

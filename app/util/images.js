@@ -1,4 +1,4 @@
-import { isNotEmpty } from "./"
+import { isNotEmpty } from "."
 
 export const IMAGE_TYPE = {
   JPG: ".jpg",

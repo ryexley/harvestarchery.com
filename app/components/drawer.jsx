@@ -90,16 +90,6 @@ const Backdrop = styled("div", {
   }
 })
 
-type Position = "right" | "left"
-type DrawerProps = {
-  isOpen!: boolean,
-  onClose: Function,
-  position: Position,
-  ariaLabel: string,
-  children: Node,
-  defaultValue?: string
-}
-
 export function Drawer({
   isOpen = false,
   onClose,
@@ -107,7 +97,7 @@ export function Drawer({
   ariaLabel,
   children,
   ...props
-}: DrawerProps) {
+}) {
   const mounted = useRef(false)
   const documentBody = useRef((typeof window !== "undefined") ? window.document.querySelector("body") : null)
 

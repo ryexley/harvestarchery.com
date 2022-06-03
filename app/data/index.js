@@ -32,7 +32,7 @@ export const site = {
     "bow hunting",
     "hunting",
     "indoor archery",
-    "target archery"
+    "target archery",
   ],
   phoneNumber: "423-715-1386",
   address: {
@@ -40,7 +40,16 @@ export const site = {
     line2: "",
     city: "Dayton",
     state: "TN",
-    postalCode: "37321"
+    postalCode: "37321",
+  },
+  storeHours: {
+    sunday: "Closed",
+    monday: "Closed",
+    tuesday: "10:00am to 6:00pm",
+    wednesday: "10:00am to 6:00pm",
+    thursday: "10:00am to 6:00pm",
+    friday: "10:00am to 6:00pm",
+    saturday: "10:00am to 2:00pm",
   }
 }
 

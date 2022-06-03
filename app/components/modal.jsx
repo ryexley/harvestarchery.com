@@ -1,4 +1,3 @@
-import type { ReactNode } from "react"
 import * as RadixUiDialogPrimitive from "@radix-ui/react-dialog"
 import { CloseX } from "~/components/icons"
 import { styled, keyframes } from "~/styles"
@@ -109,13 +108,7 @@ const StyledModalClose = styled(RadixUiDialogPrimitive.Close, {
   },
 })
 
-type ModalProps = {
-  children: ReactNode
-  open: boolean
-  onOpenChange: Function
-}
-
-function Modal({ children, ...props }: ModalProps) {
+function Modal({ children, ...props }) {
   const StyledDialog = styled(RadixUiDialogPrimitive.Root, {
     overflow: "hidden scroll",
   })
@@ -128,7 +121,7 @@ function Modal({ children, ...props }: ModalProps) {
   )
 }
 
-function StaticModal({ children, ...props }: ModalProps) {
+function StaticModal({ children, ...props }) {
   const StyledDialog = styled(RadixUiDialogPrimitive.Root, {
     overflow: "hidden scroll",
   })
