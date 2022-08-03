@@ -150,15 +150,19 @@ export function Header({
           </HomeLink>
         </Left>
         <Right>
-          <CallUsLink href={`tel:${site.phoneNumber}`}>
-            <PhoneIcon />
-            {site.phoneNumber}
-          </CallUsLink>
-          <SidebarMenuToggle
-            onClick={toggleMenu}
-            aria-label="Show menu">
-            <MenuIcon />
-          </SidebarMenuToggle>
+          {!menuOpen ? (
+            <CallUsLink href={`tel:${site.phoneNumber}`}>
+              <PhoneIcon />
+              {site.phoneNumber}
+            </CallUsLink>
+          ) : null}
+          {!menuOpen ? (
+            <SidebarMenuToggle
+              onClick={toggleMenu}
+              aria-label="Show menu">
+              <MenuIcon />
+            </SidebarMenuToggle>
+          ) : null}
         </Right>
       </StyledHeader>
     </Headroom>

@@ -38,6 +38,7 @@ const StaticContent = styled(RadixUiDialogPrimitive.Content, {
   top: "50%",
   transform: "translate(-50%, -50%)",
   width: "90vw",
+  zIndex: "2",
 
   ["&:focus"]: {
     outline: "none",
@@ -74,7 +75,7 @@ const StyledModalClose = styled(RadixUiDialogPrimitive.Close, {
   display: "flex",
   height: closeButtonSize,
   justifyContent: "center",
-  padding: "2px",
+  padding: "0.125rem",
   position: "absolute",
   right: "1rem",
   top: "1rem",

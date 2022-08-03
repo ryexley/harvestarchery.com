@@ -9,6 +9,7 @@ import {
   crimsonDark,
   indigoDark,
   gray,
+  grayDark,
 } from "@radix-ui/colors"
 
 // type BreakpointKey = "xs" | "s" | "sm" | "m" | "ml" | "l" | "xl" | "xxl" | "xxxl"
@@ -68,6 +69,7 @@ export const {
       ...whiteA,
       ...indigoDark,
       ...gray,
+      ...grayDark,
       themePrimary: "$orange9",
       white: "$slate12",
       darkGray: "$blackA9",

@@ -23,7 +23,7 @@ export function MainLayout({ children, offsetMainContent = true }) {
 
   return (
     <>
-      <Header toggleMenu={toggleMenu} />
+      <Header menuOpen={showMenu} toggleMenu={toggleMenu} />
       <SidebarMenu
         isOpen={showMenu}
         onClose={() => toggleMenu({ forceClose: true })} />

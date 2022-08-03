@@ -12,7 +12,11 @@ import { getCssText } from "~/styles"
 import { globalStyles } from "~/styles/global"
 
 const meta = () => {
-  return { title: "The Harvest Archery Pro Shop" }
+  return {
+    charset: "utf-8",
+    title: "The Harvest Archery Pro Shop",
+    viewport: "width=device-width,initial-scale=1",
+  }
 }
 
 export const links = () => {
@@ -28,8 +32,6 @@ const Document = ({ children }) => {
   return (
     <html lang="en">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
         <style type="text/css">{globalStyles()}</style>
