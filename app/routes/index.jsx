@@ -1,5 +1,6 @@
 import { MainLayout } from "~/layouts/main"
 import { ImageBox } from "~/components/image-box"
+import { ScrollHint } from "~/components/scroll-hint"
 import { HarvestArcheryBroadheadLogo } from "~/components/logos"
 import { BrandRotator } from "~/components/brand-image-rotator"
 import { CustomerQuotes } from "~/components/customer-quotes"
@@ -21,8 +22,8 @@ const Hero = styled(ImageBox, {
 })
 
 const HeroLogo = styled(HarvestArcheryBroadheadLogo, {
-  color: "$slate12",
-  marginTop: "calc(var(--header-height) + 3rem)",
+  color: "rgba(255, 255, 255, 0.35)", // "$slate12",
+  // marginTop: "calc(var(--header-height) + 3rem)",
   smoothTransitions: "all",
   width: "100%",
 
@@ -220,6 +221,7 @@ export default function Index() {
           East Tennessee's premier destination for all
           of your archery needs.
         </Blurb>
+        <ScrollHint />
       </Hero>
       <BrandRotator>Brand Rotator</BrandRotator>
       <PageLinks>

@@ -8,14 +8,16 @@ import {
   ScrollRestoration
 } from "@remix-run/react"
 import { LinksFunction } from "@remix-run/node"
+import { site } from "~/data"
 import { getCssText } from "~/styles"
 import { globalStyles } from "~/styles/global"
 
 const meta = () => {
   return {
     charset: "utf-8",
-    title: "The Harvest Archery Pro Shop",
+    title: site.title,
     viewport: "width=device-width,initial-scale=1",
+    description: site.globalMetadata.join(", ")
   }
 }
 

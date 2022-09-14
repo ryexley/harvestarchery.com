@@ -1,5 +1,6 @@
 import HeadroomPrimitive from "react-headroom"
 import { HarvestArcheryBroadheadLogo } from "~/components/logos"
+import { CallUs } from "~/components/call-us-link"
 import { Menu as MenuIcon, Phone } from "~/components/icons"
 import { site } from "~/data"
 import { styled, keyframes } from "~/styles"
@@ -80,7 +81,7 @@ const SubTitle = styled("span", {
   fontSize: "0.85rem"
 })
 
-const CallUsLink = styled("a", {
+const CallUsLink = styled(CallUs, {
   alignItems: "center",
   border: "1px solid $orange9",
   borderRadius: "0.1875rem",

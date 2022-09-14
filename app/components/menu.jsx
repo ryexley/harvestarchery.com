@@ -1,5 +1,6 @@
 import { ImageBox } from "~/components/image-box"
 import { Drawer } from "~/components/drawer"
+import { CallUs } from "~/components/call-us-link"
 import { CloseX, Phone, Facebook, Instagram } from "~/components/icons"
 import {
   Accordion,
@@ -199,7 +200,7 @@ const MapImage = styled(ImageBox, {
   }
 })
 
-const CallUsLink = styled("a", {
+const CallUsLink = styled(CallUs, {
   alignItems: "center",
   border: "1px solid $orange9",
   borderRadius: "0.1875rem",
@@ -308,7 +309,7 @@ export function SidebarMenu({
           </PanelContent>
         </Panel>
         <Panel value="contact">
-          <PanelTrigger>Contact</PanelTrigger>
+          <PanelTrigger>Info</PanelTrigger>
           <ShopDetails>
             <ShopDetailsHeading>Call us at</ShopDetailsHeading>
             <CallUsLink href={`tel:${site.phoneNumber}`}>

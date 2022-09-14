@@ -1,4 +1,6 @@
 import { ImageBox } from "~/components/image-box"
+import { MapLink } from "~/components/map-link"
+import { CallUs } from "~/components/call-us-link"
 import { Facebook, Instagram } from "~/components/icons"
 import { IMAGE_TYPE } from "~/util/images"
 import { site, menu } from "~/data"
@@ -37,9 +39,14 @@ const FooterHeading = styled("h3", {
 const SiteLinks = styled("ul", {
   display: "flex",
   flexDirection: "column",
+  flexWrap: "wrap",
   listStyle: "none",
   margin: "0 0 2rem 1rem",
   padding: "0",
+
+  "li": {
+    maxWidth: "10rem",
+  }
 })
 
 const SiteLink = styled("a", {
@@ -103,12 +110,6 @@ const InstagramIcon = styled(Instagram, {
 const MapSection = styled("div", {
   display: "flex",
   gridArea: "map",
-})
-
-const MapLink = styled("a", {
-  display: "block",
-  width: "100%",
-  zIndex: "1",
 })
 
 const MapImage = styled(ImageBox, {
@@ -183,7 +184,7 @@ export function Footer() {
         <FooterHeading>@harvestarchery.com</FooterHeading>
         <SiteLinks>
           {menu.map(({ url, label }) => (
-            <SiteLink href={url} key={url}>{label}</SiteLink>
+            <li key={url}><SiteLink href={url}>{label}</SiteLink></li>
           ))}
         </SiteLinks>
         <FooterHeading>Let's be friends</FooterHeading>
@@ -201,20 +202,17 @@ export function Footer() {
         </SocialLinks>
       </SiteLinksSection>
       <MapSection>
-        <MapLink href={external.mapUrl(site.address)} target="_blank">
-          <MapImage {...mapProps} />
-        </MapLink>
       </MapSection>
       <ContactAndStoreHoursSection>
         <ContactInfo>
           <FooterHeading>Contact Info</FooterHeading>
           <ContactInfoHeading>Find us at:</ContactInfoHeading>
-          <ContactLink href={external.mapUrl(site.address)} target="_blank">
+          <MapLink>
             <div>{site.address.line1}</div>
             <div>{site.address.city}, {site.address.state} {site.address.postalCode}</div>
-          </ContactLink>
+          </MapLink>
           <ContactInfoHeading>Call us at:</ContactInfoHeading>
-          <ContactLink href={`tel:${site.phoneNumber}`}>{site.phoneNumber}</ContactLink>
+          <CallUs>{site.phoneNumber}</CallUs>
         </ContactInfo>
         <StoreHours>
           <FooterHeading>Store Hours</FooterHeading>
