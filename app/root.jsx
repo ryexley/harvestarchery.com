@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { useEffect, useContext } from "react"
 import {
   Links,
   LiveReload,
@@ -11,6 +11,7 @@ import { LinksFunction } from "@remix-run/node"
 import { site } from "~/data"
 import { getCssText } from "~/styles"
 import { globalStyles } from "~/styles/global"
+import { ClientStyleContext } from "~/styles/client.context"
 
 const meta = () => {
   return {
@@ -31,6 +32,14 @@ export const links = () => {
 }
 
 const Document = ({ children }) => {
+	const clientStyleData = useContext(ClientStyleContext)
+
+  // Only executed on client
+  useEffect(() => {
+    // reset cache to re-apply global styles
+    clientStyleData.reset()
+  }, [clientStyleData])
+
   return (
     <html lang="en">
       <head>
@@ -38,6 +47,7 @@ const Document = ({ children }) => {
         <Links />
         <style type="text/css">{globalStyles()}</style>
         <style
+					id="stitches"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: getCssText() }} />
       </head>

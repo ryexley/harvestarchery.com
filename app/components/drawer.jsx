@@ -12,7 +12,6 @@ const Container = styled("div", {
 })
 
 const Contents = styled("div", {
-  background: "$white",
   height: "100%",
   minHeight: "100vh",
   overflow: "auto",

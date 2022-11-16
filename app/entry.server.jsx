@@ -11,8 +11,8 @@ export default function handleRequest(
   const markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />
   ).replace(
-    /<\/head>/,
-    `<style>${getCssText()}</style></head>`
+    /<style id="stitches">.*<\/style>/g,
+    `<style id="stitches">${getCssText()}</style></head>`
   )
 
   responseHeaders.set("Content-Type", "text/html")
