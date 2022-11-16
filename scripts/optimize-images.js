@@ -44,7 +44,7 @@ async function optimizeImages() {
         })
       }
     } catch (err) {
-      console.error(`❌ ${item} is not a valid image type, skipping optimization`)
+      console.error(`➖ ${item} is not a valid image type, skipping optimization`)
       // if it can't be resized/optimized, then just copy it out to the
       // /public folder as-is
       const sourcePath = path.resolve(`${imageSourceDir}/${item}`)
