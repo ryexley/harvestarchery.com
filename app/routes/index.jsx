@@ -28,7 +28,8 @@ const HeroLogo = styled(HarvestArcheryBroadheadLogo, {
   width: "100%",
 
   "@sm": {
-    width: "50vw"
+		height: "40vh",
+    width: "50vw",
   }
 })
 
