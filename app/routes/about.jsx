@@ -1,52 +1,9 @@
 import { MainLayout } from "~/layouts/main"
-import { ImageBox } from "~/components/image-box"
-import { PageHeading } from "~/components/page-heading"
+import { Hero } from "~/components/hero"
+import { PageContent } from "~/components/page-content"
 import { CallUs } from "~/components/call-us-link"
-import { ScrollHint } from "~/components/scroll-hint"
 import { IMAGE_TYPE } from "~/util/images"
-import { styled, breakpointPx as sizes, breaks as bp } from "~/styles"
-
-const Hero = styled(ImageBox, {
-  alignItems: "center",
-  backgroundPosition: "top",
-  color: "#fff",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  marginTop: "calc(var(--header-height) * -1)",
-  minHeight: "100vh",
-  padding: "0 3rem",
-  width: "100%"
-})
-
-const Heading = styled(PageHeading, {
-  marginTop: "10rem"
-})
-
-const PageContent = styled("section", {
-	fontSize: "1.2rem",
-  padding: "1rem 1rem 3rem 1rem",
-  smoothTransition: "all",
-
-  p: {
-  	margin: "2rem 0",
-
-  	"&:first-child": {
-  		marginTop: "0"
-  	},
-
-  	"&:last-child": {
-  		marginBottom: "0"
-  	}
-  },
-
-  "@m": {
-  	fontSize: "1.5rem",
-  	margin: "0 auto",
-  	padding: "2rem 2rem 5rem 2rem",
-  	width: bp.m
-  }
-})
+import { breakpointPx as sizes, breaks as bp } from "~/styles"
 
 export default function About() {
   const heroProps = {
@@ -69,19 +26,16 @@ export default function About() {
 
   return (
     <MainLayout offsetMainContent={false}>
-      <Hero {...heroProps}>
-        <Heading>About Harvest Archery</Heading>
-        <ScrollHint />
-      </Hero>
+      <Hero imageBoxProps={heroProps} headingText="About Harvest Archery" />
       <PageContent>
         <p>
-          Since it opened in 2010 in Dayton, Tennessee, the Harvest Archery Pro
+          Since it opened in 2013 in Dayton, Tennessee, the Harvest Archery Pro
           Shop has served the archery needs of East Tennessee with a welcoming
           smile and the warm, friendly service that are trademarks of the southern
           hospitality in which the proprietors are rooted.
         </p>
         <p>
-        	With nearly 10 years of experience in archery equipment manufacturing,
+        	With more than 15 years of experience in archery equipment manufacturing,
         	Doc Crowe partnered in ownership of Harvest Archery and has been a key
         	part of the growth and success of the business over the years. Doc's
         	background in manufacturing and connections in the industry has given
