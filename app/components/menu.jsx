@@ -202,7 +202,7 @@ const MapImage = styled(ImageBox, {
 
 const CallUsLink = styled(CallUs, {
   alignItems: "center",
-  border: "1px solid $orange9",
+  border: "1px solid $themePrimary",
   borderRadius: "0.1875rem",
   color: "$white",
   display: "flex",
@@ -214,7 +214,7 @@ const CallUsLink = styled(CallUs, {
     backgroundColor: "$whiteA7",
 
     "> svg": {
-      fill: "$orange10",
+      fill: "$themePrimary",
       transform: "rotate(-270deg)"
     }
   },
@@ -311,12 +311,12 @@ export function SidebarMenu({
         <Panel value="contact">
           <PanelTrigger>Info</PanelTrigger>
           <ShopDetails>
-            <ShopDetailsHeading>Call us at</ShopDetailsHeading>
+            <ShopDetailsHeading>Call us</ShopDetailsHeading>
             <CallUsLink href={`tel:${site.phoneNumber}`}>
               <PhoneIcon />
               {site.phoneNumber}
             </CallUsLink>
-            <ShopDetailsHeading>Connect with us at</ShopDetailsHeading>
+            <ShopDetailsHeading>Connect with us</ShopDetailsHeading>
             <SocialLinks>
               <SocialLinkItem>
                 <SocialLink href={social.facebook} target="_blank">
@@ -329,7 +329,7 @@ export function SidebarMenu({
                 </SocialLink>
               </SocialLinkItem>
             </SocialLinks>
-            <ShopDetailsHeading>Find us at</ShopDetailsHeading>
+            <ShopDetailsHeading>Find us</ShopDetailsHeading>
             <AddressLink href={external.mapUrl(site.address)} target="_blank">
               <div>{site.address.line1}</div>
               <div>{site.address.city}, {site.address.state} {site.address.postalCode}</div>

@@ -2,8 +2,13 @@ import { Parallax, Background } from "react-parallax"
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
 import { CallUs } from "~/components/call-us-link"
+import { windowTitle } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { styled, breakpointPx as sizes, breaks as bp } from "~/styles"
+
+export const meta = () => ({
+	title: windowTitle("Services We Offer")
+})
 
 const contentStyles = {
 	fontSize: "1.2rem",
@@ -114,7 +119,7 @@ const BowSetupAndTuningDetail = () => (
 			We stock the latest bows from BowTech, Elite, Hoyt and Diamond. Our certified technicians can work on any brand available on the market, past or present. Whatever bow you have, bring it in and we can re-string, setup and tune to meet your needs.
 		</p>
 		<p>
-			Standard setup starts at $50.00. Full service cost may vary depending on your individual and equipment needs. We offer a package that we call "The Ultimate", which includes a full breakdown and custom built tune of your bow, everything from shimming to bare shaft tuning, laser tune, all to get you the most efficient and accurate setup matched to you and your shooting style. This package typically runs $150.00.
+			Youth bow tuning costs $50.00. Standard setup/tune starts at $100.00. Full service cost may vary depending on your individual and equipment needs. We offer a package that we call "The Ultimate", which includes a full breakdown and custom built tune of your bow, everything from shimming to bare shaft tuning, laser tune, all to get you the most efficient and accurate setup matched to you and your shooting style. This package typically runs $150.00.
 		</p>
 	</ServiceDetail>
 )
@@ -235,8 +240,8 @@ const services = [
 
 export default function Services() {
   const heroProps = {
-    dark: true,
-    blur: false,
+    dark: false,
+    blur: true,
     image: "/images/doc-fixing-a-bow",
     imgType: IMAGE_TYPE.PNG,
     sizes: [

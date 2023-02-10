@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect } from "react"
+import { canUseDOM } from "~/util"
 
 export const useIsomorphicLayoutEffect =
-  typeof window !== "undefined" ? useLayoutEffect : useEffect
+  canUseDOM() ? useLayoutEffect : useEffect

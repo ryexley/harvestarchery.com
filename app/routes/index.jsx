@@ -61,10 +61,10 @@ const Subtitle = styled("h2", {
 })
 
 const Blurb = styled("p", {
-  fontSize: "1.25rem",
+  fontSize: "1.5rem",
   fontStyle: "italic",
-  lineHeight: "1.75rem",
-  margin: "2rem",
+  lineHeight: "2rem",
+  margin: "2.5rem",
   textAlign: "center"
 })
 
@@ -79,7 +79,7 @@ const PageLinks = styled(PageSection, {
     "about"
     "services"
     "events"
-    "lessons"
+    "range"
   `,
   minHeight: "10rem",
   padding: "0",
@@ -89,7 +89,7 @@ const PageLinks = styled(PageSection, {
   ["@m"]: {
     gridTemplateAreas: `
       "about services"
-      "events lessons"
+      "events range"
     `
   },
 
@@ -127,8 +127,8 @@ const Events = styled(PageLinkBlock, {
   gridArea: "events"
 })
 
-const Lessons = styled(PageLinkBlock, {
-  gridArea: "lessons"
+const IndoorRange = styled(PageLinkBlock, {
+  gridArea: "range"
 })
 
 const PageLink = styled(LinkButton, {
@@ -200,17 +200,21 @@ export default function Index() {
     ]
   }
 
-  const lessonsLinkProps = {
+  const rangeLinkProps = {
     dark: true,
     // blur: true,
-    image: "/images/youth-shooters-on-the-podium",
+    image: "/images/harvest-archery-indoor-range",
     imgType: IMAGE_TYPE.JPG,
     sizes: [
       sizes.xs,
       sizes.s,
       sizes.sm,
       sizes.m,
-      sizes.ml
+      sizes.ml,
+      sizes.l,
+      sizes.xl,
+      sizes.xxl,
+      sizes.xxxl,
     ]
   }
 
@@ -233,11 +237,11 @@ export default function Index() {
           <PageLink href={pages.services}>Services</PageLink>
         </Services>
         <Events {...eventsLinkProps}>
-          <PageLink href={pages.events}>Events</PageLink>
+          <PageLink href={pages.events.home}>Events</PageLink>
         </Events>
-        <Lessons {...lessonsLinkProps}>
-          <PageLink href={pages.lessons}>Lessons</PageLink>
-        </Lessons>
+        <IndoorRange {...rangeLinkProps}>
+          <PageLink href={pages.range}>Indoor Range</PageLink>
+        </IndoorRange>
       </PageLinks>
       <CustomerQuotes />
     </MainLayout>

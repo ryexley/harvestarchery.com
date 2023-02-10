@@ -2,7 +2,10 @@ export const pages = {
   home: "/",
   about: "/about",
   services: "/services",
-  events: "/events",
+  events: {
+		home: "/events",
+		theRockArcheryChallenge: "/events/the-rock-archery-challenge"
+	},
   lessons: "/lessons",
   range: "/range",
 }
@@ -16,4 +19,8 @@ export const external = {
 export const social = {
   facebook: "https://www.facebook.com/The-Harvest-Archery-Pro-Shop-560518520633267/",
   instagram: "https://www.instagram.com/harvestarchery/",
+}
+
+export const square = {
+	theRockArcheryChallenge: "https://checkout.square.site/merchant/7XA331XQSY3YS/checkout/KNWXAN2APCF24T3RQQ7HKL6G"
 }

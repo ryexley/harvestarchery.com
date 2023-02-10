@@ -10,10 +10,13 @@ export const globalStyles = globalCss({
   body: {
     ["--header-height"]: "5.625rem",
     fontFamily: "$primary",
+		margin: 0,
     minWidth: "26.25rem",
+		padding: 0,
   },
 
   a: {
+		color: "$colors$themePrimary",
     smoothTransition: "all"
   },
 

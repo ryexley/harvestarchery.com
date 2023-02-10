@@ -2,15 +2,20 @@ import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
 import { PageContent } from "~/components/page-content"
 import { CallUs } from "~/components/call-us-link"
+import { windowTitle } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { breakpointPx as sizes, breaks as bp } from "~/styles"
 
+export const meta = () => ({
+	title: windowTitle("About")
+})
+
 export default function About() {
   const heroProps = {
-    dark: true,
-    blur: false,
-    image: "/images/doc-fixing-a-bow",
-    imgType: IMAGE_TYPE.PNG,
+    dark: false,
+    blur: true,
+    image: "/images/inside-harvest-archery-pro-shop",
+    imgType: IMAGE_TYPE.JPG,
     sizes: [
       sizes.xs,
       sizes.s,

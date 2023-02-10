@@ -1,3 +1,5 @@
+import { site } from "~/data"
+
 export const isEmpty = target => {
   if (Array.isArray(target)) {
     return target.length === 0
@@ -18,4 +20,37 @@ export function withWindow(fn) {
   ) {
     return fn(window)
   }
+}
+
+export function canUseDOM() {
+	return !!(
+		typeof window !== "undefined" &&
+		window.document &&
+		window.document.createElement
+	);
+}
+
+export function random(min, max) {
+  min = min ?? 1
+  max = max ?? RANDOM_UPPER_LIMIT
+
+  return Math.floor(Math.random() * (max - min + 1)) + parseInt(min, 10)
+}
+
+export function randomIndex(target) {
+	if (!Array.isArray(target)) {
+		return 0
+	}
+
+	return random(0, target.length)
+}
+
+export function windowTitle(pageTitle) {
+  const persistentAppTitle = site?.title || "";
+
+  if (isNotEmpty(pageTitle)) {
+    return `${pageTitle} | ${persistentAppTitle}`;
+  }
+
+  return persistentAppTitle;
 }

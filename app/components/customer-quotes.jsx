@@ -48,7 +48,7 @@ const nextPreviousButtonStyle = {
   smoothTransition: "all",
 
   "&:hover": {
-    color: "$orange9"
+    color: "$themePrimary"
   }
 }
 
@@ -149,7 +149,7 @@ const StyledQuote = styled("blockquote", {
 })
 
 const QuoteMoreButton = styled(Button, {
-  color: "$orange9",
+  color: "$themePrimary",
   fontSize: "1.25rem",
   fontStyle: "italic",
   margin: "0 0.5rem",
@@ -234,7 +234,7 @@ const QuoteLink = styled(Bullseye, {
   smoothTransition: "all",
 
   "&:hover": {
-    color: "$orange9"
+    color: "$themePrimary"
   }
 })
 
@@ -248,7 +248,7 @@ function Pager({ onButtonClick, currentQuoteIndex, ...props }) {
           onClick: () => onButtonClick(index),
           ...(
             (index === currentQuoteIndex)
-              ? { css: { color: "$orange9" } }
+              ? { css: { color: "$themePrimary" } }
               : {}
           )
         }

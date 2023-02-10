@@ -1,35 +1,67 @@
-import { ImageBox } from "~/components/image-box"
-import { MapLink } from "~/components/map-link"
+import { Container } from "~/components/container"
+import { MapLink as RawMapLink } from "~/components/map-link"
 import { CallUs } from "~/components/call-us-link"
 import { Facebook, Instagram } from "~/components/icons"
-import { IMAGE_TYPE } from "~/util/images"
 import { site, menu } from "~/data"
-import { external, social } from "~/urls"
-import { styled, breakpointPx as sizes } from "~/styles"
+import { social } from "~/urls"
+import { styled } from "~/styles"
 
 const StyledFooter = styled("footer", {
   background: "$slate4",
   color: "$slate12",
+	padding: "2rem 1rem 5rem 1rem",
+
+	a: {
+		["&:hover, &:focus"]: {
+			color: "$white",
+
+			"> svg": {
+				fill: "$white",
+			}
+		}
+	}
+})
+
+const StyledContainer = styled(Container, {
   display: "grid",
-  gridAutoColumns: "minmax(0, 1fr)",
-  gridGap: "1rem",
   gridTemplateAreas: `
-    "siteLinks contact"
-    "map map"
+    "siteLinks"
+    "contactInfo"
+		"storeHours"
   `,
+
+	"@sm": {
+		gridAutoColumns: "minmax(0, 1fr)",
+		gridGap: "1rem",
+		gridTemplateAreas: `
+			"siteLinks contactInfo"
+			"storeHours storeHours"
+		`
+	},
 
   "@ml": {
     gridTemplateAreas: `
-      "siteLinks map contact"
-    `
-  }
+      "siteLinks contactInfo storeHours"
+    `,
+  },
 })
 
 const SiteLinksSection = styled("div", {
   display: "flex",
   flexDirection: "column",
   gridArea: "siteLinks",
+	justifySelf: "center",
   padding: "1rem 0 0 1rem",
+	width: "16rem",
+
+	"@sm": {
+		justifySelf: "center",
+		width: "auto",
+	},
+
+	"@ml": {
+		justifySelf: "start",
+	}
 })
 
 const FooterHeading = styled("h3", {
@@ -41,7 +73,7 @@ const SiteLinks = styled("ul", {
   flexDirection: "column",
   flexWrap: "wrap",
   listStyle: "none",
-  margin: "0 0 2rem 1rem",
+  margin: "0 0 1rem 0",
   padding: "0",
 
   "li": {
@@ -49,20 +81,14 @@ const SiteLinks = styled("ul", {
   }
 })
 
-const SiteLink = styled("a", {
-  color: "$white",
-
-  ["&:hover, &:focus"]: {
-    color: "$themePrimary",
-    textDecoration: "none",
-  }
-})
+const SiteLink = styled("a")
 
 const SocialLinks = styled("ul", {
   display: "flex",
-  gap: "1rem",
+	flexDirection: "column",
+  gap: "0.5rem",
   listStyle: "none",
-  margin: "0 0 2rem 1rem",
+  margin: "0 0 1rem 0",
   padding: "0",
 })
 
@@ -70,7 +96,6 @@ const SocialLinkItem = styled("li")
 
 const SocialLink = styled("a", {
   alignItems: "center",
-  color: "$white",
   display: "flex",
   gap: "0.5rem",
   smoothTransition: "all",
@@ -82,19 +107,10 @@ const SocialLink = styled("a", {
   "& > *": {
     display: "block"
   },
-
-  ["&:hover, &:focus"]: {
-    color: "$themePrimary",
-    textDecoration: "none",
-
-    "svg": {
-      fill: "$themePrimary",
-    }
-  }
 })
 
 const socialIconStyle = {
-  fill: "$white",
+  fill: "$themePrimary",
   height: "2rem",
   width: "2rem",
 }
@@ -107,30 +123,22 @@ const InstagramIcon = styled(Instagram, {
   ...socialIconStyle
 })
 
-const MapSection = styled("div", {
+const ContactInfoSection = styled("div", {
   display: "flex",
-  gridArea: "map",
+  flexDirection: "column",
+  gridArea: "contactInfo",
+	justifySelf: "center",
+  padding: "1rem 0 0 1rem",
+	width: "16rem",
+
+	"> a": {
+		margin: "0 0 1rem 0",
+	},
+
+	"@sm": {
+		width: "auto",
+	}
 })
-
-const MapImage = styled(ImageBox, {
-  height: "12.5rem",
-  width: "100%",
-
-  "@ml": {
-    height: "20rem",
-  }
-})
-
-const ContactAndStoreHoursSection = styled("div", {
-  display: "flex",
-  gap: "1rem",
-  gridArea: "contact",
-  justifyContent: "space-between",
-  padding: "1rem 1rem 0 0",
-})
-
-const ContactInfo = styled("div")
-const StoreHours = styled("div")
 
 const ContactInfoHeading = styled("div", {
   fontSize: "0.85rem",
@@ -147,11 +155,42 @@ const ContactLink = styled("a", {
   }
 })
 
+const MapLink = styled(RawMapLink, {
+	display: "flex",
+	flexDirection: "column",
+})
+
+const StoreHoursSection = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gridArea: "storeHours",
+	justifySelf: "center",
+  padding: "1rem",
+	width: "16rem",
+
+	"@ml": {
+		justifySelf: "end"
+	}
+})
+
+const StoreHours = styled("div")
+
 const StoreHoursList = styled("ul", {
   fontSize: "0.85rem",
   listStyle: "none",
-  margin: "0 0 2rem 1rem",
+  margin: "0 0 2rem 0",
   padding: "0",
+
+  "> li": {
+    borderBottom: "0.0625rem solid $blackA7",
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "0.25rem 0",
+
+    "&:last-child": {
+      borderBottom: "none"
+    }
+  }
 })
 
 const StoreHoursDay = styled("span", {
@@ -160,69 +199,51 @@ const StoreHoursDay = styled("span", {
 })
 
 export function Footer() {
-  const mapProps = {
-    image: "/images/shop-map",
-    imgType: IMAGE_TYPE.PNG,
-    light: false,
-    blur: false,
-    sizes: [
-      sizes.xs,
-      sizes.s,
-      sizes.sm,
-      sizes.m,
-      sizes.ml,
-      sizes.l,
-      sizes.xl,
-      sizes.xxl,
-      sizes.xxxl,
-    ]
-  }
-
   return (
     <StyledFooter>
-      <SiteLinksSection>
-        <FooterHeading>@harvestarchery.com</FooterHeading>
-        <SiteLinks>
-          {menu.map(({ url, label }) => (
-            <li key={url}><SiteLink href={url}>{label}</SiteLink></li>
-          ))}
-        </SiteLinks>
-        <FooterHeading>Let's be friends</FooterHeading>
-        <SocialLinks>
-          <SocialLinkItem>
-            <SocialLink href={social.facebook} target="_blank">
-              <FacebookIcon /><span>Facebook</span>
-            </SocialLink>
-          </SocialLinkItem>
-          <SocialLinkItem>
-            <SocialLink href={social.instagram} target="_blank">
-              <InstagramIcon /><span>Instagram</span>
-            </SocialLink>
-          </SocialLinkItem>
-        </SocialLinks>
-      </SiteLinksSection>
-      <MapSection>
-      </MapSection>
-      <ContactAndStoreHoursSection>
-        <ContactInfo>
-          <FooterHeading>Contact Info</FooterHeading>
-          <ContactInfoHeading>Find us at:</ContactInfoHeading>
-          <MapLink>
-            <div>{site.address.line1}</div>
-            <div>{site.address.city}, {site.address.state} {site.address.postalCode}</div>
-          </MapLink>
-          <ContactInfoHeading>Call us at:</ContactInfoHeading>
-          <CallUs>{site.phoneNumber}</CallUs>
-        </ContactInfo>
-        <StoreHours>
-          <FooterHeading>Store Hours</FooterHeading>
-          <StoreHoursList>
-            {Object.keys(site.storeHours).map(day => (
-              <li key={day}><StoreHoursDay>{day}</StoreHoursDay>: {site.storeHours[day]}</li>
-            ))}
-          </StoreHoursList>
-        </StoreHours>
-      </ContactAndStoreHoursSection>
+			<StyledContainer>
+				<SiteLinksSection>
+					<FooterHeading>@harvestarchery.com</FooterHeading>
+					<SiteLinks>
+						{menu.map(({ url, label }) => (
+							<li key={url}><SiteLink href={url}>{label}</SiteLink></li>
+						))}
+					</SiteLinks>
+					<FooterHeading>Connect with us</FooterHeading>
+					<SocialLinks>
+						<SocialLinkItem>
+							<SocialLink href={social.facebook} target="_blank">
+								<FacebookIcon /><span>Facebook</span>
+							</SocialLink>
+						</SocialLinkItem>
+						<SocialLinkItem>
+							<SocialLink href={social.instagram} target="_blank">
+								<InstagramIcon /><span>Instagram</span>
+							</SocialLink>
+						</SocialLinkItem>
+					</SocialLinks>
+				</SiteLinksSection>
+				<ContactInfoSection>
+					<FooterHeading>Contact Info</FooterHeading>
+					<ContactInfoHeading>Call us:</ContactInfoHeading>
+					<CallUs>{site.phoneNumber}</CallUs>
+					<ContactInfoHeading>Find us:</ContactInfoHeading>
+					<MapLink>
+						<div>{site.address.line1}</div>
+						<div>{site.address.city}, {site.address.state} {site.address.postalCode}</div>
+					</MapLink>
+				</ContactInfoSection>
+				<StoreHoursSection>
+					<StoreHours>
+						<FooterHeading>Store Hours</FooterHeading>
+						<StoreHoursList>
+							{Object.keys(site.storeHours).map(day => (
+								<li key={day}><StoreHoursDay>{day}</StoreHoursDay> {site.storeHours[day]}</li>
+							))}
+						</StoreHoursList>
+					</StoreHours>
+				</StoreHoursSection>
+			</StyledContainer>
     </StyledFooter>
   )
 }

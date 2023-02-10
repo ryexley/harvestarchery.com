@@ -57,8 +57,8 @@ export const menu = [
   { label: "Home", url: pages.home },
   { label: "About", url: pages.about },
   { label: "Services", url: pages.services },
-  { label: "Events", url: pages.events },
-  { label: "Lessons", url: pages.lessons },
+  { label: "Events", url: pages.events.home },
+  // { label: "Lessons", url: pages.lessons },
   { label: "Indoor Range", url: pages.range }
 ]
 
@@ -72,6 +72,6 @@ export const customerQuotes = [
   { quote: "Such a great place! Folks here are super knowledgeable and kind.  They know their stuff, for sure.  They always take time to not only fix or adjust your bow, but also explain how to take care of things yourself, so you can be more confident with your shooting! And everybody loves Murphy!", sourceName: "Mary Ellen M." },
   { quote: "Great shop. Very knowledgeable. I couldn’t nail down my problem with my grouping and after a couple tweaks to my shoulder form I was back in business. Nice indoor range too.", sourceName: "Jared K." },
   { quote: "Purchased my first bow last week from Doc. My experience at Harvest Archery met every expectation and then some. Will always recommend Doc to others in the future!", sourceName: "Dakota G." },
-  { quote: "My dear friend Doc. This...is an arrow you built for me two years ago. It [has] passed through 16 deer without ever having to be re-fletched. ... This arrow is a testament to your superb workmanship. Thank you very much Doc, I will have no one else touch my archery equipment. You are simply the best.", sourceName: "Kinsley W." },
+  { quote: "My dear friend Doc. This...is an arrow you built for me two years ago. It [has] passed through 16 deer without ever having to be re-fletched. ... This arrow is a testament to your superb workmanship. Thank you very much Doc, I will have no one else touch my archery equipment. You are simply the best.", sourceName: "Richard B." },
   { quote: "I visited Harvest Archery Saturday. I have been doing my own bow work for the last 20 years. I picked up an Elite Ritual 35 in another state while I was traveling. Got home went to set it up and it was getting a holding weight of 66% which is completely wrong. No matter what I did I couldn't figure it out. Spent a week talking with Elite and a Tec. there to no avail. I was so frustrated while I was working on it, I forgot to put the limb stops back in, there for derailed the string. Long story short I handed the bow to Doc. He put the string back on and within seconds knew the bow had the wrong limb pads on it. Changed them out and I was good to go. If you’re looking for an Archery Shop Harvest Archery is the place to go. They are very knowledgeable, truly professional and just over all great people.", sourceName: "Jeff G." }
 ]

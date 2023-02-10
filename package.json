@@ -22,11 +22,12 @@
     "@remix-run/serve": "^1.7.5",
     "@remix-run/vercel": "^1.7.5",
     "@stitches/react": "^1.2.7",
+    "date-fns": "^2.29.3",
     "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-headroom": "^3.2.1",
-		"react-parallax": "^3.5.1",
+    "react-parallax": "^3.5.1",
     "remix": "^1.7.5"
   },
   "devDependencies": {

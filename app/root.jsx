@@ -5,13 +5,30 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration
+  ScrollRestoration,
+	useLoaderData,
 } from "@remix-run/react"
-import { LinksFunction } from "@remix-run/node"
+import { LinksFunction, json } from "@remix-run/node"
 import { site } from "~/data"
+import { CloudflareAnalytics } from "~/vendor/clouldflare-analytics"
 import { getCssText } from "~/styles"
 import { globalStyles } from "~/styles/global"
 import { ClientStyleContext } from "~/styles/client.context"
+
+const isDevelopment = process.env.NODE_ENV === "development"
+const isProduction = process.env.NODE_ENV === "production"
+
+export async function loader() {
+	return json({
+		ENV: {
+			isDevelopment: process.env.NODE_ENV === "development",
+			isProduction: process.env.NODE_ENV === "production",
+			NODE_ENV: process.env.NODE_ENV,
+			CF_ANALYTICS_ENABLED: process.env.CF_ANALYTICS_ENABLED,
+			CF_ANALYTICS_TOKEN: process.env.CF_ANALYTICS_TOKEN
+		}
+	})
+}
 
 const meta = () => {
   return {
@@ -32,6 +49,7 @@ export const links = () => {
 }
 
 const Document = ({ children }) => {
+	const loaderData = useLoaderData()
 	const clientStyleData = useContext(ClientStyleContext)
 
   // Only executed on client
@@ -54,8 +72,17 @@ const Document = ({ children }) => {
       <body>
         {children}
         <ScrollRestoration />
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `window.ENV = ${JSON.stringify(
+							loaderData?.ENV || {}
+						)}`
+					}}
+				/>
         <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
+        {isDevelopment && <LiveReload />}
+				{/* Cloudflare Analytics (production only) */}
+				<CloudflareAnalytics />
       </body>
     </html>
   )

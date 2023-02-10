@@ -83,7 +83,7 @@ const SubTitle = styled("span", {
 
 const CallUsLink = styled(CallUs, {
   alignItems: "center",
-  border: "1px solid $orange9",
+  border: "1px solid $themePrimary",
   borderRadius: "0.1875rem",
   color: "$white",
   display: "none",
@@ -95,7 +95,7 @@ const CallUsLink = styled(CallUs, {
     backgroundColor: "$whiteA7",
 
     "> svg": {
-      fill: "$orange10",
+      fill: "$themePrimary",
       transform: "rotate(-270deg)"
     }
   },
