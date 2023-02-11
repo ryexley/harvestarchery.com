@@ -10,7 +10,7 @@ import {
 } from "@remix-run/react"
 import { LinksFunction, json } from "@remix-run/node"
 import { site } from "~/data"
-import { CloudflareAnalytics } from "~/vendor/clouldflare-analytics"
+import { renderCloudflareAnalyticsScript } from "~/vendor/clouldflare-analytics"
 import { getCssText } from "~/styles"
 import { globalStyles } from "~/styles/global"
 import { ClientStyleContext } from "~/styles/client.context"
@@ -20,13 +20,11 @@ const isProduction = process.env.NODE_ENV === "production"
 
 export async function loader() {
 	return json({
-		ENV: {
-			isDevelopment: process.env.NODE_ENV === "development",
-			isProduction: process.env.NODE_ENV === "production",
-			NODE_ENV: process.env.NODE_ENV,
-			CF_ANALYTICS_ENABLED: process.env.CF_ANALYTICS_ENABLED,
-			CF_ANALYTICS_TOKEN: process.env.CF_ANALYTICS_TOKEN
-		}
+		isDevelopment: process.env.NODE_ENV === "development" || false,
+		isProduction: process.env.NODE_ENV === "production" || true,
+		NODE_ENV: process.env.NODE_ENV || "production",
+		CF_ANALYTICS_ENABLED: process.env.CF_ANALYTICS_ENABLED || false,
+		CF_ANALYTICS_TOKEN: process.env.CF_ANALYTICS_TOKEN || null,
 	})
 }
 
@@ -49,7 +47,12 @@ export const links = () => {
 }
 
 const Document = ({ children }) => {
-	const loaderData = useLoaderData()
+	const {
+		isDevelopment,
+		isProduction,
+		CF_ANALYTICS_ENABLED,
+		CF_ANALYTICS_TOKEN,
+	} = useLoaderData()
 	const clientStyleData = useContext(ClientStyleContext)
 
   // Only executed on client
@@ -72,17 +75,13 @@ const Document = ({ children }) => {
       <body>
         {children}
         <ScrollRestoration />
-				<script
-					dangerouslySetInnerHTML={{
-						__html: `window.ENV = ${JSON.stringify(
-							loaderData?.ENV || {}
-						)}`
-					}}
-				/>
         <Scripts />
         {isDevelopment && <LiveReload />}
 				{/* Cloudflare Analytics (production only) */}
-				<CloudflareAnalytics />
+				{renderCloudflareAnalyticsScript({
+					enabled: CF_ANALYTICS_ENABLED,
+					token: CF_ANALYTICS_TOKEN,
+				})}
       </body>
     </html>
   )
