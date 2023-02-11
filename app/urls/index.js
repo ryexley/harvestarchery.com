@@ -8,12 +8,14 @@ export const pages = {
 	},
   lessons: "/lessons",
   range: "/range",
+	liabilityWaiver: "/liability-waiver"
 }
 
 export const external = {
   duckDuckGoMapUrl: address => `https://duckduckgo.com/?q=${address.line1.replace(/ /g, "+")}+${address.city}+${address.state}+${address.postalCode}&ia=web&iaxm=maps`,
   mapUrl: address => `//maps.apple.com/?q=${address.line1.replace(/ /g, "+")}+${address.city}+${address.state}+${address.postalCode}&ia=web&iaxm=maps`,
   facebookReviews: "https://www.facebook.com/The-Harvest-Archery-Pro-Shop-560518520633267/reviews",
+	liabilityWaiver: "https://app.waiverelectronic.com/render/templateByRefId/harvest-archery-liability-release",
 }
 
 export const social = {

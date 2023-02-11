@@ -6,6 +6,6 @@ export const events = [
 		date: "March 25th & 26th (Saturday & Sunday)",
 		time: "8:00am to 4:00pm each day",
 		detailsKey: "trac",
-		published: false, // isBefore(Date.now(), new Date("2023-03-24T11:59:59")),
+		published: isBefore(Date.now(), new Date("2023-03-24T11:59:59")),
 	}
 ]

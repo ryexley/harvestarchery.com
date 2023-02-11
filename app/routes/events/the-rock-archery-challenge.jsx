@@ -1,7 +1,8 @@
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
 import { PageContent } from "~/components/page-content"
-import { square } from "~/urls"
+import { LiabilityWaiverLink } from "~/components/liability-waiver-link"
+import { square, external } from "~/urls"
 import { windowTitle } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { styled, breakpointPx as sizes } from "~/styles"
@@ -45,6 +46,8 @@ export default function TheRockArcheryChallengePage() {
 					<li><em><strong>All Weekend, Unlimited Shoot</strong></em> - $100.00</li>
 				</List>
 				<p>If you'd like to make a weekend of it, camping will be available on-site, free of charge. We only ask that you be responsible and respectful of the facility. Concessions will be available for purchase at the event. Children are welcome, but must be accompanied by an adult at all times, both on and off the range, no exceptions.</p>
+				<p>You will be required to complete our <LiabilityWaiverLink>liability waiver</LiabilityWaiverLink> before you will allow to participate in the event. This can be completed online, and it is preferred that this is accomplished prior to registering for the event.</p>
+				<p><LiabilityWaiverLink>Click here to complete the liability waiver.</LiabilityWaiverLink></p>
 				<p><a href={square.theRockArcheryChallenge} target="_blank">Click here to register for the event</a>.</p>
 			</PageContent>
 		</MainLayout>
