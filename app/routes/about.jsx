@@ -40,12 +40,12 @@ export default function About() {
           hospitality in which the proprietors are rooted.
         </p>
         <p>
-        	With more than 15 years of experience in archery equipment manufacturing,
-        	Doc Crowe partnered in ownership of Harvest Archery and has been a key
-        	part of the growth and success of the business over the years. Doc's
-        	background in manufacturing and connections in the industry has given
-        	him a breadth of knowledge and understanding of both the science <em>
-        	and the art</em> of archery that's difficult to find anywhere in
+        	Having come into ownership in 2015, and bringing with him more than 15
+					years of experience in archery equipment manufacturing, Doc Crowe has
+					been a key part of the growth and success of Harvest Archery over the
+					years. Doc's background in manufacturing and connections in the industry
+					has given him a breadth of knowledge and understanding of both the science
+					<em>and the art</em> of archery that's difficult to find anywhere in
         	the industry.
         </p>
         <p>
