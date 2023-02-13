@@ -15,9 +15,10 @@ const contentShow = keyframes({
 })
 
 const StaticOverlay = styled(RadixUiDialogPrimitive.Overlay, {
-  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  backgroundColor: "rgba(0, 0, 0, 0.75)",
   position: "fixed",
   inset: 0,
+	zIndex: "6",
 
   ["@media (prefers-reduced-motion: no-preference)"]: {
     animation: `${overlayShow} ${animationTime} cubic-bezier(0.16, 1, 0.3, 1)`,
@@ -38,7 +39,7 @@ const StaticContent = styled(RadixUiDialogPrimitive.Content, {
   top: "50%",
   transform: "translate(-50%, -50%)",
   width: "90vw",
-  zIndex: "2",
+  zIndex: "7",
 
   ["&:focus"]: {
     outline: "none",

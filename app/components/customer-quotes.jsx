@@ -43,9 +43,10 @@ const nextPreviousButtonStyle = {
   height: "100%", // `calc(100% - calc(${nextPreviousButtonSize} * 0.5))`,
   margin: "0 1.5rem",
   position: "absolute",
+  smoothTransition: "all",
   top: "0",
   width: nextPreviousButtonSize,
-  smoothTransition: "all",
+	zIndex: "2",
 
   "&:hover": {
     color: "$themePrimary"
@@ -115,14 +116,14 @@ const StyledQuote = styled("blockquote", {
   backgroundColor: quoteBubbleBackgroundColor,
   border: `0.125rem solid ${quoteBubbleBorderColor}`,
   borderRadius: "0.625rem",
-  // display: "flex",
   fontSize: "1rem",
   fontStyle: "italic",
-  height: "15rem",
-  marginBottom: "2rem",
-  padding: "1.5rem 2rem",
+  height: "21rem",
+  margin: "0 3rem 2rem 3rem",
+  padding: "0.75rem 1rem",
   position: "relative",
   smoothTransition: "all",
+	zIndex: "1",
 
   "&::after": {
     "--bubble-source-size": "2rem",
@@ -135,24 +136,26 @@ const StyledQuote = styled("blockquote", {
     top: "calc(100% - calc(1rem - 0.75px))",
     transform: "rotate(45deg)",
     left: "calc(50% - calc(var(--bubble-source-size) * 0.5))",
-    width: "var(--bubble-source-size)"
+    width: "var(--bubble-source-size)",
+		zIndex: "-1",
   },
 
   "@sm": {
-    fontSize: "1.25rem"
+    fontSize: "1.25rem",
+		height: "15rem",
   },
 
   "@ml": {
     fontSize: "1.5rem",
-    maxWidth: breakpointPx.m
+    maxWidth: breakpointPx.m,
+		padding: "1.5rem 2rem",
   }
 })
 
 const QuoteMoreButton = styled(Button, {
   color: "$themePrimary",
-  fontSize: "1.25rem",
+  fontSize: "1rem",
   fontStyle: "italic",
-  margin: "0 0.5rem",
   padding: "0"
 })
 
@@ -206,7 +209,7 @@ function Quote({
     <QuoteBox>
       <QuoteContainer>
         <StyledQuote {...props}>
-          {displayedQuote}
+          {displayedQuote}&nbsp;
           {showMoreButton ? (
             <QuoteMoreButton asLink ghost={false} onClick={onShowMore}>
               Read more
@@ -221,9 +224,10 @@ function Quote({
 
 const PagerContainer = styled("div", {
   display: "flex",
+	flexWrap: "wrap",
   gap: "1rem",
   justifyContent: "center",
-  margin: "2rem 0 0 0"
+  margin: "2rem 1rem 0 1rem"
 })
 
 const QuoteLink = styled(Bullseye, {

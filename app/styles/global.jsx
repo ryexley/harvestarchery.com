@@ -11,7 +11,7 @@ export const globalStyles = globalCss({
     ["--header-height"]: "5.625rem",
     fontFamily: "$primary",
 		margin: 0,
-    minWidth: "26.25rem",
+    minWidth: "23.75rem",
 		padding: 0,
   },
 

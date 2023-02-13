@@ -56,7 +56,7 @@ const StyledContent = styled(DialogPrimitive.Content, {
   position: "fixed",
   top: 0,
   width: "100%",
-	zIndex: 3,
+	zIndex: 5,
 
   // Among other things, prevents text alignment inconsistencies when dialog cant be centered in the viewport evenly.
   // Affects animated and non-animated dialogs alike.

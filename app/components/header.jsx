@@ -11,7 +11,7 @@ const Headroom = styled(HeadroomPrimitive, {
     left: "0",
     right: "0",
     top: "0",
-    zIndex: "2",
+    zIndex: "4",
 
     ["&.headroom--scrolled"]: {
       transition: "transform 0.5s ease-in-out, background 0.5s ease-in-out"
