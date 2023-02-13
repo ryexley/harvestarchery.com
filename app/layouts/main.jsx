@@ -17,16 +17,12 @@ export function MainLayout({ children, offsetMainContent = true }) {
     } : {})
   }
 
-  const toggleMenu = ({ forceClose = false }) => {
-    setShowMenu(forceClose ? false : !showMenu)
-  }
+  const toggleMenu = () => setShowMenu(!showMenu)
 
   return (
     <>
       <Header menuOpen={showMenu} toggleMenu={toggleMenu} />
-      <SidebarMenu
-        isOpen={showMenu}
-        onClose={() => toggleMenu({ forceClose: true })} />
+      <SidebarMenu open={showMenu} toggle={toggleMenu} />
       <MainContent css={mainContentStyle}>
         {children}
       </MainContent>

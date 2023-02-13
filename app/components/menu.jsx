@@ -1,5 +1,6 @@
 import { ImageBox } from "~/components/image-box"
 import { Drawer } from "~/components/drawer"
+import * as Sheet from "~/components/sheet"
 import { CallUs } from "~/components/call-us-link"
 import { CloseX, Phone, Facebook, Instagram } from "~/components/icons"
 import {
@@ -13,7 +14,7 @@ import { site, menu } from "~/data"
 import { external, social } from "~/urls"
 import { styled, breakpointPx as sizes } from "~/styles"
 
-const DrawerMenu = styled(Drawer, {
+const SheetMenu = styled(Sheet.Content, {
   backgroundColor: "$blackA12",
 
   "@s": {
@@ -80,11 +81,11 @@ const MenuItem = styled("li", {
   }
 })
 
-const Content = styled(Accordion, {
+const StyledAccordion = styled(Accordion, {
   background: "transparent"
 })
 
-const Panel = styled(AccordionItem, {
+const AccordionPanel = styled(AccordionItem, {
   background: "transparent",
   padding: "0",
 })
@@ -252,8 +253,8 @@ const StoreHoursDay = styled("span", {
 })
 
 export function SidebarMenu({
-  isOpen = false,
-  onClose
+  open = false,
+  toggle
 }) {
   const mapProps = {
     image: "/images/shop-map",
@@ -282,70 +283,66 @@ export function SidebarMenu({
   }
 
   return (
-    <DrawerMenu
-      position="right"
-      isOpen={isOpen}
-      onClose={onClose}
+    <Sheet.Root
+      open={open}
+      onOpenChange={toggle}
       ariaLabel="Site menu">
-      <CloseButton
-        aria-label="Close menu"
-        onClick={handleCloseMenu}>
-        <CloseButtonIcon />
-      </CloseButton>
-      <Content
-        type="single"
-        defaultValue="menu"
-        collapsible>
-        <Panel value="menu">
-          <PanelTrigger>Menu</PanelTrigger>
-          <PanelContent>
-            <MenuItems>
-              {menu.map(({ url, label }) => (
-                <MenuItem key={`menu-item-${label.toLowerCase()}`}>
-                  <a href={url}>{label}</a>
-                </MenuItem>
-              ))}
-            </MenuItems>
-          </PanelContent>
-        </Panel>
-        <Panel value="contact">
-          <PanelTrigger>Info</PanelTrigger>
-          <ShopDetails>
-            <ShopDetailsHeading>Call us</ShopDetailsHeading>
-            <CallUsLink href={`tel:${site.phoneNumber}`}>
-              <PhoneIcon />
-              {site.phoneNumber}
-            </CallUsLink>
-            <ShopDetailsHeading>Connect with us</ShopDetailsHeading>
-            <SocialLinks>
-              <SocialLinkItem>
-                <SocialLink href={social.facebook} target="_blank">
-                  <FacebookIcon /><span>Facebook</span>
-                </SocialLink>
-              </SocialLinkItem>
-              <SocialLinkItem>
-                <SocialLink href={social.instagram} target="_blank">
-                  <InstagramIcon /><span>Instagram</span>
-                </SocialLink>
-              </SocialLinkItem>
-            </SocialLinks>
-            <ShopDetailsHeading>Find us</ShopDetailsHeading>
-            <AddressLink href={external.mapUrl(site.address)} target="_blank">
-              <div>{site.address.line1}</div>
-              <div>{site.address.city}, {site.address.state} {site.address.postalCode}</div>
-            </AddressLink>
-            <MapLink href={external.mapUrl(site.address)} target="_blank">
-              <MapImage {...mapProps} />
-            </MapLink>
-            <ShopDetailsHeading>Store Hours</ShopDetailsHeading>
-            <StoreHoursList>
-              {Object.keys(site.storeHours).map(day => (
-                <li key={day}><StoreHoursDay>{day}</StoreHoursDay> {site.storeHours[day]}</li>
-              ))}
-            </StoreHoursList>
-          </ShopDetails>
-        </Panel>
-      </Content>
-    </DrawerMenu>
+      <SheetMenu showCloseButton={false}>
+				<StyledAccordion
+					type="single"
+					defaultValue="menu"
+					collapsible>
+					<AccordionPanel value="menu">
+						<PanelTrigger>Menu</PanelTrigger>
+						<PanelContent>
+							<MenuItems>
+								{menu.map(({ url, label }) => (
+									<MenuItem key={`menu-item-${label.toLowerCase()}`}>
+										<a href={url}>{label}</a>
+									</MenuItem>
+								))}
+							</MenuItems>
+						</PanelContent>
+					</AccordionPanel>
+					<AccordionPanel value="contact">
+						<PanelTrigger>Info</PanelTrigger>
+						<ShopDetails>
+							<ShopDetailsHeading>Call us</ShopDetailsHeading>
+							<CallUsLink href={`tel:${site.phoneNumber}`}>
+								<PhoneIcon />
+								{site.phoneNumber}
+							</CallUsLink>
+							<ShopDetailsHeading>Connect with us</ShopDetailsHeading>
+							<SocialLinks>
+								<SocialLinkItem>
+									<SocialLink href={social.facebook} target="_blank">
+										<FacebookIcon /><span>Facebook</span>
+									</SocialLink>
+								</SocialLinkItem>
+								<SocialLinkItem>
+									<SocialLink href={social.instagram} target="_blank">
+										<InstagramIcon /><span>Instagram</span>
+									</SocialLink>
+								</SocialLinkItem>
+							</SocialLinks>
+							<ShopDetailsHeading>Find us</ShopDetailsHeading>
+							<AddressLink href={external.mapUrl(site.address)} target="_blank">
+								<div>{site.address.line1}</div>
+								<div>{site.address.city}, {site.address.state} {site.address.postalCode}</div>
+							</AddressLink>
+							<MapLink href={external.mapUrl(site.address)} target="_blank">
+								<MapImage {...mapProps} />
+							</MapLink>
+							<ShopDetailsHeading>Store Hours</ShopDetailsHeading>
+							<StoreHoursList>
+								{Object.keys(site.storeHours).map(day => (
+									<li key={day}><StoreHoursDay>{day}</StoreHoursDay> {site.storeHours[day]}</li>
+								))}
+							</StoreHoursList>
+						</ShopDetails>
+					</AccordionPanel>
+				</StyledAccordion>
+      </SheetMenu>
+    </Sheet.Root>
   )
 }

@@ -89,6 +89,9 @@ export const {
       white: "$slate12",
       darkGray: "$blackA9",
       black: "$blackA12",
+      transparentPanel: "hsl(0 0% 0% / 97%)",
+      shadowLight: "hsl(206 22% 7% / 35%)",
+      shadowDark: "hsl(206 22% 7% / 20%)",
     },
     fonts: {
       primary: `"Open Sans", Helvetica, Arial, sans-serif`

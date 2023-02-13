@@ -44,7 +44,7 @@ const StyledHeader = styled(AccordionPrimitive.Header, {
 const StyledTrigger = styled(AccordionPrimitive.Trigger, {
   all: "unset",
   alignItems: "center",
-  backgroundColor: "transparent",
+  /* backgroundColor: "transparent", */
   boxShadow: `0 0.0625rem 0 transparent`,
   color: "$white",
   cursor: "pointer",
@@ -56,9 +56,9 @@ const StyledTrigger = styled(AccordionPrimitive.Trigger, {
   justifyContent: "space-between",
   lineHeight: 1,
   padding: "0 1.25rem",
-  "&[data-state='closed']": { backgroundColor: "transparent" },
-  "&[data-state='open']": { backgroundColor: "transparent" },
-  "&:hover": { backgroundColor: "transparent" },
+  "&[data-state='closed']": { /* backgroundColor: "transparent" */ },
+  "&[data-state='open']": { /* backgroundColor: "transparent" */ },
+  "&:hover": { /* backgroundColor: "transparent" */ },
 })
 
 const StyledContent = styled(AccordionPrimitive.Content, {
@@ -77,7 +77,7 @@ const StyledInnerContent = styled("div")
 const StyledChevron = styled(ChevronDownIcon, {
   color: "$white",
   transition: "transform 300ms cubic-bezier(0.87, 0, 0.13, 1)",
-  "[data-state='open'] &": { transform: "rotate(180deg)" },
+  "[data-state='open'] > &": { transform: "rotate(180deg)" },
 })
 
 // Exports
