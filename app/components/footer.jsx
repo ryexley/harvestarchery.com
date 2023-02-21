@@ -1,3 +1,4 @@
+import format from "date-fns/format"
 import { Container } from "~/components/container"
 import { MapLink as RawMapLink } from "~/components/map-link"
 import { CallUs } from "~/components/call-us-link"
@@ -28,6 +29,7 @@ const StyledContainer = styled(Container, {
     "siteLinks"
     "contactInfo"
 		"storeHours"
+		"copyright"
   `,
 
 	"@sm": {
@@ -36,6 +38,7 @@ const StyledContainer = styled(Container, {
 		gridTemplateAreas: `
 			"siteLinks contactInfo"
 			"storeHours storeHours"
+			"copyright copyright"
 		`
 	},
 
@@ -198,7 +201,17 @@ const StoreHoursDay = styled("span", {
   textTransform: "capitalize",
 })
 
+const CopyrightNotice = styled("p", {
+	alignItems: "center",
+	display: "flex",
+	fontSize: "0.8rem",
+	justifyContent: "center",
+	margin: "1rem",
+})
+
 export function Footer() {
+	const currentYear = format(Date.now(), "yyyy")
+
   return (
     <StyledFooter>
 			<StyledContainer>
@@ -244,6 +257,9 @@ export function Footer() {
 					</StoreHours>
 				</StoreHoursSection>
 			</StyledContainer>
+			<Container>
+				<CopyrightNotice>All site content is copyright &copy;{currentYear} The Harvest Archery Pro Shop unless otherwise specified. All rights reserved.</CopyrightNotice>
+			</Container>
     </StyledFooter>
   )
 }

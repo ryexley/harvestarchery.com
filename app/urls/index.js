@@ -8,7 +8,7 @@ export const pages = {
 	},
   lessons: "/lessons",
   range: "/range",
-	liabilityWaiver: "/liability-waiver"
+	liabilityWaiver: "/r/liability-waiver"
 }
 
 export const external = {

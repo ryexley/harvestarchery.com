@@ -1,21 +1,21 @@
 import { styled } from "~/styles"
 
 const buttonStyles = {
+	borderRadius: "0.3125rem",
+	borderWidth: "0.125rem",
+	display: "inline-flex",
+	justifyContent: "center",
+	padding: "0.5rem 1rem",
+	position: "relative",
   smoothTransition: "all",
+	textDecoration: "none",
 
   variants: {
     ghost: {
       true: {
         backgroundColor: "transparent",
         borderColor: "$white",
-        borderRadius: "0.3125rem",
-        borderWidth: "0.125rem",
         color: "$white",
-        display: "inline-flex",
-        justifyContent: "center",
-        padding: "0.5rem 1rem",
-        position: "relative",
-        textDecoration: "none",
 
         "&:hover": {
           backdropFilter: "blur(0.5rem)",
