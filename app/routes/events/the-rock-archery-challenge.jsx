@@ -106,7 +106,7 @@ export default function TheRockArcheryChallengePage() {
 				<p>Put your archery skills to the test at long ranges, steep angles and tight windows. Join us for a weekend of fun, fellowship and challenging archery shots. This shoot is a great way to get yourself prepared for the upcoming Total Archery Challenge.</p>
 				<p>Quarry Rock will offer <strong>two different courses of 15 targets each</strong>, with a practice range at the facility for warm up. There will also be novelty shots and games for prizes available as well. Choose your event option below to register.</p>
 				<p>If you'd like to make a weekend of it, camping will be available on-site, free of charge. We only ask that you be responsible and respectful of the facility. Concessions will be available for purchase at the event. Children are welcome, but must be accompanied by an adult at all times, both on and off the range, no exceptions.</p>
-				<p>You will be required to complete our <LiabilityWaiverLink>liability waiver</LiabilityWaiverLink> before you will allow to participate in the event. This can be completed online, and it is preferred that this is accomplished prior to registering for the event.</p>
+				<p>You will be required to complete our <LiabilityWaiverLink>liability waiver</LiabilityWaiverLink> before you will be allowed to participate in the event. This can be completed online, and it is preferred that this is accomplished prior to registering for the event.</p>
 				<h2>Register for The Rock Archery Challenge</h2>
 				<RegistrationPanel>
 					<PriceOption>
