@@ -1,5 +1,19 @@
 {
   "build": {
     "env": {}
-  }
+  },
+	"redirects": [
+		{
+			"source": "/",
+			"has": [
+				{
+					"type": "query",
+					"key": "page_id",
+					"value": "12"
+				}
+			],
+			"destination": "/about",
+			"permanent": true
+		}
+	]
 }
