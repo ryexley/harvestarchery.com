@@ -139,7 +139,7 @@ export default function TheRockArcheryChallengePage() {
 						<PriceOptionDescription>
 							Camp overnight. Hang out. Meet new people. Shoot all you want. Get the most out of the event.
 						</PriceOptionDescription>
-						<PriceOptionLink ghost={false} href="/r/trac-weekend-inlimited" target="_blank">$100.00</PriceOptionLink>
+						<PriceOptionLink ghost={false} href="/r/trac-weekend-unlimited" target="_blank">$100.00</PriceOptionLink>
 					</PriceOption>
 				</RegistrationPanel>
 				<AdditionalInfo>
