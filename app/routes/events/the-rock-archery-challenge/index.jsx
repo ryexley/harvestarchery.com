@@ -9,7 +9,7 @@ import { IMAGE_TYPE } from "~/util/images"
 import { styled, breakpointPx as sizes } from "~/styles"
 
 export const meta = () => ({
-	title: windowTitle(`The Rock Archery Challenge (aka "Mini TAC")`)
+	title: windowTitle(`The Rock Archery Challenge`)
 })
 
 const List = styled("ul", {
@@ -85,49 +85,41 @@ export default function TheRockArcheryChallengePage() {
 	const heroProps = {
     dark: true,
     blur: false,
-    image: "/images/tyler-bailey-archery",
-    imgType: IMAGE_TYPE.JPG,
-    sizes: [
-      sizes.xs,
-      sizes.s,
-      sizes.sm,
-      sizes.m,
-      sizes.ml,
-      sizes.l,
-      sizes.xl,
-    ]
+    image: "/images/bailey-at-full-draw",
+    imgType: IMAGE_TYPE.WEBP,
+    sizes: []
   }
 
   return (
     <MainLayout offsetMainContent={false}>
       <Hero imageBoxProps={heroProps} headingText="The Rock Archery Challenge" />
 			<PageContent>
-				<p>Also known as <em>"<strong>Mini TAC</strong>"</em>, this event is a partnership between The Harvest Archery Pro Shop and Quarry Rock Archery Range.</p>
-				<p>Put your archery skills to the test at long ranges, steep angles and tight windows. Join us for a weekend of fun, fellowship and challenging archery shots. This shoot is a great way to get yourself prepared for the upcoming Total Archery Challenge.</p>
+				<p>This challenge is a partnership between The Harvest Archery Pro Shop and Quarry Rock Archery Club.</p>
+				<p>Put your archery skills to the test at long ranges, steep angles and tight windows. Join us for a weekend of fun, fellowship and challenging archery shots. This shoot is a great opportunity to get yourself prepared for the upcoming Tennessee archery hunting season.</p>
 				<p>Quarry Rock will offer <strong>two different courses of 15 targets each</strong>, with a practice range at the facility for warm up. There will also be novelty shots and games for prizes available as well. Choose your event option below to register.</p>
 				<p>If you'd like to make a weekend of it, camping will be available on-site, free of charge. We only ask that you be responsible and respectful of the facility. Concessions will be available for purchase at the event. Children are welcome, but must be accompanied by an adult at all times, both on and off the range, no exceptions.</p>
 				<p>You will be required to complete our <LiabilityWaiverLink>liability waiver</LiabilityWaiverLink> before you will be allowed to participate in the event. This can be completed online, and it is preferred that this is accomplished prior to registering for the event.</p>
-				<h2>Register for The Rock Archery Challenge</h2>
+				<h2>Register for the The Rock Archery Challenge</h2>
 				<RegistrationPanel>
 					<PriceOption>
 						<PriceOptionHeading>One Course</PriceOptionHeading>
-						<PriceOptionImage style={{ backgroundImage: "url(/images/tyler-bailey-archery-640.jpg)" }} />
+						<PriceOptionImage style={{ backgroundImage: "url(/images/josh-at-full-draw.webp)" }} />
 						<PriceOptionDescription>
-							One course. 15 targets. Roughly a mile long hike.
+							You choose, one of two available courses. 15 - 20 targets. One to two miles hiking.
 						</PriceOptionDescription>
 						<PriceOptionLink ghost={false} href="/r/trac-one-course" target="_blank">$30.00</PriceOptionLink>
 					</PriceOption>
 					<PriceOption>
 						<PriceOptionHeading>Both Courses</PriceOptionHeading>
-						<PriceOptionImage style={{ backgroundImage: "url(/images/aaron-at-full-draw-640.jpg)" }} />
+						<PriceOptionImage style={{ backgroundImage: "url(/images/bailey-at-full-draw.webp)" }} />
 						<PriceOptionDescription>
-							Both courses. 30 targets. Roughly two miles hike.
+							You get to shoot both available courses. Over 30 targets. Two to three miles hiking.
 						</PriceOptionDescription>
 						<PriceOptionLink ghost={false} href="/r/trac-both-courses" target="_blank">$50.00</PriceOptionLink>
 					</PriceOption>
 					<PriceOption>
 						<PriceOptionHeading><span>One Day,</span><span>Unlimited Shoot</span></PriceOptionHeading>
-						<PriceOptionImage style={{ backgroundImage: "url(/images/mini-tac-kneeling-shot-640.jpg)" }} />
+						<PriceOptionImage style={{ backgroundImage: "url(/images/doc-at-full-draw.webp)" }} />
 						<PriceOptionDescription>
 							Shoot either course as many times as you'd like in one day. This is our <strong>recommended</strong> option.
 						</PriceOptionDescription>
@@ -135,7 +127,7 @@ export default function TheRockArcheryChallengePage() {
 					</PriceOption>
 					<PriceOption>
 						<PriceOptionHeading><span>All Weekend,</span><span>Unlimited Shoot</span></PriceOptionHeading>
-						<PriceOptionImage style={{ backgroundImage: "url(/images/bailey-ben-archery-640.jpg)" }} />
+						<PriceOptionImage style={{ backgroundImage: "url(/images/quarry-rock-practice-range.webp)" }} />
 						<PriceOptionDescription>
 							Camp overnight. Hang out. Meet new people. Shoot all you want. Get the most out of the event.
 						</PriceOptionDescription>

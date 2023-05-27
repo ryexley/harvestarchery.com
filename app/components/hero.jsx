@@ -6,7 +6,7 @@ import { styled } from "~/styles"
 
 const StyledImageBox = styled(ImageBox, {
   alignItems: "center",
-  backgroundPosition: "top",
+  // backgroundPosition: "top",
   color: "#fff",
   display: "flex",
   flexDirection: "column",
@@ -21,13 +21,13 @@ const Heading = styled(PageHeading, {
   marginTop: "10rem"
 })
 
-export function Hero({ imageBoxProps, headingText, children }) {
+export function Hero({ imageBoxProps, headingText, scrollHint = true, children }) {
 	return (
 		<StyledImageBox {...imageBoxProps}>
 			{isNotEmpty(headingText) ? (
 				<Heading>{headingText}</Heading>
 			) : children}
-			<ScrollHint />
+			{scrollHint ? <ScrollHint /> : null}
 		</StyledImageBox>
 	)
 }

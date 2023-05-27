@@ -2,7 +2,8 @@ import { isNotEmpty } from "."
 
 export const IMAGE_TYPE = {
   JPG: ".jpg",
-  PNG: ".png"
+  PNG: ".png",
+	WEBP: ".webp",
 }
 
 export const renderSrcSet = ({ img, ext, sizes}) => {
@@ -19,6 +20,10 @@ export const renderImageSet = ({ img, sizes, ext }) => {
 
     return 1 + (index * pxDensityIncrement)
   }
+
+	if (sizes.length === 0) {
+		return [`url("${img}${ext}") 1x`]
+	}
 
   return sizes.map((size, index) => {
     const pixelDensity = calculatePixelDensity(index)

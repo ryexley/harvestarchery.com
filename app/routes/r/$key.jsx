@@ -6,10 +6,10 @@ export async function loader({ params }) {
 
 	const routeMap = {
 		"liability-waiver": "https://app.waiverelectronic.com/render/templateByRefId/harvest-archery-liability-release",
-		"trac-one-course": "https://buy.stripe.com/aEU3fi3Cj2BSf849AB",
-		"trac-both-courses": "https://buy.stripe.com/9AQ5nq2yfccsgc89AC",
-		"trac-one-day-unlimited": "https://buy.stripe.com/cN2g244Gn1xOf845kn",
-		"trac-weekend-unlimited": "https://buy.stripe.com/dR65nq5Kr5O45xu8wA",
+		"trac-one-course": "https://buy.stripe.com/8wM7vygp590g9NKbIN",
+		"trac-both-courses": "https://buy.stripe.com/aEUbLO8WD0tK3pmeV0",
+		"trac-one-day-unlimited": "https://buy.stripe.com/3csg242yfccsaRO28f",
+		"trac-weekend-unlimited": "https://buy.stripe.com/9AQ9DG2yfdgwf8414c",
 	}
 
 	const url = routeMap[routeKey]
