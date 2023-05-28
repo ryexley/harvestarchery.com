@@ -48,11 +48,11 @@ export const links = () => {
 
 const Document = ({ children }) => {
 	const {
-		isDevelopment,
-		isProduction,
+		isDevelopment = false,
+		isProduction = true,
 		CF_ANALYTICS_ENABLED,
 		CF_ANALYTICS_TOKEN,
-	} = useLoaderData()
+	} = useLoaderData() || {}
 	const clientStyleData = useContext(ClientStyleContext)
 
   // Only executed on client
