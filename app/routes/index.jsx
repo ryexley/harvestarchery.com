@@ -1,10 +1,11 @@
 import { MainLayout } from "~/layouts/main"
+import { NewsAndUpdates } from "~/content/news-and-updates"
 import { ImageBox } from "~/components/image-box"
 import { ScrollHint } from "~/components/scroll-hint"
 import { HarvestArcheryBroadheadLogo } from "~/components/logos"
 import { BrandRotator } from "~/components/brand-image-rotator"
 import { CustomerQuotes } from "~/components/customer-quotes"
-import { LinkButton } from "~/components/button"
+import { RouterLinkButton } from "~/components/button"
 import { IMAGE_TYPE } from "~/util/images"
 import { pages } from "~/urls"
 import { styled, breakpointPx as sizes } from "~/styles"
@@ -131,7 +132,7 @@ const IndoorRange = styled(PageLinkBlock, {
   gridArea: "range"
 })
 
-const PageLink = styled(LinkButton, {
+const PageLink = styled(RouterLinkButton, {
   fontSize: "1.5rem",
   fontStyle: "italic",
   minWidth: "15rem",
@@ -141,7 +142,7 @@ const PageLink = styled(LinkButton, {
 export const meta = () => {
   return {
     title: site.title,
-    description: site.globalMetadata.join(", ")
+    description: `${site.title}, ${site.description} (${site.globalKeywords.join(", ")})`,
   }
 }
 
@@ -228,19 +229,20 @@ export default function Index() {
         </Blurb>
         <ScrollHint />
       </Hero>
+			<NewsAndUpdates />
       <BrandRotator>Brand Rotator</BrandRotator>
       <PageLinks>
         <About {...aboutLinkProps}>
-          <PageLink href={pages.about}>About Us</PageLink>
+          <PageLink to={pages.about}>About Us</PageLink>
         </About>
         <Services {...servicesLinkProps}>
-          <PageLink href={pages.services}>Services</PageLink>
+          <PageLink to={pages.services}>Services</PageLink>
         </Services>
         <Events {...eventsLinkProps}>
-          <PageLink href={pages.events.home}>Events</PageLink>
+          <PageLink to={pages.events.home}>Events</PageLink>
         </Events>
         <IndoorRange {...rangeLinkProps}>
-          <PageLink href={pages.range}>Indoor Range</PageLink>
+          <PageLink to={pages.range}>Indoor Range</PageLink>
         </IndoorRange>
       </PageLinks>
       <CustomerQuotes />

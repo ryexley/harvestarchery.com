@@ -1,3 +1,4 @@
+import { Link } from "@remix-run/react"
 import { styled } from "~/styles"
 
 const buttonStyles = {
@@ -48,4 +49,8 @@ export const Button = styled("button", {
 
 export const LinkButton = styled("a", {
   ...buttonStyles
+})
+
+export const RouterLinkButton = styled(Link, {
+	...buttonStyles
 })

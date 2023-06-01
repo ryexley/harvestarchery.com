@@ -30,9 +30,9 @@ export function canUseDOM() {
 	);
 }
 
-export function random(min, max) {
-  min = min ?? 1
-  max = max ?? RANDOM_UPPER_LIMIT
+export function random(min = 1, max = Number.MAX_SAFE_INTEGER) {
+  min = min
+  max = max
 
   return Math.floor(Math.random() * (max - min + 1)) + parseInt(min, 10)
 }

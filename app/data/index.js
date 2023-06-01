@@ -2,7 +2,8 @@ import { pages } from "~/urls"
 
 export const site = {
   title: "The Harvest Archery Pro Shop",
-  globalMetadata: [
+	description: "East Tennessee's premier destination for all of your archery needs",
+  globalKeywords: [
     "archery",
     "harvest archery",
     "pro shop",
@@ -58,7 +59,6 @@ export const menu = [
   { label: "About", url: pages.about },
   { label: "Services", url: pages.services },
   { label: "Events", url: pages.events.home },
-  // { label: "Lessons", url: pages.lessons },
   { label: "Indoor Range", url: pages.range }
 ]
 

@@ -33,7 +33,7 @@ const meta = () => {
     charset: "utf-8",
     title: site.title,
     viewport: "width=device-width,initial-scale=1",
-    description: site.globalMetadata.join(", ")
+		description: `${site.title}, ${site.description} (${site.globalKeywords.join(", ")})`,
   }
 }
 
@@ -41,7 +41,7 @@ export const links = () => {
   return [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
     { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-    { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;1,300;1,400;1,500;1,600;1,700&display=swap" },
+    { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600;1,700&display=swap" },
     { rel: "icon", href: "/images/harvest-archery-logo.svg", type: "image/svg+xml" }
   ]
 }

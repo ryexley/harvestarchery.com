@@ -11,7 +11,7 @@ export const renderSrcSet = ({ img, ext, sizes}) => {
   return srcs.join(", ")
 }
 
-export const renderImageSet = ({ img, sizes, ext }) => {
+export const renderImageSet = ({ img, sizes = [], ext }) => {
   const pxDensityIncrement = 0.5
   const calculatePixelDensity = index => {
     if (index < 1) {
