@@ -21,17 +21,22 @@ const SectionHeading = styled("h2", {
 const NewsItems = styled("div", {
 	"--grid-layout-gap": "1rem",
 	"--grid-column-count": "3",
-	"--grid-item--min-width": "28.125rem",
+	"--grid-item--min-width": "calc(23.75rem - 2rem)", // 390px - 1rem of margin/padding left and right
 	"--gap-count": "calc(var(--grid-column-count) - 1)",
 	"--total-gap-width": "calc(var(--gap-count) * var(--grid-layout-gap))",
 	"--grid-item--max-width": "calc((100% - var(--total-gap-width)) / var(--grid-column-count))",
 	display: "grid",
 	gridAutoFlow: "row",
 	gridGap: "var(--grid-layout-gap)",
-	gridTemplateColumns: "repeat(auto-fit, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr))"
+	gridTemplateColumns: "repeat(auto-fit, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr))",
+
+	"@s": {
+		"--grid-item--min-width": "28.125rem",
+	}
 })
 
 const NewsItemArrow = styled(ArrowRight, {
+	display: "none",
 	fill: "$white",
 	height: "5rem",
 	opacity: "0",
@@ -40,6 +45,10 @@ const NewsItemArrow = styled(ArrowRight, {
 	top: "1rem",
 	transform: "translateX(-2.5rem)",
 	transition: "all 750ms ease-in-out",
+
+	"@sm": {
+		display: "block",
+	}
 })
 
 const NewsItemLink = styled(Link, {
@@ -56,19 +65,34 @@ const NewsItemLink = styled(Link, {
 const NewsItem = styled(ImageBox, {
 	borderRadius: "0.625rem",
 	color: "$white",
-	display: "flex",
-	flexDirection: "column",
-	gap: "1rem",
-	justifyContent: "end",
-	minHeight: "20rem",
+	minHeight: "22rem",
 	padding: "2rem",
+	transition: "all 250ms ease-in-out",
+
+	"@s": {
+		display: "flex",
+		flexDirection: "column",
+		gap: "1rem",
+		justifyContent: "end",
+		minHeight: "20rem",
+	},
 
 	h3: {
-		fontSize: "1.75rem"
+		fontSize: "1.75rem",
+		marginBottom: "1rem",
+
+		"@s": {
+			marginBottom: "0"
+		}
 	},
 
 	p: {
-		fontWeight: "300"
+		fontWeight: "300",
+		marginBottom: "2rem",
+
+		"@s": {
+			marginBottom: "0",
+		}
 	}
 })
 
