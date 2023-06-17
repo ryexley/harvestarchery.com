@@ -25,6 +25,7 @@ export async function loader() {
 		NODE_ENV: process.env.NODE_ENV || "production",
 		CF_ANALYTICS_ENABLED: process.env.CF_ANALYTICS_ENABLED || false,
 		CF_ANALYTICS_TOKEN: process.env.CF_ANALYTICS_TOKEN || null,
+		SENTRY_DSN: process.env.SENTRY_DSN || null,
 	})
 }
 
