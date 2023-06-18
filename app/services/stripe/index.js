@@ -1,7 +1,10 @@
-// https://github.com/stripe/stripe-js
 import StripeClient from "stripe"
 import { isEmpty, isNotEmpty } from "~/util"
 
+/**
+ * Stripe Node.js client lib
+ * https://github.com/stripe/stripe-node
+ */
 export function Stripe() {
 	const API_KEY = process.env.STRIPE_API_KEY || ""
 	const WEBHOOK_SIGNING_SECRET = process.env.STRIPE_WEBHOOK_SIGNING_SECRET || ""
@@ -31,6 +34,9 @@ export function Stripe() {
 	}
 
 	return {
+		// TODO: this function needs named more appropriately ... it's not
+		// just verifying that the event is from stripe, but it's actually
+		// extracting the event from the raw incoming request, and returning it.
 		verifyRequestIsFromStripe: async (request = {}, requestSignature = "") => {
 			try {
 				const stripe = await getClient()
@@ -44,17 +50,21 @@ export function Stripe() {
 			} catch(error) {
 				return { event: null, error }
 			}
-			// TODO: Verify the webhook request signature
-			// Need to register the webhook handler endpoint
-			// and get the signing secret from Stripe first
-			// https://stripe.com/docs/webhooks/signatures
-			return new Error("Not implemented")
 		},
 
 		getPaymentIntent: async (paymentIntentId) => {
 			try {
 				const stripe = await getClient()
 				return stripe.paymentIntents.retrieve(paymentIntentId, { expand: ["customer"] })
+			} catch(error) {
+				throw error
+			}
+		},
+
+		getCheckoutSessionItems: async (checkoutSessionId) => {
+			try {
+				const stripe = await getClient()
+				return stripe.checkout.sessions.listLineItems(checkoutSessionId)
 			} catch(error) {
 				throw error
 			}

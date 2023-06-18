@@ -1,131 +1,95 @@
 import { json } from "@remix-run/node"
 import { Stripe } from "~/services/stripe"
 import { Supabase } from "~/services/supabase";
+import { HttpStatus } from "~/enums"
 import { isNotEmpty } from "~/util"
 
 const stripeEventHandlerMap = {
+	/**
+	 * Handle `checkout.session.completed` events from Stripe.
+	 * https://stripe.com/docs/api/events/types#event_types-checkout.session.completed
+	 * For us, right now, at Harvest Archery, these events occur
+	 * when someone has successfully completed the form at a payment
+	 * link created for one of our price options for our archery
+	 * challenge events. For those events, we want to capture the
+	 * data from that event, and save some of the details from the
+	 * event registration to our event_registrations database table
+	 * that will be used for the generation of reports and event
+	 * check-in applications.
+	 */
 	"checkout.session.completed": async ({ event, stripe, supabase }) => {
-		console.log("handling `checkout.session.completed`", JSON.stringify(event?.data?.object, null, 2))
-		// checkout session event object data:
-		const testCheckoutSessionDataForReferenceOnly = {
-			"id": "cs_test_b1WUWD7msob9QCzhFTPyQVa3uaa9HvDwgnO4lUHPd9yH0Q35KSbeyX0usA",
-			"object": "checkout.session",
-			"after_expiration": null,
-			"allow_promotion_codes": true,
-			"amount_subtotal": 9999,
-			"amount_total": 9999,
-			"automatic_tax": {
-				"enabled": true,
-				"status": "complete"
-			},
-			"billing_address_collection": "required",
-			"cancel_url": "https://stripe.com",
-			"client_reference_id": null,
-			"consent": null,
-			"consent_collection": {
-				"promotions": "none",
-				"terms_of_service": "none"
-			},
-			"created": 1686980639,
-			"currency": "usd",
-			"currency_conversion": null,
-			"custom_fields": [],
-			"custom_text": {
-				"shipping_address": null,
-				"submit": null
-			},
-			"customer": null,
-			"customer_creation": "if_required",
-			"customer_details": {
-				"address": {
-					"city": "Knoxville",
-					"country": "US",
-					"line1": "2706 Berringer Station Lane",
-					"line2": null,
-					"postal_code": "37932",
-					"state": "TN"
-				},
-				"email": "bob@yexley.net",
-				"name": "Robert D. Yexley",
-				"phone": "+18653993696",
-				"tax_exempt": "none",
-				"tax_ids": []
-			},
-			"customer_email": null,
-			"expires_at": 1687067039,
-			"invoice": null,
-			"invoice_creation": {
-				"enabled": false,
-				"invoice_data": {
-					"account_tax_ids": null,
-					"custom_fields": null,
-					"description": null,
-					"footer": null,
-					"metadata": {},
-					"rendering_options": null
-				}
-			},
-			"livemode": false,
-			"locale": "auto",
-			"metadata": {},
-			"mode": "payment",
-			"payment_intent": "pi_3NJrwKAeH35GIXKs1rUdIzLb",
-			"payment_link": "plink_1NIBL5AeH35GIXKsJEfbfoQM",
-			"payment_method_collection": "always",
-			"payment_method_options": {},
-			"payment_method_types": [
-				"card"
-			],
-			"payment_status": "paid",
-			"phone_number_collection": {
-				"enabled": true
-			},
-			"recovered_from": null,
-			"setup_intent": null,
-			"shipping_address_collection": null,
-			"shipping_cost": null,
-			"shipping_details": null,
-			"shipping_options": [],
-			"status": "complete",
-			"submit_type": "auto",
-			"subscription": null,
-			"success_url": "https://stripe.com",
-			"total_details": {
-				"amount_discount": 0,
-				"amount_shipping": 0,
-				"amount_tax": 0
-			},
-			"url": null
+		const purchaseData = event?.data?.object
+		const purchasedItems = await stripe.getCheckoutSessionItems(purchaseData?.id)
+		const purchasedEventDetails = purchasedItems?.data[0] || {}
+		const customerEventRegistrationData = {
+			event_id: 1, // The Rock Archery Challenge (Fall 2023)
+			registrant_name: purchaseData?.customer_details?.name,
+			registrant_email: purchaseData?.customer_details?.email,
+			registration_date_time: new Date(purchaseData?.created * 1000),
+			event_option_id: purchasedEventDetails?.price?.id,
+			event_option_description: purchasedEventDetails?.price?.nickname,
+			purchase_quantity: purchasedEventDetails?.quantity,
+			amount_paid: (purchaseData?.amount_total / 100),
 		}
+
+		const { error, status } = await supabase.createEventRegistration(customerEventRegistrationData)
+		// TODO: check error and status, and respond accordingly
 	}
 }
 
-export async function action({ request, response }) {
+const success = () => {
+	// Return a No Content (204) success response, letting Stripe know
+	// that the event has been successfully handled.
+	return new Response(null, { status: HttpStatus.NoContent })
+}
+
+/**
+ * Stripe webhook handler API endpoint
+ * https://stripe.com/docs/webhooks
+ */
+export async function action({ request }) {
+	// we're only interested in http post requests here ...
+	// if it's not a post, then return a Method Not Allowed response status
 	if (request.method !== "POST") {
-		return json({ message: "Method not allowed"}, 405)
+		return new Response(null, { status: HttpStatus.MethodNotAllowed })
 	}
 
 	try {
+		// Initialize the client libraries that we need for this integration
 		const stripe = new Stripe()
 		const supabase = new Supabase()
 
+		// Grab the Stripe signature from the request headers...
 		const requestSignature = request?.headers?.get("stripe-signature")
+		// Get the raw text of the incoming request ...
 		const rawRequest = await request.text()
 
+		// Use the Stripe SDK to verify the incoming request is valid and
+		// is genuinely from Stripe, and then extract the event payload
 		const { event, error } = await stripe.verifyRequestIsFromStripe(rawRequest, requestSignature)
+		// If there's an error, then we're done here ...
 		if (isNotEmpty(error)) {
-			console.error(error)
+			// ... return a server error
+			return new Response(error.message, { status: HttpStatus.InternalServerError })
 		}
 
+		// Use the event type from the event payload to get the handler for
+		// the events that we're interested in dealing with ...
 		const handler = stripeEventHandlerMap[event?.type]
+		// If we have a configured handler for the incoming event type ...
 		if (isNotEmpty(handler) && typeof handler === "function") {
+			// ... then execute the configured event handler, passing it the
+			// event payload extract from the request, and the client libraries
+			// to support the integration.
 			await handler({ event, stripe, supabase })
+
+			return success()
 		}
 
-		return new Response(null, { status: 204 })
+		return success()
 	} catch(error) {
 		return json({
 			message: `Error handling Stripe webhook: ${error.message || "(error unknown)"}`
-		}, 500)
+		}, HttpStatus.InternalServerError)
 	}
 }
