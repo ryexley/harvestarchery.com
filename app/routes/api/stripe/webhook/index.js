@@ -28,12 +28,19 @@ const stripeEventHandlerMap = {
 				event_id: 1, // The Rock Archery Challenge (Fall 2023)
 				registrant_name: purchaseData?.customer_details?.name,
 				registrant_email: purchaseData?.customer_details?.email,
+				registrant_phone_number: purchaseData?.customer_details?.phone,
+				registrant_address_city: purchaseData?.customer_details?.address?.city,
+				registrant_address_state: purchaseData?.customer_details?.address?.state,
+				registrant_address_line1: purchaseData?.customer_details?.address?.line1,
+				registrant_address_line2: purchaseData?.customer_details?.address?.line2,
+				registrant_address_postal_code: purchaseData?.customer_details?.address?.postal_code,
 				registration_date_time: new Date(purchaseData?.created * 1000),
 				registration_type: EVENT_REGISTRATION_TYPE.ONLINE, // Indicates that this user registered online
 				event_option_id: purchasedEventDetails?.price?.id,
 				event_option_description: purchasedEventDetails?.price?.nickname,
 				purchase_quantity: purchasedEventDetails?.quantity,
 				amount_paid: (purchaseData?.amount_total / 100),
+				online_payment_id: purchaseData?.payment_intent,
 			}
 
 			const { error, status } = await supabase.createEventRegistration(customerEventRegistrationData)

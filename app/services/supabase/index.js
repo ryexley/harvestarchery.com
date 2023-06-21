@@ -43,24 +43,38 @@ export function Supabase() {
 					event_id,
 					registrant_name,
 					registrant_email,
+					registrant_phone_number,
+					registrant_address_city,
+					registrant_address_state,
+					registrant_address_line1,
+					registrant_address_line2,
+					registrant_address_postal_code,
 					registration_date_time,
 					event_option_id,
 					event_option_description,
 					purchase_quantity,
 					amount_paid,
 					registration_type,
+					online_payment_id,
 				} = eventRegistration
 
 				return await supabase.from("event_registrations").insert({
 					event_id,
 					registrant_name,
 					registrant_email,
+					registrant_phone_number,
+					registrant_address_city,
+					registrant_address_state,
+					registrant_address_line1,
+					registrant_address_line2,
+					registrant_address_postal_code,
 					registration_date_time,
 					event_option_id,
 					event_option_description,
 					purchase_quantity,
 					amount_paid,
-					registration_type
+					registration_type,
+					online_payment_id,
 				})
 			} catch(error) {
 				throw new SupabaseError(error)
