@@ -1,6 +1,7 @@
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
 import { PageContent } from "~/components/page-content"
+import { MapLink } from "~/components/map-link"
 import { LiabilityWaiverLink } from "~/components/liability-waiver-link"
 import { LinkButton } from "~/components/button"
 import { square, external } from "~/urls"
@@ -14,6 +15,24 @@ export const meta = () => ({
 
 const List = styled("ul", {
 	marginLeft: "1.5rem"
+})
+
+const QuarryRockCallout = styled("div", {
+	alignItems: "center",
+	display: "flex",
+	flexDirection: "column",
+	justifyContent: "center",
+
+	"@s": {
+		flexDirection: "row",
+		gap: "2rem",
+	}
+})
+
+const QuarryRockLogo = styled("img", {
+	borderRadius: "1rem",
+	height: "14.0625rem",
+	width: "14.0625rem",
 })
 
 const RegistrationPanel = styled("ul", {
@@ -81,6 +100,13 @@ const AdditionalInfo = styled("p", {
 	fontSize: "0.8rem"
 })
 
+const quarryRockAddress = {
+	line1: "6401 Dalton Pike SE",
+	city: "Cleveland",
+	state: "TN",
+	postalCode: "37323",
+}
+
 export default function TheRockArcheryChallengePage() {
 	const heroProps = {
     dark: true,
@@ -95,6 +121,23 @@ export default function TheRockArcheryChallengePage() {
       <Hero imageBoxProps={heroProps} headingText="The Rock Archery Challenge" />
 			<PageContent>
 				<p>This challenge is a partnership between The Harvest Archery Pro Shop and Quarry Rock Archery Club.</p>
+				<QuarryRockCallout>
+					<div>
+						<a href="https://www.facebook.com/QuarryRock" target="_blank">
+							<QuarryRockLogo
+								height="200"
+								width="200"
+								src="/images/quarry-rock-archery-club-logo-320.jpg"
+								alt="Quarry Rock Archery Club Logo" />
+						</a>
+					</div>
+					<div>
+						<MapLink address={quarryRockAddress}>
+							<div>{quarryRockAddress.line1}</div>
+							<div>{quarryRockAddress.city}, {quarryRockAddress.state} {quarryRockAddress.postalCode}</div>
+						</MapLink>
+					</div>
+				</QuarryRockCallout>
 				<p>Put your archery skills to the test at long ranges, steep angles and tight windows. Join us for a weekend of fun, fellowship and challenging archery shots. This shoot is a great opportunity to get yourself prepared for the upcoming Tennessee archery hunting season.</p>
 				<p>Quarry Rock will offer <strong>two different courses of 15 or 20 targets each</strong>, with a practice range at the facility for warm up. There will also be novelty shots and games for prizes available as well. Choose your event option below to register.</p>
 				<p>If you'd like to make a weekend of it, camping will be available on-site, free of charge. We only ask that you be responsible and respectful of the facility. Concessions will be available for purchase at the event. Children are welcome, but must be accompanied by an adult at all times, both on and off the range, no exceptions.</p>
