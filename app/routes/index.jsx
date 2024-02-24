@@ -229,7 +229,7 @@ export default function Index() {
         </Blurb>
         <ScrollHint />
       </Hero>
-			<NewsAndUpdates />
+			{/* <NewsAndUpdates /> */}
       <BrandRotator>Brand Rotator</BrandRotator>
       <PageLinks>
         <About {...aboutLinkProps}>
