@@ -1,16 +1,88 @@
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
+import { PageHeading } from "~/components/page-heading"
 import { PageContent } from "~/components/page-content"
 import { MapLink } from "~/components/map-link"
 import { LiabilityWaiverLink } from "~/components/liability-waiver-link"
 import { LinkButton } from "~/components/button"
-import { square, external } from "~/urls"
+import { pages, square, external } from "~/urls"
 import { windowTitle } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { styled, breakpointPx as sizes } from "~/styles"
 
 export const meta = () => ({
-	title: windowTitle(`The Rock Archery Challenge`)
+	title: windowTitle(`The Rock Archery Challenge - April 6th & 7th, 2024`)
+})
+
+const HeroWrapper = styled("div", {
+	height: "100vh",
+	position: "relative",
+	zIndex: "0",
+})
+
+const HeroImage = styled("div", {
+	height: "100vh",
+	position: "absolute",
+	width: "100%",
+	zIndex: "-1",
+})
+
+const HeroContent = styled("div", {
+	alignItems: "center",
+	color: "$white",
+	display: "flex",
+	flexDirection: "column",
+	height: "100vh",
+	justifyContent: "center",
+	position: "absolute",
+	width: "100%",
+	zIndex: "1",
+})
+
+const SubHeading = styled("h2", {
+	fontSize: "1.75rem",
+	fontStyle: "italic",
+	fontWeight: "400",
+	margin: "0 2rem",
+	textAlign: "center",
+	textShadow: "0.25rem 0.25rem 0.25rem var(--colors-blackA12)",
+	textTransform: "uppercase",
+
+	"& sup": {
+		fontSize: "0.85rem",
+		marginLeft: "0.125rem",
+	},
+
+	"@s": {
+		fontSize: "2.5rem",
+		fontWeight: "400",
+
+		"& sup": {
+			fontSize: "1.25rem"
+		},
+	}
+})
+
+const RegisterButton = styled(LinkButton, {
+	alignItems: "center",
+	background: "$themePrimary",
+	color: "$white",
+	cursor: "pointer",
+	display: "flex",
+	fontSize: "1.5rem",
+	fontStyle: "italic",
+	fontWeight: "600",
+	justifyContent: "center",
+	margin: "2rem",
+	padding: "0.25rem 3.5rem",
+	textAlign: "center",
+	textTransform: "uppercase",
+	zIndex: "3",
+
+	"@s": {
+		fontSize: "2rem",
+		padding: "0.5rem 2.5rem",
+	}
 })
 
 const List = styled("ul", {
@@ -118,9 +190,18 @@ export default function TheRockArcheryChallengePage() {
 
   return (
     <MainLayout offsetMainContent={false}>
-      <Hero imageBoxProps={heroProps} headingText="The Rock Archery Challenge" />
+			<HeroWrapper>
+				<HeroImage>
+					<Hero imageBoxProps={heroProps} style={{ marginTop: "auto" }} />
+				</HeroImage>
+				<HeroContent>
+					<PageHeading>The Rock Archery Challenge</PageHeading>
+					<SubHeading>April 6<sup>th</sup> & 7<sup>th</sup>, 2024</SubHeading>
+					<RegisterButton ghost={false} href="#registration-options">Click Here To Sign Up</RegisterButton>
+				</HeroContent>
+			</HeroWrapper>
 			<PageContent>
-				<p>This challenge is a partnership between The Harvest Archery Pro Shop and Quarry Rock Archery Club.</p>
+				<p>This challenge is a partnership between The Harvest Archery Pro Shop and <a href="https://www.facebook.com/QuarryRock" target="_blank">Quarry Rock Archery Club</a>.</p>
 				<QuarryRockCallout>
 					<div>
 						<a href="https://www.facebook.com/QuarryRock" target="_blank">
@@ -138,11 +219,11 @@ export default function TheRockArcheryChallengePage() {
 						</MapLink>
 					</div>
 				</QuarryRockCallout>
-				<p>Put your archery skills to the test at long ranges, steep angles and tight windows. Join us for a weekend of fun, fellowship and challenging archery shots. This shoot is a great opportunity to get yourself prepared for the upcoming Tennessee archery hunting season.</p>
+				<p>Put your archery skills to the test at long ranges, steep angles and tight windows. Join us for a weekend of fun, fellowship and challenging archery shots. This shoot is a great opportunity to get yourself prepared for the upcoming Total Archery Challenge and other spring/summer 3D archery events.</p>
 				<p>Quarry Rock will offer <strong>two different courses of 15 or 20 targets each</strong>, with a practice range at the facility for warm up. There will also be novelty shots and games for prizes available as well. Choose your event option below to register.</p>
 				<p>If you'd like to make a weekend of it, camping will be available on-site, free of charge. We only ask that you be responsible and respectful of the facility. Concessions will be available for purchase at the event. Children are welcome, but must be accompanied by an adult at all times, both on and off the range, no exceptions.</p>
 				<p>You will be required to complete our <LiabilityWaiverLink>liability waiver</LiabilityWaiverLink> before you will be allowed to participate in the event. This can be completed online, and it is preferred that this is accomplished prior to registering for the event.</p>
-				<h2>Register for the The Rock Archery Challenge</h2>
+				<h2 id="registration-options">Register for the The Rock Archery Challenge</h2>
 				<RegistrationPanel>
 					<PriceOption>
 						<PriceOptionHeading>One Course</PriceOptionHeading>

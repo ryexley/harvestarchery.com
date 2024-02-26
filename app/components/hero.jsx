@@ -21,9 +21,9 @@ const Heading = styled(PageHeading, {
   marginTop: "10rem"
 })
 
-export function Hero({ imageBoxProps, headingText, scrollHint = true, children }) {
+export function Hero({ imageBoxProps, headingText, scrollHint = true, children, ...props }) {
 	return (
-		<StyledImageBox {...imageBoxProps}>
+		<StyledImageBox {...imageBoxProps} {...props}>
 			{isNotEmpty(headingText) ? (
 				<Heading>{headingText}</Heading>
 			) : children}
