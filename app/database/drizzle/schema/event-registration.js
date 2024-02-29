@@ -5,8 +5,8 @@ import { event } from "./event"
 export const eventRegistration = pgTable("event_registration", {
 	id: bigserial("id", { mode: "number" }).primaryKey(),
 	createdAt: timestamp("created_at").notNull().defaultNow(),
-	eventId: bigint("event_id").references(() => event.id),
-	customerId: bigint("customer_id").references(() => customer.id),
+	eventId: bigint("event_id", { mode: "number" }).notNull().references(() => event.id),
+	customerId: bigint("customer_id", { mode: "number" }).notNull().references(() => customer.id),
 	registrationDateTime: timestamp("registration_date_time").notNull(),
 	eventOptionId: text("event_option_id").notNull(),
 	eventOptionDescription: text("event_option_description").notNull(),

@@ -1,10 +1,14 @@
 import { json } from "@remix-run/node"
 import { Stripe } from "~/services/stripe"
 import { Supabase } from "~/services/supabase";
+import { db, eq, one, schema } from "~/database/db.server"
 import { HttpStatus, EVENT_REGISTRATION_TYPE } from "~/enums"
 import { logger } from "~/logging"
 import { isNotEmpty } from "~/util"
-import { StripeError } from "~/errors/stripe-error"
+import { formatPhoneNumber } from "~/util/formatters"
+import { DataError, StripeError } from "~/errors"
+
+const CURRENT_EVENT = 2 // The Rock Archery Challenge (Spring 2024)
 
 const stripeEventHandlerMap = {
 	/**
@@ -19,41 +23,78 @@ const stripeEventHandlerMap = {
 	 * that will be used for the generation of reports and event
 	 * check-in applications.
 	 */
-	"checkout.session.completed": async ({ event, stripe, supabase }) => {
+	"checkout.session.completed": async ({ event, stripe }) => {
 		try {
 			const purchaseData = event?.data?.object
 			const purchasedItems = await stripe.getCheckoutSessionItems(purchaseData?.id)
 			const purchasedEventDetails = purchasedItems?.data[0] || {}
-			const customerEventRegistrationData = {
-				event_id: 1, // The Rock Archery Challenge (Fall 2023)
-				registrant_name: purchaseData?.customer_details?.name,
-				registrant_email: purchaseData?.customer_details?.email,
-				registrant_phone_number: purchaseData?.customer_details?.phone,
-				registrant_address_city: purchaseData?.customer_details?.address?.city,
-				registrant_address_state: purchaseData?.customer_details?.address?.state,
-				registrant_address_line1: purchaseData?.customer_details?.address?.line1,
-				registrant_address_line2: purchaseData?.customer_details?.address?.line2,
-				registrant_address_postal_code: purchaseData?.customer_details?.address?.postal_code,
-				registration_date_time: new Date(purchaseData?.created * 1000),
-				registration_type: EVENT_REGISTRATION_TYPE.ONLINE, // Indicates that this user registered online
-				event_option_id: purchasedEventDetails?.price?.id,
-				event_option_description: purchasedEventDetails?.price?.nickname,
-				purchase_quantity: purchasedEventDetails?.quantity,
-				amount_paid: (purchaseData?.amount_total / 100),
-				online_payment_id: purchaseData?.payment_intent,
-			}
 
-			const { error, status } = await supabase.createEventRegistration(customerEventRegistrationData)
-
-			if (isNotEmpty(error)) {
-				throw error
-			}
-
-			if (!HttpStatus.isSuccessStatus(status)) {
-				throw new Error(`Attempt to persist event registration returned non-success status ${status}.`)
-			}
+			// incoming event customer data
+			const eventCustomer = purchaseData?.customer_details
+			// initiate a database transaction
+			await db.transaction(async tx => {
+				// query the database to see whether or not we already
+				// have a customer record with the given email address
+				let customer = await db.select().from(schema.customer).where(eq(schema.customer.email, eventCustomer?.email)).then(one)
+				// if we DO have an existing customer record ...
+				if (isNotEmpty(customer)) {
+					console.log("FOUND EXISTING CUSTOMER IN DATABASE, UPDATING!", customer)
+					// update their record using the information provided
+					// on the incoming event payload
+					customer = await tx.update(schema.customer)
+						.set({
+							name: eventCustomer?.name,
+							phone: formatPhoneNumber(eventCustomer?.phone),
+							addressLine1: eventCustomer?.address?.line1,
+							addressLine2: eventCustomer?.address?.line2,
+							city: eventCustomer?.address?.city,
+							state: eventCustomer?.address?.state,
+							postalCode: eventCustomer?.address?.postal_code,
+							updatedAt: new Date(),
+						})
+						.where(eq(schema.customer.email, eventCustomer?.email))
+						.returning()
+						.then(one)
+					console.log("UPDATED CUSTOMER", customer)
+				// otherwise, if we DO NOT have an existing
+				// customer record ...
+				} else {
+					console.log("DID **NOT** FIND A CUSTOMER IN DATABASE, INSERTING!")
+					// create a new record for this customer
+					customer = await tx.insert(schema.customer)
+						.values({
+							name: eventCustomer?.name,
+							email: eventCustomer?.email,
+							phone: formatPhoneNumber(eventCustomer?.phone),
+							addressLine1: eventCustomer?.address?.line1,
+							addressLine2: eventCustomer?.address?.line2,
+							city: eventCustomer?.address?.city,
+							state: eventCustomer?.address?.state,
+							postalCode: eventCustomer?.address?.postal_code,
+							createdAt: new Date(),
+							updatedAt: new Date(),
+						})
+						.returning()
+						.then(one)
+					console.log("NEW CUSTOMER", customer)
+				}
+				// then, create a new event registration record for
+				// this customer for the current event
+				await tx.insert(schema.eventRegistration)
+					.values({
+						eventId: CURRENT_EVENT,
+						customerId: customer?.id,
+						registrationDateTime: new Date(purchaseData?.created * 1000),
+						eventOptionId: purchasedEventDetails?.price?.id,
+						eventOptionDescription: purchasedEventDetails?.price?.nickname,
+						registrationType: EVENT_REGISTRATION_TYPE.ONLINE,
+						purchaseQuantity: purchasedEventDetails?.quantity,
+						amountPaid: (purchaseData?.amount_total / 100),
+						onlinePaymentId: purchaseData?.payment_intent,
+					})
+			})
 		} catch(error) {
-			throw error
+			throw new DataError(error)
 		}
 	}
 }
