@@ -2,10 +2,10 @@ import isBefore from "date-fns/isBefore"
 
 export const events = [
 	{
-		title: "The Rock Archery Challenge",
-		date: "August 19th & 20th (Saturday & Sunday)",
+		title: "The Rock Archery Challenge (Spring 2024)",
+		date: "April 6th & 7th (Saturday & Sunday)",
 		time: "8:00am to 4:00pm each day",
 		detailsKey: "trac",
-		published: isBefore(Date.now(), new Date("2023-08-21T03:59:59.000Z")),
+		published: isBefore(Date.now(), new Date("2024-04-07T03:59:59.000Z")),
 	}
 ]
