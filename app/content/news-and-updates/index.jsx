@@ -3,7 +3,7 @@ import { ImageBox } from "~/components/image-box"
 import { ArrowRight } from "~/components/icons"
 import { IMAGE_TYPE } from "~/util/images"
 import { pages } from "~/urls"
-import { styled } from "~/styles"
+import { styled, breakpointPx as sizes } from "~/styles"
 
 const NewsAndUpdatesSection = styled("section", {
 	borderBottom: "0.3125rem solid $slate11",
@@ -99,9 +99,17 @@ const NewsItem = styled(ImageBox, {
 const tracItemImageConfig = {
 	dark: true,
 	blur: true,
-	image: "/images/bailey-at-full-draw",
-	imgType: IMAGE_TYPE.WEBP,
-	sizes: []
+	image: "/images/tyler-bailey-archery",
+	imgType: IMAGE_TYPE.JPG,
+	sizes: [
+	  sizes.xs,
+    sizes.s,
+    sizes.sm,
+    sizes.m,
+    sizes.ml,
+    sizes.l,
+    sizes.xl,
+	]
 }
 
 export function NewsAndUpdates() {
@@ -114,7 +122,7 @@ export function NewsAndUpdates() {
 				<NewsItemLink to={pages.events.theRockArcheryChallenge} prefetch="intent" reloadDocument>
 					<NewsItem {...tracItemImageConfig}>
 						<h3>The Rock Archery Challenge is back!</h3>
-						<p>Coming <strong>August 19th and 20th</strong>, the third evolution of our biannual archery challenge event is going to be the biggest and best one yet! Come join us at Quarry Rock Archery Club and get yourself ready for the upcoming hunting season. Click here to get all the details and get pre-registered for the event today!</p>
+						<p>Coming <strong>April 6th & 7th</strong>, the fifth evolution of our biannual archery challenge event is back! Come join us at Quarry Rock Archery Club and get yourself ready for the upcoming 3D season and archery challengs. Click here to get all the details and get pre-registered for the event today!</p>
 					</NewsItem>
 					<NewsItemArrow />
 				</NewsItemLink>
