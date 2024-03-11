@@ -3,7 +3,7 @@ import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
 import { PageContent } from "~/components/page-content"
 import { LiabilityWaiverLink } from "~/components/liability-waiver-link"
-import { pages } from "~/urls"
+import { pages, resources } from "~/urls"
 import { isEmpty, windowTitle } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { styled, breakpointPx as sizes } from "~/styles"
@@ -48,8 +48,8 @@ export default function TheRockArcheryChallengeSuccessPage() {
 			<Hero imageBoxProps={heroProps} headingText="BOOM! Smoked It" scrollHint={false} />
 			<PageContent>
 				<h2>You're in!</h2>
-				<p>Thank you for registering for the The Rock Archery Challenge, we look forward to seeing you on August 19th and 20th.</p>
-				<p>If you haven't already done so, please remember to fill out our <LiabilityWaiverLink>liability waiver</LiabilityWaiverLink>, as this will be required before you will be able to participate in the event.</p>
+				<p>Thank you for registering for the The Rock Archery Challenge, we look forward to seeing you at the event!</p>
+				<p>If you haven't already done so, please remember to fill out the <LiabilityWaiverLink>Harvest Archery liability waiver</LiabilityWaiverLink>, as well as the <a href={resources.quarryRockLiabilityWaiver} target="_blank">Quarry Rock Archery Club liability waiver</a> (open and/or download, print and fill out a copy, and bring it with you to turn in at event check-in) as this will be required before you will be able to participate in the event.</p>
 			</PageContent>
 		</MainLayout>
 	)

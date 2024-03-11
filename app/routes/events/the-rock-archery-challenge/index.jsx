@@ -5,7 +5,7 @@ import { PageContent } from "~/components/page-content"
 import { MapLink } from "~/components/map-link"
 import { LiabilityWaiverLink } from "~/components/liability-waiver-link"
 import { LinkButton } from "~/components/button"
-import { pages, square, external } from "~/urls"
+import { pages, square, external, resources } from "~/urls"
 import { windowTitle } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { styled, breakpointPx as sizes } from "~/styles"
@@ -105,6 +105,17 @@ const QuarryRockLogo = styled("img", {
 	borderRadius: "1rem",
 	height: "14.0625rem",
 	width: "14.0625rem",
+})
+
+const Waivers = styled("ul", {
+	margin: "0 0 2rem 2rem"
+})
+
+const HarvestWaiverDisclaimer = styled("div", {
+	borderLeft: "0.3125rem solid $themePrimary",
+	fontSize: "1rem",
+	margin: "0 0 1.5rem 0",
+	paddingLeft: "1rem",
 })
 
 const RegistrationPanel = styled("ul", {
@@ -222,7 +233,15 @@ export default function TheRockArcheryChallengePage() {
 				<p>Put your archery skills to the test at long ranges, steep angles and tight windows. Join us for a weekend of fun, fellowship and challenging archery shots. This shoot is a great opportunity to get yourself prepared for the upcoming Total Archery Challenge and other spring/summer 3D archery events.</p>
 				<p>Quarry Rock will offer <strong>two different courses of 15 or 20 targets each</strong>, with a practice range at the facility for warm up. There will also be novelty shots and games for prizes available as well. Choose your event option below to register.</p>
 				<p>If you'd like to make a weekend of it, camping will be available on-site, free of charge. We only ask that you be responsible and respectful of the facility. Concessions will be available for purchase at the event. Children are welcome, but must be accompanied by an adult at all times, both on and off the range, no exceptions.</p>
-				<p>You will be required to complete our <LiabilityWaiverLink>liability waiver</LiabilityWaiverLink> before you will be allowed to participate in the event. This can be completed online, and it is preferred that this is accomplished prior to registering for the event.</p>
+				<h2 id="liability-waivers">Liability Waivers</h2>
+				<p>In order to be able to participate in the event, you will need to fill out liability waivers for both Harvest Archery, as well as the Quarry Rock Archery Club. Please follow the links and instructions below to complete these waivers before coming to the event, as this will simplify your check-in process and get you on the range faster.</p>
+				<Waivers>
+					<li>
+						<p>The <LiabilityWaiverLink>Harvest Archery liability waiver</LiabilityWaiverLink> is available online. Once it has been filled out and submitted online, you are done. There will be no need to print out or bring a copy of it with you to the event, as it will be submitted to us automatically.</p>
+						<HarvestWaiverDisclaimer><strong><em>NOTE: Even if you have filled out one of our waivers before, its content has changed recently, and we ask that you review the changes and fill out another one.</em></strong> We understand this is an inconvenience, but it should only take a few minutes to review and fill out, and we appreciate your patience and cooperation.</HarvestWaiverDisclaimer>
+					</li>
+					<li><a href={resources.quarryRockLiabilityWaiver} target="_blank">The Quarry Rock Archery Club liability waiver</a> is available as a PDF document. Please open and/or download the document, print and fill out a copy of it, and bring it with you to turn in at event check-in.</li>
+				</Waivers>
 				<h2 id="registration-options">Register for the The Rock Archery Challenge</h2>
 				<RegistrationPanel>
 					<PriceOption>
@@ -259,7 +278,7 @@ export default function TheRockArcheryChallengePage() {
 					</PriceOption>
 				</RegistrationPanel>
 				<AdditionalInfo>
-					All prices are per person. Change quantity at checkout when paying for more than one person. Local sales tax may apply. Please remember to complete our <LiabilityWaiverLink>liability waiver</LiabilityWaiverLink>, as it will be required in order to participate in the event.
+					All prices are per person. Change quantity at checkout when paying for more than one person. Local sales tax may apply. Please remember to complete the <a href="#liability-waivers">liability waivers</a>, as it will be required in order to participate in the event.
 				</AdditionalInfo>
 			</PageContent>
 		</MainLayout>

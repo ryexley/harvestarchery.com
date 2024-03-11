@@ -26,3 +26,7 @@ export const social = {
 export const square = {
 	theRockArcheryChallenge: "https://checkout.square.site/merchant/7XA331XQSY3YS/checkout/KNWXAN2APCF24T3RQQ7HKL6G"
 }
+
+export const resources = {
+	quarryRockLiabilityWaiver: "/documents/quarry-rock-liability-waiver.pdf"
+}

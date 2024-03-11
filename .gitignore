@@ -8,4 +8,5 @@ node_modules
 
 public/build
 public/images
+public/documents
 api/_build
