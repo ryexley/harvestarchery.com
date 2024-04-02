@@ -123,6 +123,7 @@ export function NewsAndUpdates() {
 					<NewsItem {...tracItemImageConfig}>
 						<h3>The Rock Archery Challenge is back!</h3>
 						<p>Coming <strong>April 6th & 7th</strong>, the fifth evolution of our biannual archery challenge event is back! Come join us at Quarry Rock Archery Club and get yourself ready for the upcoming 3D season and archery challengs. Click here to get all the details and get pre-registered for the event today!</p>
+						<p>Registration on-site the day of the event will be an option, but <strong><em>we strongly encourage people to pre-register</em></strong> here prior to the event to the extent that it is possible. Pre-registration will help streamline the check-in process, and get you and everybody else on the range and courses faster with less waiting in line.</p>
 					</NewsItem>
 					<NewsItemArrow />
 				</NewsItemLink>

@@ -118,6 +118,13 @@ const HarvestWaiverDisclaimer = styled("div", {
 	paddingLeft: "1rem",
 })
 
+const RegisterOnSite = styled("div", {
+	borderLeft: "0.3125rem solid $themePrimary",
+	fontSize: "1rem",
+	margin: "1.5rem 0",
+	paddingLeft: "1rem",
+})
+
 const RegistrationPanel = styled("ul", {
 	background: "#333",
 	borderRadius: "1rem",
@@ -231,7 +238,7 @@ export default function TheRockArcheryChallengePage() {
 					</div>
 				</QuarryRockCallout>
 				<p>Put your archery skills to the test at long ranges, steep angles and tight windows. Join us for a weekend of fun, fellowship and challenging archery shots. This shoot is a great opportunity to get yourself prepared for the upcoming Total Archery Challenge and other spring/summer 3D archery events.</p>
-				<p>Quarry Rock will offer <strong>two different courses of 15 or 20 targets each</strong>, with a practice range at the facility for warm up. There will also be novelty shots and games for prizes available as well. Choose your event option below to register.</p>
+				<p>Quarry Rock will offer <strong>two different courses of 20 targets each</strong>, with a practice range at the facility for warm up. There will also be novelty shots and games for prizes available as well. Choose your event option below to register.</p>
 				<p>If you'd like to make a weekend of it, camping will be available on-site, free of charge. We only ask that you be responsible and respectful of the facility. Concessions will be available for purchase at the event. Children are welcome, but must be accompanied by an adult at all times, both on and off the range, no exceptions.</p>
 				<h2 id="liability-waivers">Liability Waivers</h2>
 				<p>In order to be able to participate in the event, you will need to fill out liability waivers for both Harvest Archery, as well as the Quarry Rock Archery Club. Please follow the links and instructions below to complete these waivers before coming to the event, as this will simplify your check-in process and get you on the range faster.</p>
@@ -243,6 +250,7 @@ export default function TheRockArcheryChallengePage() {
 					<li><a href={resources.quarryRockLiabilityWaiver} target="_blank">The Quarry Rock Archery Club liability waiver</a> is available as a PDF document. Please open and/or download the document, print and fill out a copy of it, and bring it with you to turn in at event check-in.</li>
 				</Waivers>
 				<h2 id="registration-options">Register for the The Rock Archery Challenge</h2>
+				<RegisterOnSite><strong><em>NOTE</em></strong>: Registration on-site the day of the event will be an option, but we strongly encourage people to pre-register here prior to the event to the extent that it is possible. Pre-registration will help streamline the check-in process, and get you and everybody else on the range and courses faster with less waiting in line.</RegisterOnSite>
 				<RegistrationPanel>
 					<PriceOption>
 						<PriceOptionHeading>One Course</PriceOptionHeading>
