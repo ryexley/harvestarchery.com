@@ -5,6 +5,7 @@ import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
 import { PageHeading } from "~/components/page-heading"
 import { PageContent } from "~/components/page-content"
+import { Chevron } from "~/components/icons"
 import { LiabilityWaiverLink } from "~/components/liability-waiver-link"
 import { pages, square, external, resources } from "~/urls"
 import { isEmpty, windowTitle, withWindow } from "~/util"
@@ -100,6 +101,7 @@ const NoveltyShoot = styled("div", {
 })
 
 const QuestionToggle = styled("button", {
+	alignItems: "center",
 	background: "transparent",
 	border: "none",
 	cursor: "pointer",
@@ -107,7 +109,8 @@ const QuestionToggle = styled("button", {
 	fontSize: "1.5rem",
 	fontWeight: "600",
 	justifyContent: "start",
-	padding: "0",
+	padding: "0 3rem 0 0",
+	position: "relative",
 	margin: "0",
 	textAlign: "start",
 	transition: "all 250ms ease-in-out",
@@ -115,6 +118,21 @@ const QuestionToggle = styled("button", {
 
 	"&:hover": {
 		color: "$themePrimary"
+	}
+})
+
+const ToggleIcon = styled(Chevron, {
+	"--size": "1.5rem",
+	color: "$blackA7",
+	height: "var(--size)",
+	position: "absolute",
+	right: "0",
+	transform: "rotate(90deg)",
+	transition: "all 250ms ease-in-out",
+	width: "var(--size)",
+
+	"&.is-open": {
+		transform: "rotate(270deg)"
 	}
 })
 
@@ -194,6 +212,7 @@ function Section({
 				<Collapsible.Trigger asChild>
 					<QuestionToggle type="button" onClick={() => setOpen(!open)}>
 						{question}
+						<ToggleIcon className={open ? "is-open" : ""} />
 					</QuestionToggle>
 				</Collapsible.Trigger>
 				<AnswerContent>{answers}</AnswerContent>
