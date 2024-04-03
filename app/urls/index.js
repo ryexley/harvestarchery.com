@@ -4,7 +4,8 @@ export const pages = {
   services: "/services",
   events: {
 		home: "/events",
-		theRockArcheryChallenge: "/events/the-rock-archery-challenge"
+		theRockArcheryChallenge: "/events/the-rock-archery-challenge",
+		racFaq: "/events/the-rock-archery-challenge/faq"
 	},
   lessons: "/lessons",
   range: "/range",

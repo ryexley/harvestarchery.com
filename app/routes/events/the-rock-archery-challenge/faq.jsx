@@ -1,18 +1,27 @@
 import * as Collapsible from "@radix-ui/react-collapsible"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useLoaderData } from "@remix-run/react"
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
 import { PageHeading } from "~/components/page-heading"
 import { PageContent } from "~/components/page-content"
 import { LiabilityWaiverLink } from "~/components/liability-waiver-link"
 import { pages, square, external, resources } from "~/urls"
-import { windowTitle } from "~/util"
+import { isEmpty, windowTitle, withWindow } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { styled, keyframes, breakpointPx as sizes } from "~/styles"
 
 export const meta = () => ({
-	title: windowTitle(`The Rock Archery Challenge - April 6th & 7th, 2024`)
+	title: windowTitle(`Frequently Asked Questions | The Rock Archery Challenge - April 6th & 7th, 2024`)
 })
+
+export async function loader({ request }) {
+	const url = new URL(request?.url)
+  const view = url.searchParams.get("view")
+	const expandAll = url.searchParams.get("expand-all")
+
+	return { view, expandAll }
+}
 
 const HeroWrapper = styled("div", {
 	height: "100vh",
@@ -77,6 +86,19 @@ const QandA = styled("div", {
 	},
 })
 
+const NoveltyShoot = styled("div", {
+	marginTop: "1rem",
+	paddingBottom: "1rem",
+
+	h3: {
+		color: "$themePrimary"
+	},
+
+	"&:not(:last-child)": {
+		borderBottom: "0.0625rem solid $blackA4",
+	},
+})
+
 const QuestionToggle = styled("button", {
 	background: "transparent",
 	border: "none",
@@ -88,6 +110,7 @@ const QuestionToggle = styled("button", {
 	padding: "0",
 	margin: "0",
 	textAlign: "start",
+	transition: "all 250ms ease-in-out",
 	width: "100%",
 
 	"&:hover": {
@@ -137,13 +160,34 @@ const HarvestWaiverDisclaimer = styled("div", {
 })
 
 function Section({
+	id,
 	question,
 	answers
 }) {
-	const [open, setOpen] = useState(false)
+	const { view, expandAll } = useLoaderData()
+	const [open, setOpen] = useState((view === id || expandAll === "true" ) ? true : false)
+
+	const scrollToView = () => {
+		if (view === id && (isEmpty(expandAll) || expandAll !== "true")) {
+			withWindow(window => {
+				const PAD_TOP = 32
+				const target = window.document.getElementById(id)
+				const positionToScrollTo = target?.offsetTop - PAD_TOP
+
+				window.scrollTo({
+					top: (positionToScrollTo > 0) ? positionToScrollTo : 0,
+					behavior: "smooth",
+				})
+			})
+		}
+	}
+
+	useEffect(() => {
+		scrollToView()
+	}, [view])
 
 	return (
-		<QandA>
+		<QandA id={id}>
 			<Collapsible.Root
 				open={open}
 				onOpenChange={setOpen}>
@@ -188,19 +232,28 @@ export default function TheRockArcheryChallengePage() {
 				<p>As you might imagine, we get a lot of questions about the event. This page should hopefully answer the vast majority of the questions you have about it, both as you prepare for it, and once you arrive on-site. If it doesn't, feel free to track one of us down, call the shop or hit us up on social media with your question, and we'll get an answer for you as soon as we can.</p>
 				<QuestionList>
 					<Section
+						id="is-pre-registration-required"
 						question={<span>Do I <em>have to</em> pre-register online?</span>}
 						answers={
 							<p><Se>No</Se>, you do not have to pre-register online to be able to participate in the event. However, doing so will make the check-in process once you get on-site the day of the even much more efficient, and get you out onto the range and courses faster with less standing around in line, so <Se>we definitely recommend it</Se>.</p>
 						} />
 					<Section
+						id="registering-on-site"
+						question={<span>Can I register on-site the day of the event?</span>}
+						answers={
+							<p>Yes, please see above.</p>
+						} />
+					<Section
+						id="payment-options"
 						question={<span>Payment options</span>}
 						answers={
 							<>
-								<p>When pre-registering online, our payment gateway accepts both credit and debit cards, as well as the <a href="https://stripe.com/payments/link" target="_blank" rel="nofollow">Link</a> checkout option.</p>
-								<p>When registering on-site, we will accept cash, as well as both credit and debit cards.</p>
+								<p>When <Se>pre-registering online</Se>, our payment gateway accepts both <Se>credit and debit cards</Se>, as well as the <a href="https://stripe.com/payments/link" target="_blank" rel="nofollow">Link</a> checkout option.</p>
+								<p>When registering <Se>on-site</Se>, we will accept <Se>cash</Se>, as well as both <Se>credit and debit cards</Se>.</p>
 							</>
 						} />
 					<Section
+						id="waivers"
 						question={<span>Waivers</span>}
 						answers={
 							<>
@@ -211,6 +264,7 @@ export default function TheRockArcheryChallengePage() {
 							</>
 						} />
 					<Section
+						id="what-to-bring"
 						question={<span>What should I bring with me?</span>}
 						answers={
 							<>
@@ -231,16 +285,19 @@ export default function TheRockArcheryChallengePage() {
 							</>
 						} />
 					<Section
+						id="camping"
 						question={<span>Is there camping available on-site?</span>}
 						answers={
-							<p>Yes. If you have selected the All Weekend shoot option and would like to stay overnight, camping on-site is welcome and free of charge. There is limited availability of electrical and water hookups if you plan to bring a camper of any sort, and there are bathrooms (with no showers) on site available for use as well. We appreciate you being respectful of the property and facility and cleaning up after yourself, and leaving it the way you found it.</p>
+							<p><Se>Yes</Se>. If you have selected the All Weekend shoot option and would like to stay overnight, camping on-site is welcome and free of charge. There is limited availability of electrical and water hookups if you plan to bring a camper of any sort, and there are bathrooms (with no showers) on site available for use as well. We appreciate you being respectful of the property and facility and cleaning up after yourself, and leaving it the way you found it.</p>
 						} />
 					<Section
+						id="bathrooms"
 						question={<span>Are there bathrooms available on-site?</span>}
 						answers={
 							<p>Yes, there are bathrooms available for participant use on-site.</p>
 						} />
 					<Section
+						id="merchandise-and-pricing"
 						question={<span>Merchandise and Pricing</span>}
 						answers={
 							<>
@@ -253,11 +310,35 @@ export default function TheRockArcheryChallengePage() {
 							</>
 						} />
 					<Section
+						id="novelty-shoots"
 						question={<span>Novelty Shoots</span>}
 						answers={
-							<p>TODO: need information about what novelty shoots will be available, what they will cost, and what the rules are.</p>
+							<>
+								<NoveltyShoot>
+									<h3>111 yard Long Dot Elk</h3>
+									<ul>
+										<li>Cost: <Se>$20.00 for three shots</Se></li>
+										<li>Prize: A <Se>release aid of your choice</Se> (value up to $300.00)</li>
+									</ul>
+									<p>Put an arrow inside-out in the 3" dot on the elk target at 111 yards will get you an entry in the drawing for a prize. It will cost <Se>$20.00 for three shots</Se> to be eligible for the drawing.</p>
+								</NoveltyShoot>
+								<NoveltyShoot>
+									<h3>Metal Bigfoot</h3>
+									<ul>
+										<li>Cost: <Se>$20.00 for three shots</Se></li>
+										<li>Prizes:</li>
+										<ul>
+											<li>2" hole: <Se>a dozen arrows of your choice</Se> (value up to $250.00) from the Harvest Archery Pro Shop.</li>
+											<li>3" hole: <Se>$50.00 Harvest Archery gift card</Se>.</li>
+											<li>4" hole: <Se>TShirt, Hat and Sticker pack</Se>.</li>
+										</ul>
+									</ul>
+									<p>The metal bigfoot target will be at a distance of 33 yards (ish 😏). Take your best shot at one of three different holes in the target of 2, 3 and 4 inches respectively (you do NOT have to call your shot). Hold steady and shoot true though, 'cuz if you miss, the bigfoot'll eat your arrows.</p>
+								</NoveltyShoot>
+							</>
 						} />
 					<Section
+						id="course-details-and-descriptions"
 						question={<span>Course Details and Descriptions</span>}
 						answers={
 							<>
@@ -265,6 +346,18 @@ export default function TheRockArcheryChallengePage() {
 								<p>The BearLevel Course ...</p>
 								<h3>The Cutler Range</h3>
 								<p>Named after Doc's new baby boy (congrats Doc and Lo!!), the Cutler Range ...</p>
+							</>
+						} />
+					<Section
+						question={<span>Things to watch out for</span>}
+						answers={
+							<>
+								<p>There are a few things you should be aware and cautious of when you're out on the courses:</p>
+								<ul>
+									<li>Slick, wet spots on the trails (if it's been raining recently).</li>
+									<li>Loose rocks and/or holes on or along the trails. Watch your step!</li>
+									<li>Critters! There's critters wandering around out there. Steer clear if you come across them. Especially snakes in or around water (creeks and ponds).</li>
+								</ul>
 							</>
 						} />
 				</QuestionList>

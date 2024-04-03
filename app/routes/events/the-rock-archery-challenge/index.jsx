@@ -1,3 +1,4 @@
+import { Link } from "@remix-run/react"
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
 import { PageHeading } from "~/components/page-heading"
@@ -249,6 +250,7 @@ export default function TheRockArcheryChallengePage() {
 					</li>
 					<li><a href={resources.quarryRockLiabilityWaiver} target="_blank">The Quarry Rock Archery Club liability waiver</a> is available as a PDF document. Please open and/or download the document, print and fill out a copy of it, and bring it with you to turn in at event check-in.</li>
 				</Waivers>
+				<p>All other details about the event that aren't included here can be found on <Link to={pages.events.racFaq}>the event FAQ page</Link>.</p>
 				<h2 id="registration-options">Register for the The Rock Archery Challenge</h2>
 				<RegisterOnSite><strong><em>NOTE</em></strong>: Registration on-site the day of the event will be an option, but we strongly encourage people to pre-register here prior to the event to the extent that it is possible. Pre-registration will help streamline the check-in process, and get you and everybody else on the range and courses faster with less waiting in line.</RegisterOnSite>
 				<RegistrationPanel>
