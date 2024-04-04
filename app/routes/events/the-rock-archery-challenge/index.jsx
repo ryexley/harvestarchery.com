@@ -12,7 +12,7 @@ import { IMAGE_TYPE } from "~/util/images"
 import { styled, breakpointPx as sizes } from "~/styles"
 
 export const meta = () => ({
-	title: windowTitle(`The Rock Archery Challenge - April 6th & 7th, 2024`)
+	title: windowTitle(`The Rock Archery Challenge`)
 })
 
 const HeroWrapper = styled("div", {

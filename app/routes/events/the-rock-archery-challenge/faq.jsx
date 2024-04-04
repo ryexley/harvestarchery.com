@@ -13,7 +13,7 @@ import { IMAGE_TYPE } from "~/util/images"
 import { styled, keyframes, breakpointPx as sizes } from "~/styles"
 
 export const meta = () => ({
-	title: windowTitle(`Frequently Asked Questions | The Rock Archery Challenge - April 6th & 7th, 2024`)
+	title: windowTitle(`Frequently Asked Questions | The Rock Archery Challenge`)
 })
 
 export async function loader({ request }) {
@@ -100,6 +100,12 @@ const NoveltyShoot = styled("div", {
 	},
 })
 
+const CourseDescriptions = styled("div", {
+	h3: {
+		color: "$themePrimary"
+	}
+})
+
 const QuestionToggle = styled("button", {
 	alignItems: "center",
 	background: "transparent",
@@ -118,7 +124,11 @@ const QuestionToggle = styled("button", {
 
 	"&:hover": {
 		color: "$themePrimary"
-	}
+	},
+
+	"&.is-open": {
+		color: "$themePrimary",
+	},
 })
 
 const ToggleIcon = styled(Chevron, {
@@ -210,7 +220,10 @@ function Section({
 				open={open}
 				onOpenChange={setOpen}>
 				<Collapsible.Trigger asChild>
-					<QuestionToggle type="button" onClick={() => setOpen(!open)}>
+					<QuestionToggle
+						type="button"
+						className={open ? "is-open": null}
+						onClick={() => setOpen(!open)}>
 						{question}
 						<ToggleIcon className={open ? "is-open" : ""} />
 					</QuestionToggle>
@@ -272,6 +285,12 @@ export default function TheRockArcheryChallengePage() {
 							</>
 						} />
 					<Section
+						id="times"
+						question={<span>What time does it start (and close)?</span>}
+						answers={
+							<p>Event check-in, the practice ranges and courses will <Se>open each day at 8:00am</Se>. If you're planning to or need to be able to shoot in the afternoon, we ask that you to start your course no later than 3:00pm, and facilities will start shutting down around 4:00pm each day.</p>
+						} />
+					<Section
 						id="waivers"
 						question={<span>Waivers</span>}
 						answers={
@@ -324,7 +343,8 @@ export default function TheRockArcheryChallengePage() {
 								<ul>
 									<li>Hats: $30.00</li>
 									<li>T-shirts: $30.00</li>
-									<li>Stickers: ...</li>
+									<li>Hoodies: $60.00</li>
+									<li>Stickers: TBD</li>
 								</ul>
 							</>
 						} />
@@ -360,14 +380,29 @@ export default function TheRockArcheryChallengePage() {
 						id="course-details-and-descriptions"
 						question={<span>Course Details and Descriptions</span>}
 						answers={
+							<CourseDescriptions>
+								<p>While each course is technical and unique in its own way, if you've shot this event before, you also know they can be very different from each other as well. Here, we will try to share as much detail about each course as we can to try to give you a reasonable idea of what you're getting into with each one.</p>
+								<p>Each target on both courses will have an orange cone from which to shoot that target from. For shooters not comfortable or capable with the range for the target, they should feel free to move closer to their comfortable/capable range to shoot the target from, but should do so along the path to the target from the cone. Please keep deviation from that shooting path within reason (only a few feet either way as necessary to obtain a safe and clear shot to the target).</p>
+								<p>Both the first and last targets on each course will have a yellow "bonus cone" with additional range or a different, more challenging angle from which to shoot, for those who wish to challenge themselves.</p>
+								<p></p>
+								<h3>The BearLevel Course (the North course)</h3>
+								<p>On the BearLevel course you can expect to have several shots where you will have either uneven footing, or be forced to sit or kneel in order to get a clear shot at the target. The average shot distance for this course is right around 55 yards, with the longest being 80 yards and the shortest at 32 yards. One of the "bonus/challenge cones" on this course will push you all the way out to 98 yards if you feel like you're having a good day.</p>
+								<h3>The Cutler Range (the South course)</h3>
+								<p>Named after Doc's new baby boy (congrats Doc and Lo!!), the Cutler Range is considered to be the more challenging/difficult of the two courses, but not by a significant measure. As with the BearLevel course, you can expect to have at least a handful of shots that will force you to either sit or kneel to get a clear shot. The average shot distance for this course is right around 60 yards, with the longest shot being 89 yards, and two others also over 80. The shortest shot on this course is 35 yards, of which there are two targets at this distance.</p>
+							</CourseDescriptions>
+						} />
+					<Section
+						id="red-flags"
+						question={<span>What are the red flags at the targets for?</span>}
+						answers={
 							<>
-								<h3>The BearLevel Course</h3>
-								<p>The BearLevel Course ...</p>
-								<h3>The Cutler Range</h3>
-								<p>Named after Doc's new baby boy (congrats Doc and Lo!!), the Cutler Range ...</p>
+								<p>At each target, you should find a red flag laying on the ground next to or behind it. These are <Se>caution/safety flags</Se>. If you miss a shot and want to spend a few minutes trying to find your arrow, you may end up in a position where you're not visible to the shooters coming up behind you on the course. When you go to look for your arrow, please either have another shooter stand at the target with the flag, or stand the flag up in front of the target. This will let shooters coming to the target behind you know not to shoot.</p>
+								<p>When you approach the orange cone at a target to shoot, if/when you see the red flag placed upright at or near the target, do NOT shoot until the flag has been removed and laid down at or behind the target, indicating that it is clear and safe to shoot.</p>
+								<p>It's also important to remember that if/when you raise the red flag, please remove and lay down the flag next to or behind the target once you are done looking for your arrow, to let the shooters behind you know that it is now clear and safe to shoot.</p>
 							</>
 						} />
 					<Section
+						id="things-to-watch-out-for"
 						question={<span>Things to watch out for</span>}
 						answers={
 							<>
