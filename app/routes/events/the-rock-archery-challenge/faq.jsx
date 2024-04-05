@@ -344,7 +344,7 @@ export default function TheRockArcheryChallengePage() {
 									<li>Hats: $30.00</li>
 									<li>T-shirts: $30.00</li>
 									<li>Hoodies: $60.00</li>
-									<li>Stickers: TBD</li>
+									<li>Stickers: $5.00</li>
 								</ul>
 							</>
 						} />
