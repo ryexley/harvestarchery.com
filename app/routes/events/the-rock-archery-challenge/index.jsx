@@ -1,3 +1,4 @@
+import { redirect } from "@remix-run/node"
 import { Link } from "@remix-run/react"
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
@@ -14,6 +15,10 @@ import { styled, breakpointPx as sizes } from "~/styles"
 export const meta = () => ({
 	title: windowTitle(`The Rock Archery Challenge`)
 })
+
+export async function loader() {
+	return redirect(pages.home)
+}
 
 const HeroWrapper = styled("div", {
 	height: "100vh",

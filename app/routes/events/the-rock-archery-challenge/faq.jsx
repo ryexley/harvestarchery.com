@@ -1,5 +1,6 @@
 import * as Collapsible from "@radix-ui/react-collapsible"
 import { useEffect, useState } from "react"
+import { redirect } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
@@ -7,7 +8,7 @@ import { PageHeading } from "~/components/page-heading"
 import { PageContent } from "~/components/page-content"
 import { Chevron } from "~/components/icons"
 import { LiabilityWaiverLink } from "~/components/liability-waiver-link"
-import { pages, square, external, resources } from "~/urls"
+import { pages, resources } from "~/urls"
 import { isEmpty, windowTitle, withWindow } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { styled, keyframes, breakpointPx as sizes } from "~/styles"
@@ -17,6 +18,8 @@ export const meta = () => ({
 })
 
 export async function loader({ request }) {
+	return redirect(pages.home)
+
 	const url = new URL(request?.url)
   const view = url.searchParams.get("view")
 	const expandAll = url.searchParams.get("expand-all")
