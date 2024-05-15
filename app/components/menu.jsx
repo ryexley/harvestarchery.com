@@ -295,11 +295,19 @@ export function SidebarMenu({
 						<PanelTrigger>Menu</PanelTrigger>
 						<PanelContent>
 							<MenuItems>
-								{menu.map(({ url, label }) => (
-									<MenuItem key={`menu-item-${label.toLowerCase()}`}>
-										<a href={url}>{label}</a>
-									</MenuItem>
-								))}
+								{menu.map(({ url, label, external = false }) => {
+									return (
+										<MenuItem key={`menu-item-${label.toLowerCase()}`}>
+											<a href={url} {
+												...(
+													external
+														? { target: "_blank", rel: "nofollow" }
+														: {}
+												)
+											}>{label}</a>
+										</MenuItem>
+									)
+								})}
 							</MenuItems>
 						</PanelContent>
 					</AccordionPanel>
@@ -314,22 +322,22 @@ export function SidebarMenu({
 							<ShopDetailsHeading>Connect with us</ShopDetailsHeading>
 							<SocialLinks>
 								<SocialLinkItem>
-									<SocialLink href={social.facebook} target="_blank">
+									<SocialLink href={social.facebook} target="_blank" rel="nofollow">
 										<FacebookIcon /><span>Facebook</span>
 									</SocialLink>
 								</SocialLinkItem>
 								<SocialLinkItem>
-									<SocialLink href={social.instagram} target="_blank">
+									<SocialLink href={social.instagram} target="_blank" rel="nofollow">
 										<InstagramIcon /><span>Instagram</span>
 									</SocialLink>
 								</SocialLinkItem>
 							</SocialLinks>
 							<ShopDetailsHeading>Find us</ShopDetailsHeading>
-							<AddressLink href={external.mapUrl(site.address)} target="_blank">
+							<AddressLink href={external.mapUrl(site.address)} target="_blank" rel="nofollow">
 								<div>{site.address.line1}</div>
 								<div>{site.address.city}, {site.address.state} {site.address.postalCode}</div>
 							</AddressLink>
-							<MapLink href={external.mapUrl(site.address)} target="_blank">
+							<MapLink href={external.mapUrl(site.address)} target="_blank" rel="nofollow">
 								<MapImage {...mapProps} />
 							</MapLink>
 							<ShopDetailsHeading>Store Hours</ShopDetailsHeading>

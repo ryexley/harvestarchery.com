@@ -218,19 +218,29 @@ export function Footer() {
 				<SiteLinksSection>
 					<FooterHeading>@harvestarchery.com</FooterHeading>
 					<SiteLinks>
-						{menu.map(({ url, label }) => (
-							<li key={url}><SiteLink href={url}>{label}</SiteLink></li>
-						))}
+						{menu.map(({ url, label, external = false }) => {
+							return (
+								<li key={url}>
+									<SiteLink href={url} {
+										...(
+											external
+												? { target: "_blank", rel: "nofollow" }
+												: {}
+										)
+									}>{label}</SiteLink>
+								</li>
+							)
+						})}
 					</SiteLinks>
 					<FooterHeading>Connect with us</FooterHeading>
 					<SocialLinks>
 						<SocialLinkItem>
-							<SocialLink href={social.facebook} target="_blank">
+							<SocialLink href={social.facebook} target="_blank" rel="nofollow">
 								<FacebookIcon /><span>Facebook</span>
 							</SocialLink>
 						</SocialLinkItem>
 						<SocialLinkItem>
-							<SocialLink href={social.instagram} target="_blank">
+							<SocialLink href={social.instagram} target="_blank" rel="nofollow">
 								<InstagramIcon /><span>Instagram</span>
 							</SocialLink>
 						</SocialLinkItem>

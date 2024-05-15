@@ -52,7 +52,7 @@ export default function TheRockArcheryChallengeSuccessPage() {
 			<PageContent>
 				<h2>You're in!</h2>
 				<p>Thank you for registering for the The Rock Archery Challenge, we look forward to seeing you at the event!</p>
-				<p>If you haven't already done so, please remember to fill out the <LiabilityWaiverLink>Harvest Archery liability waiver</LiabilityWaiverLink>, as well as the <a href={resources.quarryRockLiabilityWaiver} target="_blank">Quarry Rock Archery Club liability waiver</a> (open and/or download, print and fill out a copy, and bring it with you to turn in at event check-in) as this will be required before you will be able to participate in the event.</p>
+				<p>If you haven't already done so, please remember to fill out the <LiabilityWaiverLink>Harvest Archery liability waiver</LiabilityWaiverLink>, as well as the <a href={resources.quarryRockLiabilityWaiver} target="_blank" rel="nofollow">Quarry Rock Archery Club liability waiver</a> (open and/or download, print and fill out a copy, and bring it with you to turn in at event check-in) as this will be required before you will be able to participate in the event.</p>
 				<p>Finally, if you haven't already done so, please take some time to review <Link to={pages.events.racFaq}>the event FAQ page</Link>, as it contains answers to many questions that most people have about the event.</p>
 			</PageContent>
 		</MainLayout>

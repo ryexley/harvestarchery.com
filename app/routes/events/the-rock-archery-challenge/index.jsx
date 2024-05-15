@@ -225,10 +225,10 @@ export default function TheRockArcheryChallengePage() {
 				</HeroContent>
 			</HeroWrapper>
 			<PageContent>
-				<p>This challenge is a partnership between The Harvest Archery Pro Shop and <a href="https://www.facebook.com/QuarryRock" target="_blank">Quarry Rock Archery Club</a>.</p>
+				<p>This challenge is a partnership between The Harvest Archery Pro Shop and <a href="https://www.facebook.com/QuarryRock" target="_blank" rel="nofollow">Quarry Rock Archery Club</a>.</p>
 				<QuarryRockCallout>
 					<div>
-						<a href="https://www.facebook.com/QuarryRock" target="_blank">
+						<a href="https://www.facebook.com/QuarryRock" target="_blank" rel="nofollow">
 							<QuarryRockLogo
 								height="200"
 								width="200"
@@ -253,7 +253,7 @@ export default function TheRockArcheryChallengePage() {
 						<p>The <LiabilityWaiverLink>Harvest Archery liability waiver</LiabilityWaiverLink> is available online. Once it has been filled out and submitted online, you are done. There will be no need to print out or bring a copy of it with you to the event, as it will be submitted to us automatically.</p>
 						<HarvestWaiverDisclaimer><strong><em>NOTE: Even if you have filled out one of our waivers before, its content has changed recently, and we ask that you review the changes and fill out another one.</em></strong> We understand this is an inconvenience, but it should only take a few minutes to review and fill out, and we appreciate your patience and cooperation.</HarvestWaiverDisclaimer>
 					</li>
-					<li><a href={resources.quarryRockLiabilityWaiver} target="_blank">The Quarry Rock Archery Club liability waiver</a> is available as a PDF document. Please open and/or download the document, print and fill out a copy of it, and bring it with you to turn in at event check-in.</li>
+					<li><a href={resources.quarryRockLiabilityWaiver} target="_blank" rel="nofollow">The Quarry Rock Archery Club liability waiver</a> is available as a PDF document. Please open and/or download the document, print and fill out a copy of it, and bring it with you to turn in at event check-in.</li>
 				</Waivers>
 				<p>All other details about the event that aren't included here can be found on <Link to={pages.events.racFaq}>the event FAQ page</Link>.</p>
 				<h2 id="registration-options">Register for the The Rock Archery Challenge</h2>
@@ -265,7 +265,7 @@ export default function TheRockArcheryChallengePage() {
 						<PriceOptionDescription>
 							You choose, one of two available courses. 15 - 20 targets. One to two miles hiking.
 						</PriceOptionDescription>
-						<PriceOptionLink ghost={false} href="/r/trac-one-course" target="_blank">$30.00</PriceOptionLink>
+						<PriceOptionLink ghost={false} href="/r/trac-one-course" target="_blank" rel="nofollow">$30.00</PriceOptionLink>
 					</PriceOption>
 					<PriceOption>
 						<PriceOptionHeading>Both Courses</PriceOptionHeading>
@@ -273,7 +273,7 @@ export default function TheRockArcheryChallengePage() {
 						<PriceOptionDescription>
 							You get to shoot both available courses. Over 30 targets. Two to three miles hiking.
 						</PriceOptionDescription>
-						<PriceOptionLink ghost={false} href="/r/trac-both-courses" target="_blank">$50.00</PriceOptionLink>
+						<PriceOptionLink ghost={false} href="/r/trac-both-courses" target="_blank" rel="nofollow">$50.00</PriceOptionLink>
 					</PriceOption>
 					<PriceOption>
 						<PriceOptionHeading><span>One Day,</span><span>Unlimited Shoot</span></PriceOptionHeading>
@@ -281,7 +281,7 @@ export default function TheRockArcheryChallengePage() {
 						<PriceOptionDescription>
 							Shoot either course as many times as you'd like in one day. This is our <strong>recommended</strong> option.
 						</PriceOptionDescription>
-					<PriceOptionLink ghost={false} href="/r/trac-one-day-unlimited" target="_blank">$60.00</PriceOptionLink>
+					<PriceOptionLink ghost={false} href="/r/trac-one-day-unlimited" target="_blank" rel="nofollow">$60.00</PriceOptionLink>
 					</PriceOption>
 					<PriceOption>
 						<PriceOptionHeading><span>All Weekend,</span><span>Unlimited Shoot</span></PriceOptionHeading>
@@ -289,7 +289,7 @@ export default function TheRockArcheryChallengePage() {
 						<PriceOptionDescription>
 							Camp overnight. Hang out. Meet new people. Shoot all you want. Get the most out of the event.
 						</PriceOptionDescription>
-						<PriceOptionLink ghost={false} href="/r/trac-weekend-unlimited" target="_blank">$100.00</PriceOptionLink>
+						<PriceOptionLink ghost={false} href="/r/trac-weekend-unlimited" target="_blank" rel="nofollow">$100.00</PriceOptionLink>
 					</PriceOption>
 				</RegistrationPanel>
 				<AdditionalInfo>

@@ -59,7 +59,8 @@ export const menu = [
   { label: "About", url: pages.about },
   { label: "Services", url: pages.services },
   { label: "Events", url: pages.events.home },
-  { label: "Indoor Range", url: pages.range }
+  { label: "Indoor Range", url: pages.range },
+	{ label: "Liability Waiver", url: pages.liabilityWaiver, external: true },
 ]
 
 export const customerQuotes = [
