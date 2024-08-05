@@ -14,7 +14,7 @@ export const meta = () => ({
 })
 
 export async function loader({ request }) {
-	return redirect(pages.home)
+	// return redirect(pages.home)
 
 	const url = new URL(request.url)
 	const stripeSessionId = url.searchParams.get("ssid")
