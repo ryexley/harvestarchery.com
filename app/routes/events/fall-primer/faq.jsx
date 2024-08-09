@@ -14,7 +14,7 @@ import { IMAGE_TYPE } from "~/util/images"
 import { styled, keyframes, breakpointPx as sizes } from "~/styles"
 
 export const meta = () => ({
-	title: windowTitle(`Frequently Asked Questions | The Rock Archery Challenge`)
+	title: windowTitle(`Frequently Asked Questions | The Harvest Fall Primer at Quarry Rock`)
 })
 
 export async function loader({ request }) {
@@ -259,7 +259,7 @@ export default function TheRockArcheryChallengePage() {
 					<Hero imageBoxProps={heroProps} style={{ marginTop: "auto" }} />
 				</HeroImage>
 				<HeroContent>
-					<PageHeading>The Rock Archery Challenge</PageHeading>
+					<PageHeading>The Harvest Fall Primer at Quarry Rock</PageHeading>
 					<SubHeading>Frequently Asked Questions</SubHeading>
 				</HeroContent>
 			</HeroWrapper>
@@ -358,6 +358,10 @@ export default function TheRockArcheryChallengePage() {
 						answers={
 							<>
 								<NoveltyShoot>
+									<p>Details on novelty shoots will be published soon.</p>
+								</NoveltyShoot>
+							{/*
+								<NoveltyShoot>
 									<h3>111 yard Long Dot Elk</h3>
 									<ul>
 										<li>Cost: <Se>$20.00 for three shots</Se></li>
@@ -378,6 +382,7 @@ export default function TheRockArcheryChallengePage() {
 									</ul>
 									<p>The metal bigfoot target will be at a distance of 33 yards (ish 😏). Take your best shot at one of three different holes in the target of 2, 3 and 4 inches respectively (you do NOT have to call your shot). Hold steady and shoot true though, 'cuz if you miss, the bigfoot'll eat your arrows.</p>
 								</NoveltyShoot>
+							*/}
 							</>
 						} />
 					<Section
@@ -385,6 +390,8 @@ export default function TheRockArcheryChallengePage() {
 						question={<span>Course Details and Descriptions</span>}
 						answers={
 							<CourseDescriptions>
+								<p>Course details will be published soon.</p>
+								{/*
 								<p>While each course is technical and unique in its own way, if you've shot this event before, you also know they can be very different from each other as well. Here, we will try to share as much detail about each course as we can to try to give you a reasonable idea of what you're getting into with each one.</p>
 								<p>Each target on both courses will have an orange cone from which to shoot that target from. For shooters not comfortable or capable with the range for the target, they should feel free to move closer to their comfortable/capable range to shoot the target from, but should do so along the path to the target from the cone. Please keep deviation from that shooting path within reason (only a few feet either way as necessary to obtain a safe and clear shot to the target).</p>
 								<p>Both the first and last targets on each course will have a yellow "bonus cone" with additional range or a different, more challenging angle from which to shoot, for those who wish to challenge themselves.</p>
@@ -393,6 +400,7 @@ export default function TheRockArcheryChallengePage() {
 								<p>On the BearLevel course you can expect to have several shots where you will have either uneven footing, or be forced to sit or kneel in order to get a clear shot at the target. The average shot distance for this course is right around 55 yards, with the longest being 80 yards and the shortest at 32 yards. One of the "bonus/challenge cones" on this course will push you all the way out to 98 yards if you feel like you're having a good day.</p>
 								<h3>The Cutler Range (the South course)</h3>
 								<p>Named after Doc's new baby boy (congrats Doc and Lo!!), the Cutler Range is considered to be the more challenging/difficult of the two courses, but not by a significant measure. As with the BearLevel course, you can expect to have at least a handful of shots that will force you to either sit or kneel to get a clear shot. The average shot distance for this course is right around 60 yards, with the longest shot being 89 yards, and two others also over 80. The shortest shot on this course is 35 yards, of which there are two targets at this distance.</p>
+								*/}
 							</CourseDescriptions>
 						} />
 					<Section

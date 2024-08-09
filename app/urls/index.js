@@ -4,8 +4,10 @@ export const pages = {
   services: "/services",
   events: {
 		home: "/events",
-		theRockArcheryChallenge: "/events/the-rock-archery-challenge",
-		racFaq: "/events/the-rock-archery-challenge/faq"
+		fallPrimer: "/events/fall-primer",
+		fallPrimerFaq: "/events/fall-primer/faq",
+		theRockArcheryChallenge: "/events/fall-primer",
+		racFaq: "/events/fall-primer/faq"
 	},
   lessons: "/lessons",
   range: "/range",

@@ -49,7 +49,7 @@ const Divider = styled("hr", {
 })
 
 const eventDetails = {
-	trac: () => <a href={pages.events.theRockArcheryChallenge}>Full event details and registration information.</a>
+	hfp: () => <a href={pages.events.fallPrimer}>Full event details and registration information.</a>
 }
 
 export default function Events() {

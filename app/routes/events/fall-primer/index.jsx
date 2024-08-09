@@ -13,7 +13,7 @@ import { IMAGE_TYPE } from "~/util/images"
 import { styled, breakpointPx as sizes } from "~/styles"
 
 export const meta = () => ({
-	title: windowTitle(`The Rock Archery Challenge`)
+	title: windowTitle(`The Harvest Fall Primer at Quarry Rock`),
 })
 
 export async function loader() {
@@ -204,7 +204,7 @@ const quarryRockAddress = {
 	postalCode: "37323",
 }
 
-export default function TheRockArcheryChallengePage() {
+export default function TheHarvestFallPrimerPage() {
 	const heroProps = {
     dark: true,
     blur: false,
@@ -220,13 +220,13 @@ export default function TheRockArcheryChallengePage() {
 					<Hero imageBoxProps={heroProps} style={{ marginTop: "auto" }} />
 				</HeroImage>
 				<HeroContent>
-					<PageHeading>The Rock Archery Challenge</PageHeading>
+					<PageHeading>The Harvest Fall Primer at Quarry Rock</PageHeading>
 					<SubHeading>September 14<sup>th</sup> & 15<sup>th</sup>, 2024</SubHeading>
 					<RegisterButton ghost={false} href="#registration-options">Click Here To Sign Up</RegisterButton>
 				</HeroContent>
 			</HeroWrapper>
 			<PageContent>
-				<p>This challenge is a partnership between The Harvest Archery Pro Shop and <a href="https://www.facebook.com/QuarryRock" target="_blank" rel="nofollow">Quarry Rock Archery Club</a>.</p>
+				<p>This event is a partnership between The Harvest Archery Pro Shop and <a href="https://www.facebook.com/QuarryRock" target="_blank" rel="nofollow">Quarry Rock Archery Club</a>.</p>
 				<QuarryRockCallout>
 					<div>
 						<a href="https://www.facebook.com/QuarryRock" target="_blank" rel="nofollow">
@@ -256,8 +256,8 @@ export default function TheRockArcheryChallengePage() {
 					</li>
 					<li><a href={resources.quarryRockLiabilityWaiver} target="_blank" rel="nofollow">The Quarry Rock Archery Club liability waiver</a> is available as a PDF document. Please open and/or download the document, print and fill out a copy of it, and bring it with you to turn in at event check-in.</li>
 				</Waivers>
-				<p>All other details about the event that aren't included here can be found on <Link to={pages.events.racFaq}>the event FAQ page</Link>. There you should find answers to just about any additional questions you might have about the event.</p>
-				<h2 id="registration-options">Register for the The Rock Archery Challenge</h2>
+				<p>All other details about the event that aren't included here can be found on <Link to={pages.events.fallPrimerFaq}>the event FAQ page</Link>. There you should find answers to just about any additional questions you might have about the event.</p>
+				<h2 id="registration-options">Register for the The Harvest Fall Primer at Quarry Rock</h2>
 				<RegisterOnSite><strong><em>NOTE</em></strong>: Registration on-site the day of the event will be an option, but we strongly encourage people to pre-register here prior to the event to the extent that it is possible. Pre-registration will help streamline the check-in process, and get you and everybody else on the range and courses faster with less waiting in line.</RegisterOnSite>
 				<RegistrationPanel>
 					<PriceOption>

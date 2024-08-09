@@ -8,7 +8,7 @@ import { isNotEmpty } from "~/util"
 import { formatPhoneNumber } from "~/util/formatters"
 import { DataError, StripeError } from "~/errors"
 
-const CURRENT_EVENT = 2 // The Rock Archery Challenge (Spring 2024)
+const CURRENT_EVENT = 2 // The Harvest Fall Primer at Quarry Rock
 
 const stripeEventHandlerMap = {
 	/**
