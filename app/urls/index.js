@@ -4,14 +4,15 @@ export const pages = {
   services: "/services",
   events: {
 		home: "/events",
-		fallPrimer: "/events/fall-primer",
-		fallPrimerFaq: "/events/fall-primer/faq",
-		theRockArcheryChallenge: "/events/fall-primer",
-		racFaq: "/events/fall-primer/faq"
+		primer: "/events/primer",
+		primerFaq: "/events/primer/faq",
+		theRockArcheryChallenge: "/events/primer",
+		racFaq: "/events/primer/faq"
 	},
   lessons: "/lessons",
   range: "/range",
-	liabilityWaiver: "/r/liability-waiver"
+	liabilityWaiver: "/r/liability-waiver",
+	quarryRockWaiver: "/r/quarry-rock-waiver",
 }
 
 export const external = {
@@ -19,6 +20,7 @@ export const external = {
   mapUrl: address => `//maps.apple.com/?q=${address.line1.replace(/ /g, "+")}+${address.city}+${address.state}+${address.postalCode}&ia=web&iaxm=maps`,
   facebookReviews: "https://www.facebook.com/The-Harvest-Archery-Pro-Shop-560518520633267/reviews",
 	liabilityWaiver: "https://app.waiverelectronic.com/render/templateByRefId/harvest-archery-liability-release",
+	quarryRockWaiver: "https://app.waiverelectronic.com/render/templateByRefId/quarry-rock-liability-waiver",
 }
 
 export const social = {

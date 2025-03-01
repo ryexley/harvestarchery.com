@@ -49,7 +49,7 @@ const Divider = styled("hr", {
 })
 
 const eventDetails = {
-	hfp: () => <a href={pages.events.fallPrimer}>Full event details and registration information.</a>
+	primer: () => <a href={pages.events.primer}>Full event details and registration information.</a>
 }
 
 export default function Events() {

@@ -119,11 +119,11 @@ export function NewsAndUpdates() {
 				News and Updates
 			</SectionHeading>
 			<NewsItems>
-				<NewsItemLink to={pages.events.fallPrimer} prefetch="intent" reloadDocument>
+				<NewsItemLink to={pages.events.primer} prefetch="intent" reloadDocument>
 					<NewsItem {...tracItemImageConfig}>
-						<h3>The Harvest Fall Primer at Quarry Rock</h3>
-						<p>Coming <strong>September 14th & 15th</strong>, our biannual archery challenge event is back! Come join us at Quarry Rock Archery Club and get yourself ready for the upcoming hunting season. Click here to get all the details and get pre-registered for the event today!</p>
-						<p>Registration on-site the day of the event will be an option, but <strong><em>we strongly encourage people to pre-register</em></strong> here prior to the event. Pre-registration will help streamline the check-in process, and get you and everybody else on the range and courses faster with less waiting in line.</p>
+						<h3>The Harvest Spring Primer at Quarry Rock</h3>
+						<p>Coming <strong>April 26th & 27th</strong>, our biannual archery challenge event is back, and we're making this our biggest event yet! Come join us at Quarry Rock Archery Club and get yourself ready for the upcoming 3D archery season/events. Click here to get all the details and get pre-registered for the event today!</p>
+						<p>Registration on-site the day of the event will be an option, but <strong><em>we strongly encourage people to pre-register</em></strong> here prior to the event. Check our social media for discount codes for early registration online. Pre-registration will help streamline the check-in process, and get you and everybody else on the range and courses faster with less waiting in line.</p>
 					</NewsItem>
 					<NewsItemArrow />
 				</NewsItemLink>
