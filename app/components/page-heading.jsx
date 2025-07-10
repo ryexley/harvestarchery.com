@@ -9,6 +9,7 @@ export const PageHeading = styled("h1", {
   textAlign: "center",
   textShadow: "0.25rem 0.25rem 0.25rem $colors$blackA12",
   textTransform: "uppercase",
+	textWrap: "balance",
   smoothTransition: "all",
 
   ["@sm"]: {

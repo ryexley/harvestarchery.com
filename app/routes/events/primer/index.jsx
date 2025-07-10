@@ -13,7 +13,7 @@ import { IMAGE_TYPE } from "~/util/images"
 import { styled, breakpointPx as sizes } from "~/styles"
 
 export const meta = () => ({
-	title: windowTitle(`The Harvest Spring Primer at Quarry Rock`),
+	title: windowTitle(`The Harvest Fall Primer at Quarry Rock`),
 })
 
 export async function loader() {
@@ -208,8 +208,8 @@ export default function Primer() {
 	const heroProps = {
     dark: true,
     blur: false,
-    image: "/images/spring-primer-2025-logo@2x",
-    imgType: IMAGE_TYPE.PNG,
+    image: "/images/aaron-at-full-draw",
+    imgType: IMAGE_TYPE.JPG,
     sizes: [
 			sizes.xs,
       sizes.s,
@@ -227,11 +227,11 @@ export default function Primer() {
     <MainLayout offsetMainContent={false}>
 			<HeroWrapper>
 				<HeroImage>
-					<Hero imageBoxProps={heroProps} style={{ backgroundColor: "#23303f", backgroundSize: "70%", marginTop: "auto" }} />
+					<Hero imageBoxProps={heroProps} style={{ marginTop: "auto" }} />
 				</HeroImage>
 				<HeroContent>
-					<PageHeading>The Harvest Spring Primer at Quarry Rock</PageHeading>
-					<SubHeading>April 26<sup>th</sup> & 27<sup>th</sup>, 2025</SubHeading>
+					<PageHeading>The Harvest Fall Primer at Quarry Rock</PageHeading>
+					<SubHeading>August 2<sup>nd</sup> & 3<sup>rd</sup>, 2025</SubHeading>
 					<RegisterButton ghost={false} href="#registration-options">Click Here To Sign Up</RegisterButton>
 				</HeroContent>
 			</HeroWrapper>
@@ -267,7 +267,7 @@ export default function Primer() {
 					<li><a href={pages.quarryRockWaiver} target="_blank" rel="nofollow">The Quarry Rock Archery Club liability waiver</a> is now also available online as well! It has been changed slightly also, so even if you've filled one out before, please take a moment to review the changes, and fill out a new one.</li>
 				</Waivers>
 				<p>All other details about the event that aren't included here can be found on <Link to={pages.events.primerFaq}>the event FAQ page</Link>. There you should find answers to just about any additional questions you might have about the event.</p>
-				<h2 id="registration-options">Register for the The Harvest Spring Primer at Quarry Rock</h2>
+				<h2 id="registration-options">Register for the The Harvest Fall Primer at Quarry Rock</h2>
 				<RegisterOnSite><strong><em>NOTE</em></strong>: Registration on-site the day of the event will be an option, but we strongly encourage people to pre-register here prior to the event to the extent that it is possible. Pre-registration will help streamline the check-in process, and get you and everybody else on the range and courses faster with less waiting in line.</RegisterOnSite>
 				<RegistrationPanel>
 					<PriceOption>

@@ -14,7 +14,7 @@ import { IMAGE_TYPE } from "~/util/images"
 import { styled, keyframes, breakpointPx as sizes } from "~/styles"
 
 export const meta = () => ({
-	title: windowTitle(`Frequently Asked Questions | The Harvest Spring Primer at Quarry Rock`)
+	title: windowTitle(`Frequently Asked Questions | The Harvest Fall Primer at Quarry Rock`)
 })
 
 export async function loader({ request }) {
@@ -259,7 +259,7 @@ export default function TheRockArcheryChallengePage() {
 					<Hero imageBoxProps={heroProps} style={{ marginTop: "auto" }} />
 				</HeroImage>
 				<HeroContent>
-					<PageHeading>The Harvest Spring Primer at Quarry Rock</PageHeading>
+					<PageHeading>The Harvest Fall Primer at Quarry Rock</PageHeading>
 					<SubHeading>Frequently Asked Questions</SubHeading>
 				</HeroContent>
 			</HeroWrapper>
