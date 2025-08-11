@@ -119,14 +119,23 @@ export function NewsAndUpdates() {
 				News and Updates
 			</SectionHeading>
 			<NewsItems>
-				<NewsItemLink to={pages.events.primer} prefetch="intent" reloadDocument>
+				{/* <NewsItemLink to={pages.events.primer} prefetch="intent" reloadDocument>
 					<NewsItem {...tracItemImageConfig}>
 						<h3>The Harvest Fall Primer at Quarry Rock</h3>
 						<p>Coming <strong>August 2nd & 3rd</strong>, our biannual archery challenge event is back, and we're making this our biggest event yet! Come join us at Quarry Rock Archery Club and get yourself ready for the upcoming archery hunting season. Click here to get all the details and get pre-registered for the event today!</p>
 						<p>Registration on-site the day of the event will be an option, but <strong><em>we strongly encourage people to pre-register</em></strong> here prior to the event. Check our social media for discount codes for early registration online. Pre-registration will help streamline the check-in process, and get you and everybody else on the range and courses faster with less waiting in line.</p>
 					</NewsItem>
 					<NewsItemArrow />
-				</NewsItemLink>
+				</NewsItemLink> */}
+				<iframe
+					src="https://player.cloudinary.com/embed/?cloud_name=dsvzkslti&public_id=video%2Fpromos%2Fharvest-archery-elite-victra-collab_wgtpoz&show_jump_controls=true&title=true&poster_options[transformation][start_offset]=3"
+					width="640"
+					height="340"
+					style={{aspectRatio: "640 / 360", margin: "0 auto"}}
+					allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+					allowFullScreen
+					frameBorder="0"
+				></iframe>
 			</NewsItems>
 		</NewsAndUpdatesSection>
 	)
