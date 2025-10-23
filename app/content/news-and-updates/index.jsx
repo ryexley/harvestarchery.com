@@ -20,8 +20,8 @@ const SectionHeading = styled("h2", {
 
 const NewsItems = styled("div", {
 	"--grid-layout-gap": "1rem",
-	"--grid-column-count": "3",
-	"--grid-item--min-width": "calc(23.75rem - 2rem)", // 390px - 1rem of margin/padding left and right
+	"--grid-column-count": "1",
+	"--grid-item--min-width": "5rem",
 	"--gap-count": "calc(var(--grid-column-count) - 1)",
 	"--total-gap-width": "calc(var(--gap-count) * var(--grid-layout-gap))",
 	"--grid-item--max-width": "calc((100% - var(--total-gap-width)) / var(--grid-column-count))",
@@ -31,7 +31,12 @@ const NewsItems = styled("div", {
 	gridTemplateColumns: "repeat(auto-fit, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr))",
 
 	"@s": {
-		"--grid-item--min-width": "28.125rem",
+		"--grid-item--min-width": "8.5rem"
+	},
+
+	"@sm": {
+		"--grid-column-count": "2",
+		"--grid-item--min-width": "40rem",
 	}
 })
 
@@ -96,6 +101,20 @@ const NewsItem = styled(ImageBox, {
 	}
 })
 
+const VideoContainer = styled("div", {
+	aligntItems: "center",
+	display: "flex",
+	height: "auto",
+	justifyContent: "center",
+	overflow: "hidden",
+	width: "100%",
+
+	"@sm": {
+		minHeight: "22rem",
+		minWidth: "40rem",
+	}
+})
+
 const tracItemImageConfig = {
 	dark: true,
 	blur: true,
@@ -127,15 +146,28 @@ export function NewsAndUpdates() {
 					</NewsItem>
 					<NewsItemArrow />
 				</NewsItemLink> */}
-				<iframe
-					src="https://player.cloudinary.com/embed/?cloud_name=dsvzkslti&public_id=video%2Fpromos%2Fharvest-archery-elite-victra-collab_wgtpoz&show_jump_controls=true&title=true&poster_options[transformation][start_offset]=3"
-					width="640"
-					height="340"
-					style={{aspectRatio: "640 / 360", margin: "0 auto"}}
-					allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-					allowFullScreen
-					frameBorder="0"
-				></iframe>
+				<VideoContainer>
+					<iframe
+						src="https://player.cloudinary.com/embed/?cloud_name=dsvzkslti&public_id=video%2Fpromos%2Fharvest-archery-the-perfect-hunt_a3sazr&profile=havp"
+						width="640"
+						height="340"
+						style={{aspectRatio: "640 / 360", margin: "0 auto"}}
+						allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+						allowFullScreen
+						frameBorder="0"
+					></iframe>
+				</VideoContainer>
+				<VideoContainer>
+					<iframe
+						src="https://player.cloudinary.com/embed/?cloud_name=dsvzkslti&public_id=video%2Fpromos%2Fharvest-archery-elite-victra-collab_wgtpoz&profile=havp"
+						width="640"
+						height="340"
+						style={{aspectRatio: "640 / 360", margin: "0 auto"}}
+						allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+						allowFullScreen
+						frameBorder="0"
+					></iframe>
+				</VideoContainer>
 			</NewsItems>
 		</NewsAndUpdatesSection>
 	)
