@@ -25,6 +25,7 @@
     "@sentry/remix": "^7.56.0",
     "@stitches/react": "^1.2.7",
     "@supabase/supabase-js": "^2.26.0",
+    "@vercel/node": "^5.5.3",
     "date-fns": "^2.29.3",
     "drizzle-orm": "^0.29.4",
     "lodash.debounce": "^4.0.8",
