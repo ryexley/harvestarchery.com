@@ -28,10 +28,24 @@ async function optimizeImage({
 }
 
 async function optimizeImages() {
-  const entries = walk(imageSourceDir)
+  const entries = walk(imageSourceDir, { directories: false, includeBasePath: false })
   for (const item of entries) {
+		// ADD: Skip .DS_Store and hidden files
+    if (item.startsWith('.') || item === '.DS_Store') {
+      console.log(`Skipping hidden/system file: ${item}`);
+      continue;
+    }
+
+		const sourcePath = path.resolve(`${imageSourceDir}/${item}`);
+    const stats = fs.statSync(sourcePath);
+
+    // Skip directories (walk should already do this, but double-check)
+    if (stats.isDirectory()) {
+      console.log(`Skipping directory: ${item}`);
+      continue;
+    }
+
     try {
-      const sourcePath = path.resolve(`${imageSourceDir}/${item}`)
       for (const size of imageSizes) {
         const extIndex = item.lastIndexOf(".")
         const resizedItemName = [item.slice(0, extIndex), `-${size}`, item.slice(-((item.length - extIndex)))].join("")
@@ -47,18 +61,19 @@ async function optimizeImages() {
       console.error(`➖ ${item} is not a valid image type, skipping optimization`)
       // if it can't be resized/optimized, then just copy it out to the
       // /public folder as-is
-      const sourcePath = path.resolve(`${imageSourceDir}/${item}`)
-      const targetPath = path.resolve(`${imageTargetDir}/${item}`)
-      const stats = fs.statSync(sourcePath)
+      const sourcePath = path.resolve(`${imageSourceDir}/${item}`);
+      const targetPath = path.resolve(`${imageTargetDir}/${item}`);
 
-      if (stats.isDirectory() && !fs.existsSync(targetPath)) {
-        fs.mkdirSync(targetPath)
-        console.log(`✅ Created new folder "${targetPath}"`)
+      // Create parent directory if needed
+      const targetDir = path.dirname(targetPath);
+      if (!fs.existsSync(targetDir)) {
+        fs.mkdirSync(targetDir, { recursive: true });
+        console.log(`Created directory: ${targetDir}`);
       }
 
-      if (stats.isFile()){
-        fs.copyFileSync(sourcePath, targetPath)
-        console.log(`✅ Copied "${item}" to ${imageTargetDir}`)
+      if (fs.statSync(sourcePath).isFile()) {
+        fs.copyFileSync(sourcePath, targetPath);
+        console.log(`Copied "${item}" to ${imageTargetDir}`);
       }
     }
   }

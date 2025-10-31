@@ -1,6 +1,5 @@
 {
 	"buildCommand": "npm run build",
-  "outputDirectory": "public/build",
   "framework": null,
   "build": {
     "env": {}
