@@ -1,12 +1,19 @@
-import HeadroomPrimitive from "react-headroom"
+import { useEffect, useState } from "react"
+import * as HeadroomModule from "react-headroom"
 import { HarvestArcheryBroadheadLogo } from "~/components/logos"
 import { CallUs } from "~/components/call-us-link"
 import { Menu as MenuIcon, Phone } from "~/components/icons"
 import { site } from "~/data"
-import { styled, keyframes } from "~/styles"
+import { styled } from "~/styles"
 
-const Headroom = styled(HeadroomPrimitive, {
-  ["> .headroom"]: {
+const HeadroomPrimitive = (
+  HeadroomModule?.default?.default ||
+  HeadroomModule?.default ||
+  HeadroomModule
+)
+
+const HeadroomStyles = styled("div", {
+  ["> .headroom-wrapper > .headroom"]: {
     backgroundColor: "transparent",
     left: "0",
     right: "0",
@@ -133,6 +140,9 @@ const SidebarMenuToggle = styled("button", {
 
 const headroomProps = {
   disableInlineStyles: true,
+  downTolerance: 0,
+  pinStart: 0,
+  upTolerance: 0,
   wrapperStyle: {
     marginBottom: "calc(var(--header-height) * -1)", // header-height is defined in /app/styles/global.tsx
   }
@@ -140,32 +150,44 @@ const headroomProps = {
 
 export function Header({
   menuOpen = false,
-  toggleMenu
+  toggleMenu = () => {}
 }) {
+  const [hydrated, setHydrated] = useState(false)
+
+  useEffect(() => {
+    setHydrated(true)
+  }, [])
+
+  const headerContent = (
+    <StyledHeader>
+      <Left>
+        <HomeLink href="/">
+          <Logo />
+        </HomeLink>
+      </Left>
+      <Right>
+        {!menuOpen ? (
+          <CallUsLink href={`tel:${site.phoneNumber}`}>
+            <PhoneIcon />
+            {site.phoneNumber}
+          </CallUsLink>
+        ) : null}
+        <SidebarMenuToggle
+          type="button"
+          onClick={() => toggleMenu(!menuOpen)}
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Hide menu" : "Show menu"}>
+          <MenuIcon />
+        </SidebarMenuToggle>
+      </Right>
+    </StyledHeader>
+  )
+
   return (
-    <Headroom {...headroomProps}>
-      <StyledHeader>
-        <Left>
-          <HomeLink href="/">
-            <Logo />
-          </HomeLink>
-        </Left>
-        <Right>
-          {!menuOpen ? (
-            <CallUsLink href={`tel:${site.phoneNumber}`}>
-              <PhoneIcon />
-              {site.phoneNumber}
-            </CallUsLink>
-          ) : null}
-          {!menuOpen ? (
-            <SidebarMenuToggle
-              onClick={toggleMenu}
-              aria-label="Show menu">
-              <MenuIcon />
-            </SidebarMenuToggle>
-          ) : null}
-        </Right>
-      </StyledHeader>
-    </Headroom>
+    <HeadroomStyles>
+      <HeadroomPrimitive {...headroomProps} disable={!hydrated}>
+        {headerContent}
+      </HeadroomPrimitive>
+    </HeadroomStyles>
   )
 }

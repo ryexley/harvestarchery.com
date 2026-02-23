@@ -140,10 +140,10 @@ const PageLink = styled(RouterLinkButton, {
 })
 
 export const meta = () => {
-  return {
-    title: site.title,
-    description: `${site.title}, ${site.description} (${site.globalKeywords.join(", ")})`,
-  }
+  return [
+    { title: site.title },
+    { name: "description", content: `${site.title}, ${site.description} (${site.globalKeywords.join(", ")})` },
+  ]
 }
 
 export default function Index() {

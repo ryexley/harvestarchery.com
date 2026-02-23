@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node"
-import { Stripe } from "~/services/stripe"
+import { Stripe, StripeErrorCode } from "~/services/stripe"
 import { Supabase } from "~/services/supabase";
 import { db, eq, one, schema } from "~/database/db.server"
 import { HttpStatus, EVENT_REGISTRATION_TYPE } from "~/enums"
@@ -117,6 +117,7 @@ export async function action({ request }) {
 	}
 
 	let event = null
+	let eventErrorCode = null
 
 	try {
 		// Initialize the client libraries that we need for this integration
@@ -130,11 +131,16 @@ export async function action({ request }) {
 
 		// Use the Stripe SDK to verify the incoming request is valid and
 		// is genuinely from Stripe, and then extract the event payload
-		const { event: verifiedEvent, error } = await stripe.getEvent(rawRequest, requestSignature)
-		// If there's an error, then we're done here ...
-		if (isNotEmpty(error)) {
-			throw error
-		}
+			const {
+				event: verifiedEvent,
+				error,
+				errorCode
+			} = await stripe.getEvent(rawRequest, requestSignature)
+			// If there's an error, then we're done here ...
+			if (isNotEmpty(error)) {
+				eventErrorCode = errorCode
+				throw error
+			}
 
 		event = verifiedEvent
 
@@ -152,14 +158,19 @@ export async function action({ request }) {
 		}
 
 		return success()
-	} catch(error) {
-		logger.withScope({
-			tags: { caller: "Stripe webhook event handler" },
-			extras: { request, event }
-		}).error(new StripeError(error.message, error))
+		} catch(error) {
+			const errorMessage = error?.message || "(error unknown)"
+			const status = eventErrorCode === StripeErrorCode.SIGNATURE_VERIFICATION_FAILED
+				? HttpStatus.BadRequest
+				: HttpStatus.InternalServerError
 
-		return json({
-			message: `Error handling Stripe webhook: ${error.message || "(error unknown)"}`
-		}, HttpStatus.InternalServerError)
-	}
+			logger.withScope({
+				tags: { caller: "Stripe webhook event handler" },
+				extras: { request, event }
+			}).error(new StripeError(errorMessage, error))
+
+			return json({
+				message: `Error handling Stripe webhook: ${errorMessage}`
+			}, status)
+		}
 }

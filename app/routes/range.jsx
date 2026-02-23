@@ -6,9 +6,9 @@ import { windowTitle } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { breakpointPx as sizes, breaks as bp } from "~/styles"
 
-export const meta = () => ({
-	title: windowTitle("Indoor Range")
-})
+export const meta = () => ([
+	{ title: windowTitle("Indoor Range") }
+])
 
 export default function IndoorRange() {
   const heroProps = {

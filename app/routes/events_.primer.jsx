@@ -1,4 +1,3 @@
-import { redirect } from "@remix-run/node"
 import { Link } from "@remix-run/react"
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
@@ -12,9 +11,9 @@ import { windowTitle } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { styled, breakpointPx as sizes } from "~/styles"
 
-export const meta = () => ({
-	title: windowTitle(`The Harvest Fall Primer at Quarry Rock`),
-})
+export const meta = () => ([
+	{ title: windowTitle(`The Harvest Fall Primer at Quarry Rock`) },
+])
 
 export async function loader() {
 	// return redirect(pages.home)

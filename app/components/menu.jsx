@@ -1,5 +1,6 @@
 import { ImageBox } from "~/components/image-box"
 import * as Sheet from "~/components/sheet"
+import { Link } from "@remix-run/react"
 import { CallUs } from "~/components/call-us-link"
 import { CloseX, Phone, Facebook, Instagram } from "~/components/icons"
 import {
@@ -273,20 +274,38 @@ export function SidebarMenu({
     ]
   }
 
-  const handleCloseMenu = event => {
-    if (event) {
-      event.preventDefault()
-    }
-
-    onClose()
-  }
-
   return (
     <Sheet.Root
       open={open}
       onOpenChange={toggle}
       ariaLabel="Site menu">
       <SheetMenu showCloseButton={false}>
+				<Sheet.Title style={{
+          border: 0,
+          clip: "rect(0 0 0 0)",
+          clipPath: "inset(50%)",
+          height: "1px",
+          margin: "-1px",
+          overflow: "hidden",
+          padding: 0,
+          position: "absolute",
+          whiteSpace: "nowrap",
+          width: "1px",
+        }}>Site menu</Sheet.Title>
+				<Sheet.Description style={{
+          border: 0,
+          clip: "rect(0 0 0 0)",
+          clipPath: "inset(50%)",
+          height: "1px",
+          margin: "-1px",
+          overflow: "hidden",
+          padding: 0,
+          position: "absolute",
+          whiteSpace: "nowrap",
+          width: "1px",
+        }}>
+          Main navigation and shop information.
+        </Sheet.Description>
 				<StyledAccordion
 					type="single"
 					defaultValue="menu"
@@ -298,13 +317,22 @@ export function SidebarMenu({
 								{menu.map(({ url, label, external = false }) => {
 									return (
 										<MenuItem key={`menu-item-${label.toLowerCase()}`}>
-											<a href={url} {
-												...(
-													external
-														? { target: "_blank", rel: "nofollow" }
-														: {}
-												)
-											}>{label}</a>
+											{external ? (
+                        <a
+                          href={url}
+                          target="_blank"
+                          rel="nofollow"
+                          onClick={() => toggle(false)}>
+                          {label}
+                        </a>
+                      ) : (
+                        <Link
+                          to={url}
+                          prefetch="intent"
+                          onClick={() => toggle(false)}>
+                          {label}
+                        </Link>
+                      )}
 										</MenuItem>
 									)
 								})}

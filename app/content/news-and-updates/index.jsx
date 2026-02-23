@@ -153,7 +153,6 @@ export function NewsAndUpdates() {
 						height="340"
 						style={{aspectRatio: "640 / 360", margin: "0 auto"}}
 						allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-						allowFullScreen
 						frameBorder="0"
 					></iframe>
 				</VideoContainer>
@@ -164,7 +163,6 @@ export function NewsAndUpdates() {
 						height="340"
 						style={{aspectRatio: "640 / 360", margin: "0 auto"}}
 						allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-						allowFullScreen
 						frameBorder="0"
 					></iframe>
 				</VideoContainer>

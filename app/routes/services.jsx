@@ -1,4 +1,4 @@
-import { Parallax, Background } from "react-parallax"
+import * as ReactParallax from "react-parallax"
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
 import { CallUs } from "~/components/call-us-link"
@@ -6,9 +6,9 @@ import { windowTitle } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { styled, breakpointPx as sizes, breaks as bp } from "~/styles"
 
-export const meta = () => ({
-	title: windowTitle("Services We Offer")
-})
+export const meta = () => ([
+	{ title: windowTitle("Services We Offer") }
+])
 
 const contentStyles = {
 	fontSize: "1.2rem",
@@ -79,6 +79,11 @@ const ServiceImageContainer = styled("div", {
 // TODO: replace bgImage with the use of the bgImageSrcSet prop
 // and pass in a srcset, using util/renderSrcSet instead
 // https://github.com/rrutsche/react-parallax#props
+const Parallax =
+  ReactParallax.Parallax ||
+  ReactParallax.default?.Parallax ||
+  ReactParallax["react-parallax"]?.Parallax
+
 const ServiceHeader = ({ imageSource, heading }) => (
   <Parallax {...serviceImageProps} bgImage={imageSource}>
     <ServiceImageContainer>

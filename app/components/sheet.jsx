@@ -1,8 +1,6 @@
 import React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
-import { Button } from "~/components/button"
 import { CloseX } from "~/components/icons"
-import { isNotEmpty } from "~/util"
 import { styled, keyframes } from "~/styles"
 
 const Root = DialogPrimitive.Root
@@ -21,16 +19,6 @@ const fadeOut = keyframes({
   to: { opacity: "0" }
 })
 
-const slideIn = keyframes({
-  from: { transform: "$$transformValue" },
-  to: { transform: "translate3d(0,0,0)" }
-})
-
-const slideOut = keyframes({
-  from: { transform: "translate3d(0,0,0)" },
-  to: { transform: "$$transformValue" }
-})
-
 const Overlay = styled(DialogPrimitive.Overlay, {
 	backgroundColor: "rgba(0, 0, 0, 0.15)",
 	position: 'fixed',
@@ -38,25 +26,32 @@ const Overlay = styled(DialogPrimitive.Overlay, {
   right: 0,
   bottom: 0,
   left: 0,
+  zIndex: 90,
 
   '&[data-state="open"]': {
     animation: `${fadeIn} 150ms cubic-bezier(0.22, 1, 0.36, 1)`,
+    pointerEvents: "auto",
   },
 
   '&[data-state="closed"]': {
     animation: `${fadeOut} 150ms cubic-bezier(0.22, 1, 0.36, 1)`,
+    pointerEvents: "none",
   },
 })
 
 const StyledContent = styled(DialogPrimitive.Content, {
+  backgroundColor: "$blackA12",
 	bottom: 0,
   boxShadow:
     "$colors$shadowLight 0 0 2.375rem -0.625rem, $colors$shadowDark 0 0 2.1875rem -0.9375rem",
-	overflowY: "scroll",
+	overflowY: "auto",
   position: "fixed",
+  right: 0,
   top: 0,
+  transform: "translate3d(100%,0,0)",
+  transition: "transform 250ms cubic-bezier(0.22, 1, 0.36, 1)",
   width: "100%",
-	zIndex: 5,
+	zIndex: 100,
 
   // Among other things, prevents text alignment inconsistencies when dialog cant be centered in the viewport evenly.
   // Affects animated and non-animated dialogs alike.
@@ -72,42 +67,14 @@ const StyledContent = styled(DialogPrimitive.Content, {
   },
 
   '&[data-state="open"]': {
-    animation: `${slideIn} 250ms cubic-bezier(0.22, 1, 0.36, 1)`
+    transform: "translate3d(0,0,0)",
+    pointerEvents: "auto",
   },
 
   '&[data-state="closed"]': {
-    animation: `${slideOut} 250ms cubic-bezier(0.22, 1, 0.36, 1)`
+    transform: "translate3d(100%,0,0)",
+    pointerEvents: "none",
   },
-
-  variants: {
-    side: {
-      top: {
-        $$transformValue: "translate3d(0,-100%,0)",
-        width: "100%",
-        height: "0.9375rem",
-        bottom: "auto"
-      },
-      right: {
-        $$transformValue: "translate3d(100%,0,0)",
-        right: 0
-      },
-      bottom: {
-        $$transformValue: "translate3d(0,100%,0)",
-        width: "100%",
-        height: "0.9375rem",
-        bottom: 0,
-        top: "auto"
-      },
-      left: {
-        $$transformValue: "translate3d(-100%,0,0)",
-        left: 0
-      }
-    }
-  },
-
-  defaultVariants: {
-    side: "right"
-  }
 })
 
 const CloseButton = styled(DialogPrimitive.Close, {
@@ -138,31 +105,19 @@ const CloseButtonIcon = styled(CloseX, {
 const Content = React.forwardRef(
   ({
 		children,
-		side = "right",
 		showCloseButton = true,
-		closeButton,
 		...props
 	}, forwardedRef) => {
-		const CloseTrigger = () => {
-      if (isNotEmpty(closeButton) && typeof closeButton === "function") {
-        return closeButton();
-      }
-
-      return (
-        <CloseButton>
-					<CloseButtonIcon />
-				</CloseButton>
-      );
-    };
-
 		return (
 			<DialogPrimitive.Portal>
 				<Overlay />
-				<StyledContent side={side} {...props} ref={forwardedRef}>
+				<StyledContent {...props} ref={forwardedRef}>
 					{children}
-					<CloseTrigger asChild>
-						{showCloseButton ? <CloseButton /> : null}
-					</CloseTrigger>
+					{showCloseButton ? (
+						<CloseButton>
+							<CloseButtonIcon />
+						</CloseButton>
+					) : null}
 				</StyledContent>
 			</DialogPrimitive.Portal>
 		)

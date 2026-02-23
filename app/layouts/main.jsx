@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { useEffect } from "react"
+import { useLocation } from "@remix-run/react"
 import { Header } from "~/components/header"
 import { Footer } from "~/components/footer"
 import { SidebarMenu } from "~/components/menu"
@@ -10,6 +12,7 @@ const MainContent = styled("main")
 
 export function MainLayout({ children, offsetMainContent = true }) {
   const [showMenu, setShowMenu] = useState(false)
+  const location = useLocation()
 
   const mainContentStyle = {
     ...(offsetMainContent ? {
@@ -17,12 +20,17 @@ export function MainLayout({ children, offsetMainContent = true }) {
     } : {})
   }
 
-  const toggleMenu = () => setShowMenu(!showMenu)
+  const onHeaderMenuToggle = nextOpen => setShowMenu(Boolean(nextOpen))
+  const onMenuOpenChange = nextOpen => setShowMenu(Boolean(nextOpen))
+
+  useEffect(() => {
+    setShowMenu(false)
+  }, [location.pathname])
 
   return (
     <>
-      <Header menuOpen={showMenu} toggleMenu={toggleMenu} />
-      <SidebarMenu open={showMenu} toggle={toggleMenu} />
+      <Header menuOpen={showMenu} toggleMenu={onHeaderMenuToggle} />
+      <SidebarMenu open={showMenu} toggle={onMenuOpenChange} />
       <MainContent css={mainContentStyle}>
         {children}
       </MainContent>

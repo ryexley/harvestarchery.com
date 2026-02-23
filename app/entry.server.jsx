@@ -1,6 +1,5 @@
 import { renderToString } from "react-dom/server"
-import { RemixServer } from "remix"
-import { getCssText } from "~/styles"
+import { RemixServer } from "@remix-run/react"
 
 export default function handleRequest(
   request,
@@ -10,12 +9,9 @@ export default function handleRequest(
 ) {
   const markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />
-  ).replace(
-    /<style id="stitches">.*<\/style>/g,
-    `<style id="stitches">${getCssText()}</style></head>`
   )
 
-  responseHeaders.set("Content-Type", "text/html")
+  responseHeaders.set("Content-Type", "text/html; charset=utf-8")
 
   return new Response("<!DOCTYPE html>" + markup, {
     status: responseStatusCode,

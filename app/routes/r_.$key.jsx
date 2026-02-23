@@ -7,6 +7,7 @@ export async function loader({ params }) {
 
 	const routeMap = {
 		"liability-waiver": external.liabilityWaiver,
+		"liablity-waiver": external.liabilityWaiver,
 		"quarry-rock-waiver": external.quarryRockWaiver,
 		"primer-one-course": "https://buy.stripe.com/8wM7vygp590g9NKbIN",
 		"primer-both-courses": "https://buy.stripe.com/aEUbLO8WD0tK3pmeV0",

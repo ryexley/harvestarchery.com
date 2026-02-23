@@ -1,6 +1,6 @@
 import { startTransition, StrictMode, useState, useCallback } from "react"
 import { hydrateRoot } from "react-dom/client"
-import { RemixBrowser } from "remix"
+import { RemixBrowser } from "@remix-run/react"
 import { ViewportProvider } from "~/context/viewport"
 import { ClientStyleContext } from "~/styles/client.context"
 import { getCssText } from "~/styles"

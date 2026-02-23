@@ -209,7 +209,8 @@ function Quote({
     <QuoteBox>
       <QuoteContainer>
         <StyledQuote {...props}>
-          {displayedQuote}&nbsp;
+          {displayedQuote}
+          {showMoreButton ? " " : null}
           {showMoreButton ? (
             <QuoteMoreButton asLink ghost={false} onClick={onShowMore}>
               Read more
@@ -242,12 +243,11 @@ const QuoteLink = styled(Bullseye, {
   }
 })
 
-function Pager({ onButtonClick, currentQuoteIndex, ...props }) {
+function Pager({ onButtonClick, currentQuoteIndex }) {
   return (
     <PagerContainer>
       {customerQuotes.map((_, index) => {
         const quoteLinkProps = {
-          key: `quote-pager-link-${index}`,
           role: "button",
           onClick: () => onButtonClick(index),
           ...(
@@ -257,7 +257,7 @@ function Pager({ onButtonClick, currentQuoteIndex, ...props }) {
           )
         }
 
-        return <QuoteLink {...quoteLinkProps} />
+        return <QuoteLink key={`quote-pager-link-${index}`} {...quoteLinkProps} />
       })}
     </PagerContainer>
   )

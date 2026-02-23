@@ -14,18 +14,7 @@ import {
 	cyanDark,
 	pinkDark,
 } from "@radix-ui/colors"
-import { randomIndex } from "~/util"
-
-const accentColorOptions = [
-	orangeDark.orange9,
-	blueDark.blue9,
-	limeDark.lime9,
-	redDark.red9,
-	cyanDark.cyan9,
-	pinkDark.pink9,
-]
-
-const randomAccentColor = () => accentColorOptions[randomIndex(accentColorOptions)] || accentColorOptions[0]
+const accentColor = orangeDark.orange9
 
 // type BreakpointKey = "xs" | "s" | "sm" | "m" | "ml" | "l" | "xl" | "xxl" | "xxxl"
 // type BreakpointPixels = { [key: string]: number }
@@ -85,7 +74,7 @@ export const {
       ...indigoDark,
       ...gray,
       ...grayDark,
-      themePrimary: randomAccentColor(),
+      themePrimary: accentColor,
       white: "$slate12",
       darkGray: "$blackA9",
       black: "$blackA12",

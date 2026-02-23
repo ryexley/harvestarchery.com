@@ -9,9 +9,9 @@ import { isEmpty, windowTitle } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { styled, breakpointPx as sizes } from "~/styles"
 
-export const meta = () => ({
-	title: windowTitle("Thank you for registering for the The Harvest Fall Primer at Quarry Rock")
-})
+export const meta = () => ([
+	{ title: windowTitle("Thank you for registering for the The Harvest Fall Primer at Quarry Rock") }
+])
 
 export async function loader({ request }) {
 	// return redirect(pages.home)

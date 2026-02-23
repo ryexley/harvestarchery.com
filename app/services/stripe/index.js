@@ -2,6 +2,11 @@ import StripeClient from "stripe"
 import { isEmpty, isNotEmpty } from "~/util"
 import { StripeError } from "~/errors/stripe-error"
 
+export const StripeErrorCode = {
+	SIGNATURE_VERIFICATION_FAILED: "SIGNATURE_VERIFICATION_FAILED",
+	UNKNOWN: "UNKNOWN",
+}
+
 /**
  * Stripe Node.js client lib
  * https://github.com/stripe/stripe-node
@@ -33,7 +38,7 @@ export function Stripe() {
 		}
 	}
 
-	return {
+		return {
 		/**
 		 * This function takes the raw http request, with the Stripe request
 		 * signature from the request headers, and when paired with the
@@ -47,20 +52,27 @@ export function Stripe() {
 		 * @param requestSignature - the Stripe request signature, from the request headers
 		 * @returns an object with either the Stripe event object, or an error
 		 */
-		getEvent: async (request = {}, requestSignature = "") => {
-			try {
-				const stripe = await getClient()
-				const event = stripe?.webhooks?.constructEvent(
+			getEvent: async (request = {}, requestSignature = "") => {
+				try {
+					const stripe = await getClient()
+					const event = stripe?.webhooks?.constructEvent(
 					request,
 					requestSignature,
 					WEBHOOK_SIGNING_SECRET,
-				)
+					)
 
-				return { event, error: null }
-			} catch(error) {
-				return { event: null, error: new StripeError(error) }
-			}
-		},
+					return { event, error: null, errorCode: null }
+				} catch(error) {
+					const code = (
+						error?.type === "StripeSignatureVerificationError" ||
+						error?.name === "StripeSignatureVerificationError"
+					)
+						? StripeErrorCode.SIGNATURE_VERIFICATION_FAILED
+						: StripeErrorCode.UNKNOWN
+
+					return { event: null, error: new StripeError(error), errorCode: code }
+				}
+			},
 
 		getPaymentIntent: async (paymentIntentId) => {
 			try {

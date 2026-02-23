@@ -125,8 +125,8 @@ export function ImageBox({
     ext: imgType
   })
   const imageContainerStyle = {
+    WebkitBackgroundImage: `-webkit-image-set(${imageSet})`,
     backgroundImage: `image-set(${imageSet})`,
-    backgroundImage: `-webkit-image-set(${imageSet})`,
   }
 
   return (

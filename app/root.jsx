@@ -1,28 +1,26 @@
 import { useEffect, useContext } from "react"
 import {
+  isRouteErrorResponse,
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+	useRouteError,
 	useLoaderData,
 } from "@remix-run/react"
-import { LinksFunction, json } from "@remix-run/node"
+import { json } from "@remix-run/node"
 import { site } from "~/data"
 import { renderCloudflareAnalyticsScript } from "~/vendor/clouldflare-analytics"
 import { getCssText } from "~/styles"
 import { globalStyles } from "~/styles/global"
 import { ClientStyleContext } from "~/styles/client.context"
 
-const isDevelopment = process.env.NODE_ENV === "development"
-const isProduction = process.env.NODE_ENV === "production"
-
 export async function loader() {
 	return json({
 		isDevelopment: process.env.NODE_ENV === "development" || false,
-		isProduction: process.env.NODE_ENV === "production" || true,
-		NODE_ENV: process.env.NODE_ENV || "production",
+		isProduction: process.env.NODE_ENV === "production" || false,
+		NODE_ENV: process.env.NODE_ENV || "development",
 		CF_ANALYTICS_ENABLED: process.env.CF_ANALYTICS_ENABLED || false,
 		CF_ANALYTICS_TOKEN: process.env.CF_ANALYTICS_TOKEN || null,
 		SENTRY_DSN: process.env.SENTRY_DSN || null,
@@ -30,12 +28,12 @@ export async function loader() {
 }
 
 const meta = () => {
-  return {
-    charset: "utf-8",
-    title: site.title,
-    viewport: "width=device-width,initial-scale=1",
-		description: `${site.title}, ${site.description} (${site.globalKeywords.join(", ")})`,
-  }
+  return [
+    { charSet: "utf-8" },
+    { title: site.title },
+    { name: "viewport", content: "width=device-width,initial-scale=1" },
+		{ name: "description", content: `${site.title}, ${site.description} (${site.globalKeywords.join(", ")})` },
+  ]
 }
 
 export const links = () => {
@@ -49,8 +47,6 @@ export const links = () => {
 
 const Document = ({ children }) => {
 	const {
-		isDevelopment = false,
-		isProduction = true,
 		CF_ANALYTICS_ENABLED,
 		CF_ANALYTICS_TOKEN,
 	} = useLoaderData() || {}
@@ -60,7 +56,7 @@ const Document = ({ children }) => {
   useEffect(() => {
     // reset cache to re-apply global styles
     clientStyleData.reset()
-  }, [clientStyleData])
+  }, [])
 
   return (
     <html lang="en">
@@ -69,15 +65,14 @@ const Document = ({ children }) => {
         <Links />
         <style type="text/css">{globalStyles()}</style>
         <style
-					id="stitches"
+						id="stitches"
           suppressHydrationWarning
-          dangerouslySetInnerHTML={{ __html: getCssText() }} />
+          dangerouslySetInnerHTML={{ __html: clientStyleData.sheet || getCssText() }} />
       </head>
       <body>
         {children}
         <ScrollRestoration />
         <Scripts />
-        {isDevelopment && <LiveReload />}
 				{/* Cloudflare Analytics (production only) */}
 				{renderCloudflareAnalyticsScript({
 					enabled: CF_ANALYTICS_ENABLED,
@@ -88,13 +83,14 @@ const Document = ({ children }) => {
   )
 }
 
-const ErrorBoundary = ({ error }) => {
+const ErrorBoundary = () => {
+  const error = useRouteError()
   console.error("ERROR", error)
 
   return (
     <Document>
       <h1>Something went wrong</h1>
-      <p>{error.message}</p>
+      <p>{isRouteErrorResponse(error) ? error.statusText : error?.message}</p>
     </Document>
   )
 }

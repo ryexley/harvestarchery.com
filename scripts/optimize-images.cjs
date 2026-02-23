@@ -1,7 +1,7 @@
 const fs = require("fs")
 const path = require("path")
 const walk = require("walk-sync")
-const Jimp = require("jimp")
+const { Jimp } = require("jimp")
 
 // https://medium.com/hceverything/applying-srcset-choosing-the-right-sizes-for-responsive-images-at-different-breakpoints-a0433450a4a3#9fca
 
@@ -18,9 +18,15 @@ async function optimizeImage({
   if (!fs.existsSync(targetPath)) {
     const image = await Jimp.read(sourcePath)
     if (image?.bitmap?.width >= width) {
-      await image.resize(width, Jimp.AUTO)
-      await image.quality(100)
-      await image.writeAsync(targetPath)
+      image.resize({ w: width })
+      if (typeof image.quality === "function") {
+        image.quality(100)
+      }
+      if (typeof image.writeAsync === "function") {
+        await image.writeAsync(targetPath)
+      } else {
+        await image.write(targetPath)
+      }
 
       console.log(`✅ Resized "${imageName}" (width: ${width}px)`)
     }

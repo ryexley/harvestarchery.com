@@ -3,16 +3,15 @@ import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
 import { PageContent } from "~/components/page-content"
 import { CallUs } from "~/components/call-us-link"
-import { useId } from "~/hooks/use-id"
 import { pages } from "~/urls"
 import { isNotEmpty, windowTitle } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { events } from "~/data/events"
 import { styled, breakpointPx as sizes } from "~/styles"
 
-export const meta = () => ({
-	title: windowTitle("Events")
-})
+export const meta = () => ([
+	{ title: windowTitle("Events") }
+])
 
 const EventList = styled("ul", {
 	listStyle: "none",
@@ -81,12 +80,11 @@ export default function Events() {
 					<>
 						<h1>Upcoming Events</h1>
 						<EventList>
-							{events.length > 0 ? events.map(event => {
-								const id = useId()
+							{events.length > 0 ? events.map((event, index) => {
 								const EventDetails = eventDetails[event.detailsKey]
 
 								return event.published ? (
-									<Event key={id}>
+									<Event key={event.title || `${event.date}-${index}`}>
 										<EventTitle>{event.title}</EventTitle>
 										<EventDate>{event.date}</EventDate>
 										{isNotEmpty(event.time) ? (

@@ -1,6 +1,5 @@
 import * as Collapsible from "@radix-ui/react-collapsible"
 import { useEffect, useState } from "react"
-import { redirect } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
@@ -13,9 +12,9 @@ import { isEmpty, windowTitle, withWindow } from "~/util"
 import { IMAGE_TYPE } from "~/util/images"
 import { styled, keyframes, breakpointPx as sizes } from "~/styles"
 
-export const meta = () => ({
-	title: windowTitle(`Frequently Asked Questions | The Harvest Fall Primer at Quarry Rock`)
-})
+export const meta = () => ([
+	{ title: windowTitle(`Frequently Asked Questions | The Harvest Fall Primer at Quarry Rock`) }
+])
 
 export async function loader({ request }) {
 	// return redirect(pages.home)

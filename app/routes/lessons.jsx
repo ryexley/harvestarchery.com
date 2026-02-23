@@ -2,9 +2,9 @@ import { MainLayout } from "~/layouts/main"
 import { windowTitle } from "~/util"
 import { styled } from "~/styles"
 
-export const meta = () => ({
-	title: windowTitle("Lessons")
-})
+export const meta = () => ([
+	{ title: windowTitle("Lessons") }
+])
 
 export default function Lessons() {
   return (
