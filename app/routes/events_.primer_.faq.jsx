@@ -13,7 +13,7 @@ import { IMAGE_TYPE } from "~/util/images"
 import { styled, keyframes, breakpointPx as sizes } from "~/styles"
 
 export const meta = () => ([
-	{ title: windowTitle(`Frequently Asked Questions | The Harvest Fall Primer at Quarry Rock`) }
+	{ title: windowTitle(`Frequently Asked Questions | The Harvest Spring Primer at Quarry Rock`) }
 ])
 
 export async function loader({ request }) {
@@ -258,7 +258,7 @@ export default function TheRockArcheryChallengePage() {
 					<Hero imageBoxProps={heroProps} style={{ marginTop: "auto" }} />
 				</HeroImage>
 				<HeroContent>
-					<PageHeading>The Harvest Fall Primer at Quarry Rock</PageHeading>
+					<PageHeading>The Harvest Spring Primer at Quarry Rock</PageHeading>
 					<SubHeading>Frequently Asked Questions</SubHeading>
 				</HeroContent>
 			</HeroWrapper>
@@ -299,7 +299,7 @@ export default function TheRockArcheryChallengePage() {
 							<>
 								<p>Because this event is a joint event hosted as a partnership between the <Se>Harvest Archery Pro Shop</Se> and the <Se>Quarry Rock Archery Club</Se>, you will need to have filled out both of those organization's waivers in order to be able to participate in the event.</p>
 								<p>The <LiabilityWaiverLink>Harvest Archery liability waiver</LiabilityWaiverLink> is available online. Once it has been filled out and submitted online, you are done. There will be no need to print out or bring a copy of it with you to the event, as it will be submitted to us automatically.</p>
-								<p>The <a href={resources.quarryRockLiabilityWaiver} target="_blank" rel="nofollow">Quarry Rock Archery Club liability waiver</a> is available as a PDF document. If you're reading this before the event, we recommend that you download and print out a copy of this waiver, fill it out and bring it with you to turn in when you check-in at the event. If you're reading this on-site the day of the event, there will be hard-copies of it available for you to fill out and turn in at the event.</p>
+								<p>The <a href={pages.quarryRockWaiver} target="_blank" rel="nofollow">Quarry Rock Archery Club liability waiver</a> is also available online. Fill out the online waiver and submit it, and we will have record of it in the system for verification when you check-in on the day of the event.</p>
 								{/* <HarvestWaiverDisclaimer><Se>NOTE: Even if you have filled out one or both of these waivers before, the content of each of them has been recently changed recently, and we ask that you review the changes and fill out another one.</Se> We understand this is an inconvenience, but it should only take a few minutes to review and fill out, and we appreciate your patience and cooperation.</HarvestWaiverDisclaimer> */}
 								<HarvestWaiverDisclaimer><Se>NOTE: If you've already filled out either of the above waivers, you should not need to fill them out again</Se> unless for some reason we are unable to verify that you've filled one out. If you filled them out for the spring event this year, we should still have your waiver and should be able to verify it. If you don't know whether or not you've filled one out, it will not hurt to do so again, and it only takes a few minutes to do so.</HarvestWaiverDisclaimer>
 							</>
