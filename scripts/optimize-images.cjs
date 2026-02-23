@@ -16,6 +16,11 @@ async function optimizeImage({
   width
 }) {
   if (!fs.existsSync(targetPath)) {
+    const targetDir = path.dirname(targetPath)
+    if (!fs.existsSync(targetDir)) {
+      fs.mkdirSync(targetDir, { recursive: true })
+    }
+
     const image = await Jimp.read(sourcePath)
     if (image?.bitmap?.width >= width) {
       image.resize({ w: width })
@@ -34,6 +39,10 @@ async function optimizeImage({
 }
 
 async function optimizeImages() {
+  if (!fs.existsSync(imageTargetDir)) {
+    fs.mkdirSync(imageTargetDir, { recursive: true })
+  }
+
   const entries = walk(imageSourceDir, { directories: false, includeBasePath: false })
   for (const item of entries) {
 		// ADD: Skip .DS_Store and hidden files
@@ -64,7 +73,7 @@ async function optimizeImages() {
         })
       }
     } catch (err) {
-      console.error(`➖ ${item} is not a valid image type, skipping optimization`)
+      console.error(`➖ Failed to optimize "${item}": ${err?.message || err}`)
       // if it can't be resized/optimized, then just copy it out to the
       // /public folder as-is
       const sourcePath = path.resolve(`${imageSourceDir}/${item}`);
