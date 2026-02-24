@@ -26,7 +26,7 @@ const Overlay = styled(DialogPrimitive.Overlay, {
   right: 0,
   bottom: 0,
   left: 0,
-  zIndex: 90,
+  zIndex: 10000,
 
   '&[data-state="open"]': {
     animation: `${fadeIn} 150ms cubic-bezier(0.22, 1, 0.36, 1)`,
@@ -51,7 +51,7 @@ const StyledContent = styled(DialogPrimitive.Content, {
   transform: "translate3d(100%,0,0)",
   transition: "transform 250ms cubic-bezier(0.22, 1, 0.36, 1)",
   width: "100%",
-	zIndex: 100,
+	zIndex: 10001,
 
   // Among other things, prevents text alignment inconsistencies when dialog cant be centered in the viewport evenly.
   // Affects animated and non-animated dialogs alike.
@@ -108,11 +108,11 @@ const Content = React.forwardRef(
 		showCloseButton = true,
 		...props
 	}, forwardedRef) => {
-		return (
-			<DialogPrimitive.Portal>
-				<Overlay />
-				<StyledContent {...props} ref={forwardedRef}>
-					{children}
+			return (
+				<DialogPrimitive.Portal>
+					<Overlay forceMount />
+					<StyledContent forceMount {...props} ref={forwardedRef}>
+						{children}
 					{showCloseButton ? (
 						<CloseButton>
 							<CloseButtonIcon />

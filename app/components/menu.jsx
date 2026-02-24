@@ -1,8 +1,8 @@
 import { ImageBox } from "~/components/image-box"
-import * as Sheet from "~/components/sheet"
+import { Drawer } from "~/components/drawer"
 import { Link } from "@remix-run/react"
 import { CallUs } from "~/components/call-us-link"
-import { CloseX, Phone, Facebook, Instagram } from "~/components/icons"
+import { Phone, Facebook, Instagram } from "~/components/icons"
 import {
   Accordion,
   AccordionItem,
@@ -14,46 +14,15 @@ import { site, menu } from "~/data"
 import { external, social } from "~/urls"
 import { styled, breakpointPx as sizes } from "~/styles"
 
-const SheetMenu = styled(Sheet.Content, {
+const SheetMenu = styled("div", {
   backgroundColor: "$blackA12",
+  height: "100%",
+  overflowY: "auto",
+  width: "100%",
 
   "@s": {
     width: "20rem",
   }
-})
-
-const Heading = styled("h2", {
-  color: "$whiteA10",
-  borderBottom: "1px solid rgba(0, 0, 0, 0.25)",
-  fontSize: "1.5rem",
-  fontWeight: "400",
-  margin: "0 0 1rem 0",
-  padding: "1rem"
-})
-
-const CloseButton = styled("button", {
-  ["--size"]: "1.5rem",
-  background: "$gray2",
-  border: "none",
-  borderRadius: "50%",
-  cursor: "pointer",
-  margin: "$1 0",
-  padding: "0.125rem",
-  position: "absolute",
-  smoothTransition: "all",
-  height: "var(--size)",
-  right: "0.8rem",
-  top: "0.5rem",
-  width: "var(--size)",
-  zIndex: "2",
-
-  "&:hover": {
-    transform: "rotate(180deg)"
-  }
-})
-
-const CloseButtonIcon = styled(CloseX, {
-  color: "$white"
 })
 
 const MenuItems = styled("ul", {
@@ -254,7 +223,7 @@ const StoreHoursDay = styled("span", {
 
 export function SidebarMenu({
   open = false,
-  toggle
+  toggle = () => {}
 }) {
   const mapProps = {
     image: "/images/shop-map",
@@ -275,37 +244,11 @@ export function SidebarMenu({
   }
 
   return (
-    <Sheet.Root
-      open={open}
-      onOpenChange={toggle}
+    <Drawer
+      isOpen={open}
+      onClose={() => toggle(false)}
       ariaLabel="Site menu">
-      <SheetMenu showCloseButton={false}>
-				<Sheet.Title style={{
-          border: 0,
-          clip: "rect(0 0 0 0)",
-          clipPath: "inset(50%)",
-          height: "1px",
-          margin: "-1px",
-          overflow: "hidden",
-          padding: 0,
-          position: "absolute",
-          whiteSpace: "nowrap",
-          width: "1px",
-        }}>Site menu</Sheet.Title>
-				<Sheet.Description style={{
-          border: 0,
-          clip: "rect(0 0 0 0)",
-          clipPath: "inset(50%)",
-          height: "1px",
-          margin: "-1px",
-          overflow: "hidden",
-          padding: 0,
-          position: "absolute",
-          whiteSpace: "nowrap",
-          width: "1px",
-        }}>
-          Main navigation and shop information.
-        </Sheet.Description>
+      <SheetMenu>
 				<StyledAccordion
 					type="single"
 					defaultValue="menu"
@@ -376,8 +319,8 @@ export function SidebarMenu({
 							</StoreHoursList>
 						</ShopDetails>
 					</AccordionPanel>
-				</StyledAccordion>
+					</StyledAccordion>
       </SheetMenu>
-    </Sheet.Root>
+    </Drawer>
   )
 }

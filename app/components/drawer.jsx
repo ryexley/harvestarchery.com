@@ -1,6 +1,6 @@
 // Adapted from:
 // https://letsbuildui.dev/articles/building-a-drawer-component-with-react-portals
-import { useRef, useEffect, Node } from "react"
+import { useRef, useEffect } from "react"
 import * as Portal from "@radix-ui/react-portal"
 import { NoSsr } from "~/components/no-ssr"
 import { styled } from "~/styles"

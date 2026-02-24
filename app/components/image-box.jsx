@@ -1,5 +1,5 @@
 import { renderImageSet, IMAGE_TYPE } from "~/util/images"
-import { styled, keyframes } from "~/styles"
+import { styled } from "~/styles"
 
 const Box = styled("div", {
   overflow: "hidden",
@@ -21,19 +21,7 @@ const Box = styled("div", {
   }
 })
 
-const slideDownFadeIn = keyframes({
-  "0%": {
-    opacity: 0,
-    transform: "translateY(-2.5rem)"
-  },
-  "100%": {
-    opacity: 1,
-    transform: "translateY(0)"
-  }
-})
-
 const ImageContainer = styled("div", {
-  animation: `${slideDownFadeIn} 1s`,
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",

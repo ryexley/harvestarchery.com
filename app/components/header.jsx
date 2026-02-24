@@ -174,7 +174,7 @@ export function Header({
         ) : null}
         <SidebarMenuToggle
           type="button"
-          onClick={() => toggleMenu(!menuOpen)}
+          onClick={toggleMenu}
           aria-expanded={menuOpen}
           aria-label={menuOpen ? "Hide menu" : "Show menu"}>
           <MenuIcon />

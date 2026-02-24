@@ -28,7 +28,7 @@ export function ViewportProvider({ children }) {
     return () => {
       withWindow(window => window.removeEventListener("resize", handleWindowResize))
     }
-  })
+  }, [])
 
   return <ViewportContext.Provider value={{ height, width }}>{children}</ViewportContext.Provider>
 }

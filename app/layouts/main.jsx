@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useEffect } from "react"
 import { useLocation } from "@remix-run/react"
 import { Header } from "~/components/header"
@@ -12,6 +12,7 @@ const MainContent = styled("main")
 
 export function MainLayout({ children, offsetMainContent = true }) {
   const [showMenu, setShowMenu] = useState(false)
+  const lastMenuOpenAtMs = useRef(0)
   const location = useLocation()
 
   const mainContentStyle = {
@@ -20,8 +21,28 @@ export function MainLayout({ children, offsetMainContent = true }) {
     } : {})
   }
 
-  const onHeaderMenuToggle = nextOpen => setShowMenu(Boolean(nextOpen))
-  const onMenuOpenChange = nextOpen => setShowMenu(Boolean(nextOpen))
+  const onHeaderMenuToggle = () => {
+    setShowMenu(current => {
+      const nextOpen = !current
+
+      if (nextOpen) {
+        lastMenuOpenAtMs.current = Date.now()
+      }
+
+      return nextOpen
+    })
+  }
+  const onMenuOpenChange = nextOpen => {
+    const normalizedNextOpen = Boolean(nextOpen)
+
+    // Guard against immediate close events emitted in the same interaction
+    // that opened the menu (observed as intermittent "menu didn't open").
+    if (!normalizedNextOpen && (Date.now() - lastMenuOpenAtMs.current) < 250) {
+      return
+    }
+
+    setShowMenu(normalizedNextOpen)
+  }
 
   useEffect(() => {
     setShowMenu(false)
