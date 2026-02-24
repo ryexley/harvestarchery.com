@@ -2,7 +2,7 @@ import { ImageBox } from "~/components/image-box"
 import { Drawer } from "~/components/drawer"
 import { Link } from "@remix-run/react"
 import { CallUs } from "~/components/call-us-link"
-import { Phone, Facebook, Instagram } from "~/components/icons"
+import { Chevron, Phone, Facebook, Instagram } from "~/components/icons"
 import {
   Accordion,
   AccordionItem,
@@ -18,11 +18,42 @@ const SheetMenu = styled("div", {
   backgroundColor: "$blackA12",
   height: "100%",
   overflowY: "auto",
+  position: "relative",
   width: "100%",
 
   "@s": {
     width: "20rem",
   }
+})
+
+const CloseButton = styled("button", {
+  ["--size"]: "1.75rem",
+  background: "$gray2",
+  border: "none",
+  borderRadius: "50%",
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  margin: 0,
+  padding: "0.125rem",
+  position: "fixed",
+  smoothTransition: "all",
+  height: "var(--size)",
+  right: "0.8rem",
+  top: "calc(env(safe-area-inset-top) + 0.5rem)",
+  width: "var(--size)",
+  zIndex: "1002",
+
+  "&:hover": {
+    transform: "rotate(180deg)"
+  }
+})
+
+const CloseButtonIcon = styled(Chevron, {
+  color: "$white",
+  height: "1rem",
+  width: "1rem"
 })
 
 const MenuItems = styled("ul", {
@@ -243,12 +274,26 @@ export function SidebarMenu({
     ]
   }
 
+  const handleCloseMenu = event => {
+    if (event) {
+      event.preventDefault()
+    }
+
+    toggle(false)
+  }
+
   return (
     <Drawer
       isOpen={open}
       onClose={() => toggle(false)}
       ariaLabel="Site menu">
       <SheetMenu>
+				<CloseButton
+          aria-label="Close menu"
+          type="button"
+          onClick={handleCloseMenu}>
+          <CloseButtonIcon />
+        </CloseButton>
 				<StyledAccordion
 					type="single"
 					defaultValue="menu"
