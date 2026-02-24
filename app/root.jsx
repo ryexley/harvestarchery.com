@@ -29,9 +29,7 @@ export async function loader() {
 
 const meta = () => {
   return [
-    { charSet: "utf-8" },
     { title: site.title },
-    { name: "viewport", content: "width=device-width,initial-scale=1" },
 		{ name: "description", content: `${site.title}, ${site.description} (${site.globalKeywords.join(", ")})` },
   ]
 }
@@ -61,6 +59,8 @@ const Document = ({ children }) => {
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
         <style type="text/css">{globalStyles()}</style>
