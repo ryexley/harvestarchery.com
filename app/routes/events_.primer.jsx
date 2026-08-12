@@ -1,3 +1,4 @@
+import { redirect } from "@remix-run/node"
 import { Link } from "@remix-run/react"
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
@@ -16,8 +17,8 @@ export const meta = () => ([
 ])
 
 export async function loader() {
-	// return redirect(pages.home)
-	return null
+	return redirect(pages.home)
+	// return null
 }
 
 const HeroWrapper = styled("div", {

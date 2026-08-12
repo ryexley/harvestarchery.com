@@ -1,6 +1,7 @@
 import * as Collapsible from "@radix-ui/react-collapsible"
 import { useEffect, useState } from "react"
 import { useLoaderData } from "@remix-run/react"
+import { redirect } from "@remix-run/node"
 import { MainLayout } from "~/layouts/main"
 import { Hero } from "~/components/hero"
 import { PageHeading } from "~/components/page-heading"
@@ -17,7 +18,7 @@ export const meta = () => ([
 ])
 
 export async function loader({ request }) {
-	// return redirect(pages.home)
+	return redirect(pages.home)
 
 	const url = new URL(request?.url)
   const view = url.searchParams.get("view")
